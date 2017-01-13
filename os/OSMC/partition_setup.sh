@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Let OSIRIS see what we are doing
+set -x
+
+# Are we Pi1 or Pi2
+grep -q ARMv7 /proc/cpuinfo
+if [ $? -eq 0 ]
+then
+    dev="rbp2"
+else
+   dev="rbp1"
+fi
+# We really don't want automated fscking
+tune2fs -c 0 $part2
+# Temporary mounting directory
+mkdir -p /tmp/mount
+# Fix the cmdline.txt
+mount $part1 /tmp/mount
+echo "root=$part2 osmcdev=$dev rootfstype=ext4 rootwait quiet" > /tmp/mount/cmdline.txt
+echo "
+hdmi_group=1
+hdmi_mode=32
+max_usb_current=1  
+" >> /tmp/mount/config.txt
+umount /tmp/mount
+# Wait
+sync
+# Fix the fstab
+mount $part2 /tmp/mount
+echo "$part1  /boot    vfat     defaults,noatime    0   0
+$part2  /    ext4      defaults,noatime    0   0
+/dev/mmcblk0p1  /media/RECOVERY    vfat     noauto,noatime    0   0
+/dev/mmcblk0p5  /media/SETTINGS    ext4     noauto,noatime    0   0
+/dev/mmcblk0p8  /media/boot     vfat     noauto,noatime    0   0
+/dev/mmcblk0p9  /media/root                  ext4     noauto,noatime    0   0
+" > /tmp/mount/etc/fstab
+
+# customize files
+sed -i -e "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
+sed -i -e "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/ssh/sshd_config
+#sed -i -e "/<\/Weather>/r /mnt/os/OSMC/custom/keyboard.xml" /tmp/mount/usr/share/kodi/system/keymaps/keyboard.xml
+
+cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
+chmod 755 /tmp/mount/home/osmc/*.py
+chown -R 1000:1000 /tmp/mount/home/osmc # 'osmc' dir copied as root before os create - chown needed
+
+umount /tmp/mount
+# Wait
+sync
+

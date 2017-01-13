@@ -1,0 +1,106 @@
+HowTo: Build Offline Custom NOOBS - Dual Boot: Rune | OSMC
+---
+(on Linux PC)  
+  
+- Get custom compiled NOOBS
+- Prepare os directory  
+- Download
+- Make image files
+
+<hr>
+
+Get custom compiled NOOBS
+---
+- Download [**custom compiled NOOBS**](https://drive.google.com/open?id=0B9KEjMAuGbejdDU4Zy02bDJILWM)
+- Decompress in **home** directory
+
+Prepare os directory
+---
+
+**~/os/RuneAudio/** 
+
+>./slides_vga/  
+>	os.json  
+>	partition_setup.sh  
+>	partition.json  
+>	RuneAudio.png  
+>	boot.tar.xz  
+>	root.tar.xz  
+
+		
+**~/os/OSMC/**  
+
+>./slides_vga/  
+>	os.json  
+>	partition_setup.sh  
+>	partition.json  
+>	OSMC.png  
+>	boot-rbp2.tar.xz  
+>	filesystem.tar.xz  
+
+#
+**Rune | OSMC**
+
+>**./slides_vga/**  
+>	one or several 400x300 px images: A.png, B.png, C.png, ... for a slideshow during installation
+	
+>**os.json**  
+>	edit "name", "version", "release_date", "kernel"
+
+>**partition.json**  
+>	"label" must be the same as 'boot' and 'root' compressed filename  
+>	"uncompressed_tarball_size" must be checked and roundup to next MB
+
+>**partition_setup.sh**  
+>	add customizing commands to run after installation finished  
+>	**warning** verify that every lines end with **LF** not **CRLF**
+	
+>**[icon].png**  
+>	40 x 40 pixel  
+>	filename must be the same as "name" (in os.json) for display in NOOBS menu
+
+Download
+---
+**Rune**  
+- Get [**RuneAudio image**](http://www.runeaudio.com/download/) image file  
+- Decompress and move the image file(file.img) to current user **home** directory  
+
+**boot.tar.xz**  
+>
+```sh
+cd
+sudo su
+kpartx -av RuneAudio_xxx.img
+mount /dev/mapper/loop0p1 /mnt
+tar -cvpf boot.tar -C /mnt .
+umount /mnt
+xz -9ekv boot.tar
+```
+>
+>Copy **boot.tar.xz** to **~/os/RuneAudio/**  
+
+**root.tar.xz**  
+>
+```sh
+mount /dev/mapper/loop0p2 /mnt
+tar -cvpf root.tar -C /mnt . --exclude=proc/* --exclude=sys/* --exclude=dev/pts/* --exclude=boot/*
+umount /mnt
+xz -9ekv root.tar
+kpartx -dv RuneAudio_xxx.img
+```
+>
+>Copy **root.tar.xz** to **~/os/RuneAudio/**  
+ 	
+#
+**OSMC**  
+
+**boot-rbp2.tar.xz**  
+>Get [boot-rbp2.tar.xz](http://ftp.fau.de/osmc/osmc/download/installers/noobs/)  
+>Copy **boot-rbp2.tar.xz** to **~/os/OSMC/**  
+
+**filesystem.tar.xz**  
+>Get [OSMC image](http://ftp.fau.de/osmc/osmc/download/installers/diskimages/)    
+>Decompress and extract image file (file.img)  
+>Copy **filesystem.tar.xz** to **~/os/OSMC/**	
+
+**Done !**  
