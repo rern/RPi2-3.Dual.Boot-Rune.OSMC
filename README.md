@@ -13,7 +13,11 @@ Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
 - Easy to switch with a single button from a cheap IR remote
 - Install easier than normal NOOBS itself with 1 complete package (GitHub `Download Zip` not support large files, the download hosted on  Google Drive)
 - Unattended offline installation
-- No need for interaction, display, mouse, internet during installation
+- No need for interaction, display, mouse, internet during installation  
+
+>[Features](#features)  
+>[Remote Control](#remote-control)  
+>[Installation](#installation)  
 
 [**HowTo:** Build Offline Custom NOOBS](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/HowToBuild.md)  
 For more **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement) 
