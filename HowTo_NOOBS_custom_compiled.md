@@ -1,4 +1,4 @@
-NOOBS custom compiled
+NOOBS custom compile
 ---
 
 - add unattended install option
