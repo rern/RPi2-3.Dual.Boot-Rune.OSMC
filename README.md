@@ -21,7 +21,9 @@ Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
 
 [**HowTo:** Build Offline Custom NOOBS](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/HowToBuild.md)  
 For more **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement) 
-	
+
+![partitions](https://github.com/rern/Assets/blob/master/RPi2-3.Dual.Boot-Rune.OSMC/NOOBS_partitions.PNG)  
+
 Features
 ---
 
