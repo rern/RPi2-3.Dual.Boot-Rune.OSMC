@@ -53,4 +53,4 @@ sed -i 's/\r//; s/\n//; s/$/ silentinstall/' "$FINAL_OUTPUT_DIR/recovery.cmdline
 - Get **NOOBS** in **~/noobs/output** directory  
   
     
-**NOOBS install sequence**: /recovery/multiimagewritethread.cpp
+_NOOBS install sequence can be found in /recovery/multiimagewritethread.cpp_
