@@ -7,7 +7,7 @@ HowTo: Build Offline Custom NOOBS - Dual Boot: Rune | OSMC
 - Download
 - Make image files
 
-<hr>
+![partitions](https://github.com/rern/Assets/blob/master/RPi2-3.Dual.Boot-Rune.OSMC/NOOBS_partitions.PNG)  
 
 Get custom compiled NOOBS
 ---
