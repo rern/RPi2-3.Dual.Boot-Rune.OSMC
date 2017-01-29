@@ -95,3 +95,9 @@ Installation
  * (about 15 minutes with class 10 SD card)
 
 3. Done!
+
+**NOOBS force recovery**
+```sh
+echo " forcetrigger" >> recovery.cmdline
+```
+
