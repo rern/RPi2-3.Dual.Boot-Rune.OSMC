@@ -51,3 +51,6 @@ sed -i 's/\r//; s/\n//; s/$/ silentinstall/' "$FINAL_OUTPUT_DIR/recovery.cmdline
 ./BUILDME.sh
 ```
 - Get **NOOBS** in **~/noobs/output** directory  
+  
+    
+**NOOBS install sequence**: /recovery/multiimagewritethread.cpp
