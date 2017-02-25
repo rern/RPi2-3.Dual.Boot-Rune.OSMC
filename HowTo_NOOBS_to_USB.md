@@ -92,6 +92,18 @@ mount /dev/mmcblk0p8 /mnt/root
 blkid
 	# ...
 	# /dev/sda1: ... PARTUUID="0004f471-01"
+	
+	
+#!/bin/bash
+
+mkdir /mnt/boot
+mount /dev/mmcblk0p8 /mnt/boot
+
+id=$(blkid | sed -n 's|/dev/sda1: .*PARTUUID=||p')
+id=$(tr -d '"' <<< $id)
+sed -i "s|/dev/mmcblk0p8|/dev/PARTUUID=$id|" /mnt/boot/cmdline.txt
+umount /mnt/boot
+rmdir /mnt/boot
 ```
 		
 **/mnt/root/cmdline.txt** - edit  
