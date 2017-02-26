@@ -100,7 +100,6 @@ umount /mnt/boot
 rmdir /mnt/boot
 ```
 (if not work: /dev/sda1)  
-Another SD card: On PC, edit SD card `/dev/mmcblk0p8` accordingly  
 
 **OSMC** on Rune  
 _boot to OSMC at least once to finish setup_  
@@ -124,14 +123,13 @@ rmdir /mnt/usb
 mkdir /mnt/boot
 mount /dev/mmcblk0p6 /mnt/root
 
-id=$(blkid /dev/sda1 | cut -d '"' -f2)
+id=$(blkid /dev/sda2 | cut -d '"' -f2)
 sed -i "s|/dev/mmcblk0p8|/dev/UUID=$id|" /mnt/boot/cmdline.txt
 
 umount /mnt/boot
 rmdir /mnt/boot
 ```	
 (if not work: /dev/sda2)  
-Another SD card: On PC, edit SD card `/dev/mmcblk0p6` accordingly  
 
 **or from PC**
 ```sh
