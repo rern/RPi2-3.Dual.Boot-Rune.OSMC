@@ -99,9 +99,9 @@ blkid
 mkdir /mnt/boot
 mount /dev/mmcblk0p8 /mnt/boot
 
-id=$(blkid | sed -n 's|/dev/sda1: .*PARTUUID=||p')
-id=$(tr -d '"' <<< $id)
+id=$(blkid /dev/sda1 | cut -d '"' -f6)
 sed -i "s|/dev/mmcblk0p8|/dev/PARTUUID=$id|" /mnt/boot/cmdline.txt
+
 umount /mnt/boot
 rmdir /mnt/boot
 ```
