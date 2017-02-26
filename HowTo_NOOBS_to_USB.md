@@ -73,8 +73,10 @@ mkfs.ext4 /dev/sda2
 
 **from RPi** (not from current root partition which dynamically changed)  
 	
-	Rune on OSMC
+**Rune** on OSMC
 ```sh
+#!/bin/bash
+
 mkdir /mnt/root
 mkdir /media/root
 mount /dev/mmcblk0p9 /mnt/root
@@ -87,14 +89,6 @@ umount /mnt/root
 umount /media/root
 rmdir /mnt/root
 rmdir /media/root
-mount /dev/mmcblk0p8 /mnt/root
-
-blkid
-	# ...
-	# /dev/sda1: ... PARTUUID="0004f471-01"
-	
-	
-#!/bin/bash
 
 mkdir /mnt/boot
 mount /dev/mmcblk0p8 /mnt/boot
@@ -105,15 +99,14 @@ sed -i "s|/dev/mmcblk0p8|/dev/PARTUUID=$id|" /mnt/boot/cmdline.txt
 umount /mnt/boot
 rmdir /mnt/boot
 ```
-		
-**/mnt/root/cmdline.txt** - edit  
-			`/dev/mmcblk0p8` > `/dev/PARTUUID=0004f471-01 ...`  
-			(if not work: /dev/sda1)  
-			Another SD card: On PC, edit SD card `/dev/mmcblk0p8` accordingly  
+(if not work: /dev/sda1)  
+Another SD card: On PC, edit SD card `/dev/mmcblk0p8` accordingly  
 
-**OSMC on Rune**  
+**OSMC** on Rune  
 _boot to OSMC at least once to finish setup_  
 ```sh
+#!/bin/bash
+
 mkdir /mnt/root
 mkdir /mnt/usb
 mount /dev/mmcblk0p7 /mnt/root
@@ -127,16 +120,18 @@ umount /mnt/root
 umount /mnt/usb
 rmdir /mnt/root
 rmdir /mnt/usb
+
+mkdir /mnt/boot
 mount /dev/mmcblk0p6 /mnt/root
 
-blkid
-	# ...
-	# /dev/sda2: ... UUID="ebc7afc2-60b1-4de2-9d80-7cf38657af73" ...
+id=$(blkid /dev/sda1 | cut -d '"' -f2)
+sed -i "s|/dev/mmcblk0p8|/dev/UUID=$id|" /mnt/boot/cmdline.txt
+
+umount /mnt/boot
+rmdir /mnt/boot
 ```	
-**/mnt/root/cmdline.txt** - edit  
-			`/dev/mmcblk0p6` > `/dev/UUID=ebc7afc2-60b1-4de2-9d80-7cf38657af73 ...`  
-			(if not work: /dev/sda1)  
-			Another SD card: On PC, edit SD card `/dev/mmcblk0p6` accordingly  
+(if not work: /dev/sda2)  
+Another SD card: On PC, edit SD card `/dev/mmcblk0p6` accordingly  
 
 **or from PC**
 ```sh
