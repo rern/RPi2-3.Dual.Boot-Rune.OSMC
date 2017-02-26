@@ -134,7 +134,7 @@ blkid
 	# /dev/sda2: ... UUID="ebc7afc2-60b1-4de2-9d80-7cf38657af73" ...
 ```	
 **/mnt/root/cmdline.txt** - edit  
-			`/dev/mmcblk0p6` > `/dev/PARTUUID=ebc7afc2-60b1-4de2-9d80-7cf38657af73 ...`  
+			`/dev/mmcblk0p6` > `/dev/UUID=ebc7afc2-60b1-4de2-9d80-7cf38657af73 ...`  
 			(if not work: /dev/sda1)  
 			Another SD card: On PC, edit SD card `/dev/mmcblk0p6` accordingly  
 
