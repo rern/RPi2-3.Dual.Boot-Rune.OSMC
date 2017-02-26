@@ -1,8 +1,39 @@
 NOOBS to USB
 ---
-list disks and partitions
+Insert only 1 usb drive
+
 ```sh
+#!/bin/bash
+
+line2='\e[0;36m=========================================================\e[m'
+line='\e[0;36m---------------------------------------------------------\e[m'
+bar=$( echo -e "$(tput setab 6)   $(tput setab 0)" )
+info=$( echo $(tput setab 6; tput setaf 0) i $(tput setab 0; tput setaf 7) )
+
+# functions #######################################
+
+title2() {
+		echo -e "\n$line2\n"
+		echo -e "$bar $1"
+		echo -e "\n$line2\n"
+}
+title() {
+		echo -e "\n$line"
+		echo $1
+		echo -e "$line\n"
+}
+titleend() {
+		echo -e "\n$1"
+		echo -e "\n$line\n"
+}
+
+title "$info Storage list"
 lsblk
+
+size=$(lsblk | sed -n '/^sda/p' | awk '{print $4}')
+title "$info USB drive size: $size"
+
+umount /dev/sda*
 ```
 **prepare partitions**
 ```sh
