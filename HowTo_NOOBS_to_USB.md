@@ -1,37 +1,3 @@
-NOOBS - Move to 1GB SD card
----
-Finish nornal NOOBS installation.  
-
-**GParted:**  
-	(not needed: LBA, lowercase label)  
-	1 - Primary > 750MB | fat32 | RECOVERY  
-	2 - Extend > all the rest  
-	3 - Logical > 40MB | ext4 | SETTINGS  
-	4 - Logical > 80MB | fat32 | bootosmc  
-	5 - Logical > 5MB | ext4  
-	6 - Logical > 200M | fat32 | bootrune  
-
-```sh
-dosfsck -w -r -l -a -v /dev/sdb1
-dosfsck -w -r -l -a -v /dev/sdb6
-dosfsck -w -r -l -a -v /dev/sdb8
-mount /device/sdb1 /mnt
-```
-
-**Files:**
-```sh
-gksu nautilus
-```
-```sh
-		copy /home/x/NOOBS_SD/RECOVERY/ to /media/x/mnt
-		copy /home/x/NOOBS_SD/SETTINGS/ to /media/x/SETTINGS
-		copy /home/x/NOOBS_SD/BOOT-RBP2/ to /media/x/bootosmc
-		copy /home/x/NOOBS_SD/BOOT/ to /media/x/bootrune
-```
-```sh
-umount /mnt
-```
-
 NOOBS to USB
 ---
 list disks and partitions
@@ -137,4 +103,38 @@ cd /source
 tar -cvpf /destination/file.tar .
 cd /destination
 tar -xvpf /source/file.tar
+```
+
+NOOBS - Move to 1GB SD card
+---
+Finish nornal NOOBS installation.  
+
+**GParted:**  
+	(not needed: LBA, lowercase label)  
+	1 - Primary > 750MB | fat32 | RECOVERY  
+	2 - Extend > all the rest  
+	3 - Logical > 40MB | ext4 | SETTINGS  
+	4 - Logical > 80MB | fat32 | bootosmc  
+	5 - Logical > 5MB | ext4  
+	6 - Logical > 200M | fat32 | bootrune  
+
+```sh
+dosfsck -w -r -l -a -v /dev/sdb1
+dosfsck -w -r -l -a -v /dev/sdb6
+dosfsck -w -r -l -a -v /dev/sdb8
+mount /device/sdb1 /mnt
+```
+
+**Files:**
+```sh
+gksu nautilus
+```
+```sh
+		copy /home/x/NOOBS_SD/RECOVERY/ to /media/x/mnt
+		copy /home/x/NOOBS_SD/SETTINGS/ to /media/x/SETTINGS
+		copy /home/x/NOOBS_SD/BOOT-RBP2/ to /media/x/bootosmc
+		copy /home/x/NOOBS_SD/BOOT/ to /media/x/bootrune
+```
+```sh
+umount /mnt
 ```
