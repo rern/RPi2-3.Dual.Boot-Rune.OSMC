@@ -35,8 +35,8 @@ title "$info USB drive size: $size"
 
 gb=${size//[^0-9.]/}
 mb=$(awk "BEGIN {print $gb * 1000}")
-if [ $mb -lt 2000 ]; then
-	titleend "USB storage too small."
+if [ $mb -lt 3400 ]; then
+	titleend "USB drive too small."
 	exit
 fi
 if [ $mb -lt 4000 ]; then
