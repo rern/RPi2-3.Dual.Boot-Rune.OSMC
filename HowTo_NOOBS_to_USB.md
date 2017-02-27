@@ -33,12 +33,19 @@ lsblk
 size=$(lsblk | sed -n '/^sda/p' | awk '{print $4}')
 title "$info USB drive size: $size"
 
+title "$info Delete all partitions and create new ones:"
+
+[
 umount /dev/sda*
+sfdisk --delete /dev/sda
+echo -e 'o\nn\np\n1\n\n+2.4GB\nn\np\n2\n\n\nw' | fdisk /dev/sda > /dev/null 2>&1
+
+partx -u /dev/sda
+mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda2
 ```
-**prepare partitions**
-```sh
-fdisk /dev/sda
-```
+
+**fdisk**
 ```sh	
 			: p			(list existing partitions)
 				if needed only
@@ -55,15 +62,6 @@ fdisk /dev/sda
 				: <enter>
 				: <enter>		(default last sector)
 			: w			(save changes)
-```
-```sh		
-partx -u /dev/sda
-
-umount /dev/sda1
-umount /dev/sda2
-
-mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
 ```
 
 **transfer filesystem**  
