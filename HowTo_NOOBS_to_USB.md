@@ -40,11 +40,11 @@ if [ $mb -lt 2000 ]; then
 	exit
 fi
 if [ $mb -lt 4000 ]; then
-	p1='+2400MB'
+	p1='+2400M'
 	p1gb='2.4GB'
 	p2gb=$(awk "BEGIN {print ($mb - 2400) / 1000}")'GB'
 else
-	p1='+'$(awk "BEGIN {print $mb / 2}")'MB'
+	p1='+'$(awk "BEGIN {print $mb / 2}")'M'
 	p1gb=$(awk "BEGIN {print $gb / 2}")'GB'
 	p2gb=$p1gb
 fi
@@ -55,7 +55,7 @@ echo "#2: $p2gb"
 umount /dev/sda*
 sfdisk --delete /dev/sda
 
-echo -e "o\nn\np\n1\n\n$p1\nn\np\n2\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
+echo -e "o\nn\n\n\n\n$p1\nn\n\n\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
 
 partx -u /dev/sda
 mkfs.ext4 /dev/sda1
