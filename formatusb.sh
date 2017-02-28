@@ -35,20 +35,18 @@ if [ $mb -lt 3400 ]; then
     exit
 fi
 if [ $mb -lt 4000 ]; then
-    p1='+2400M'
-    p1gb='2.4GB'
-    p2gb=$(awk "BEGIN {print ($mb - 2400) / 1000}")'GB'
+    p1=2.4
+    p2=$(awk "BEGIN {print ($mb - 2400) / 1000}")
 else
-    p1='+'$(awk "BEGIN {print $mb / 2}")'M'
-    p1gb=$(awk "BEGIN {print $gb / 2}")'GB'
-    p2gb=$p1gb
+    p1=$(awk "BEGIN {print $gb / 2}")
+    p2=$p1
 fi
 
 title "$info Delete all USB partitions and create new ones:"
-echo "Drive capacity: $size"
-echo "Existing partiton: delete all"
-echo "New partiton #1: $p1gb"
-echo "New partiton #2: $p2gb"
+echo 'Drive capacity:' $size
+echo 'Existing partiton: delete all'
+echo 'New partiton #1:' $p1'GB'
+echo 'New partiton #2:' $p2'GB'
 echo -e '  \e[0;36m0\e[m No'
 echo -e '  \e[0;36m1\e[m Yes'
 echo
@@ -66,7 +64,11 @@ title "Delete partitions ..."
 sfdisk --delete /dev/sda
 
 title "Create new partitions ..."
-echo -e "o\nn\n\n\n\n$p1\nn\n\n\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
+#echo -e "o\nn\n\n\n\n\+$p1G\nn\n\n\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
+sfdisk /dev/sda << EOF
+, $p1'G'
+;
+EOF
 
 title "Format partitions to ext4 ..."
 partx -u /dev/sda
