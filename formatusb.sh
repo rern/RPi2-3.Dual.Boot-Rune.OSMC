@@ -45,6 +45,7 @@ else
 fi
 
 title "$info Delete all USB partitions and create new ones:"
+echo "Drive capacity: $size"
 echo "Existing partiton: delete all"
 echo "New partiton #1: $p1gb"
 echo "New partiton #2: $p2gb"
