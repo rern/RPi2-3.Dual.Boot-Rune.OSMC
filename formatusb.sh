@@ -45,13 +45,31 @@ else
 fi
 
 title "$info Delete all USB partitions and create new ones:"
-echo "#1: $p1gb"
-echo "#2: $p2gb"
+echo "Existing partiton: delete all"
+echo "New partiton #1: $p1gb"
+echo "New partiton #2: $p2gb"
+echo -e '  \e[0;36m0\e[m No'
+echo -e '  \e[0;36m1\e[m Yes'
+echo
+echo -e '\e[0;36m0\e[m / 1 ? '
+read -n 1 answer
+case $answer in
+	1 ) echo;;
+	* ) echo
+		titleend "USB drive partitioning cancelled."
+		exit;;
+esac
+
 umount /dev/sda*
+title "Delete oartitions ..."
 sfdisk --delete /dev/sda
 
+title "Create new partitions ..."
 echo -e "o\nn\n\n\n\n$p1\nn\n\n\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
 
+title "Format partitions ..."
 partx -u /dev/sda
 mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda2
+
+title "USB drive partitioned and formatted successfully."
