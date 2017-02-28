@@ -61,13 +61,13 @@ case $answer in
 esac
 
 umount /dev/sda*
-title "Delete oartitions ..."
+title "Delete partitions ..."
 sfdisk --delete /dev/sda
 
 title "Create new partitions ..."
 echo -e "o\nn\n\n\n\n$p1\nn\n\n\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
 
-title "Format partitions ..."
+title "Format partitions to ext4 ..."
 partx -u /dev/sda
 mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda2
