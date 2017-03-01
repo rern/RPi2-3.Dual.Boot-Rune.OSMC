@@ -33,22 +33,22 @@ titleend() {
 title "$info Storage list"
 lsblk
 
-size=$(lsblk | sed -n '/^sda/p' | awk '{print $4}')
+size=$( lsblk | sed -n '/^sda/p' | awk '{print $4}' )
 title "$info USB drive size: $size"
 
 gb=${size//[^0-9.]/}
-mb=$(python -c "print($gb * 1000)")
+mb=$( python -c "print( int($gb * 1000) )" )
 if [ $mb -lt 3400 ]; then
     titleend "USB drive too small."
     exit
 fi
 if [ $mb -lt 4000 ]; then
     p1=2.4
-    p2=$(python -c "print($gb - $p1)")
+    p2=$( python -c "print($gb - $p1)" )
 else
     p1=2.4
     p2=1.2
-    p3=$(python -c "print($gb - $p1 - $p2)")
+    p3=$( python -c "print($gb - $p1 - $p2)" )
 fi
 
 title "$info Delete all USB partitions and create new ones:"
