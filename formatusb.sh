@@ -31,11 +31,10 @@ titleend() {
 }
 
 title "$info Storage list"
+dev='/dev/sda'
 lsblk
 
-size=$( lsblk | sed -n '/^sda/p' | awk '{print $4}' )
-title "$info USB drive size: $size"
-
+size=$( lsblk | sed -n "/^${dev: -3}/p" | awk '{print $4}' )
 gb=${size//[^0-9.]/}
 mb=$( python -c "print( int($gb * 1000) )" )
 if [ $mb -lt 3400 ]; then
@@ -69,26 +68,26 @@ case $answer in
 		exit;;
 esac
 
-umount /dev/sda*
+umount $dev*
 title "Delete partitions ..."
-dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc
+dd if=/dev/zero of=$dev bs=512 count=1 conv=notrunc
 
 title "Create new partitions ..."
 if [ $mb -lt 4000 ]; then
-	echo -e ','$p1'G\n,' | sfdisk /dev/sda
+	echo -e ','$p1'G\n,' | sfdisk $dev
 else
-	echo -e ','$p1'G\n,'$p2'G\n,' | sfdisk /dev/sda
+	echo -e ','$p1'G\n,'$p2'G\n,' | sfdisk $dev
 fi
 
 title "Format partitions ..."
-partx -u /dev/sda
-yes | mkfs.ext4 /dev/sda1
-e2label /dev/sda1 root
-yes | mkfs.ext4 /dev/sda2
-e2label /dev/sda2 root-rbp2
+partx -u $dev
+yes | mkfs.ext4 $dev'1'
+e2label $dev'1' root
+yes | mkfs.ext4 $dev'2'
+e2label $dev'2' root-rbp2
 if [ $mb -gt 4000 ]; then
-	yes | mkfs.ext4 /dev/sda3
-	e2label /dev/sda3 data
+	yes | mkfs.ext4 $dev'3'
+	e2label $dev'3' data
 fi
 
 title "USB drive partitioned and formatted successfully."
