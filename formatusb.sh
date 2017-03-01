@@ -83,7 +83,12 @@ fi
 title "Format partitions ..."
 partx -u /dev/sda
 mkfs.ext4 /dev/sda1
+e2label /dev/sda1 root
 mkfs.ext4 /dev/sda2
-[ $mb -gt 4000 ] && mkfs.ext4 /dev/sda3
+e2label /dev/sda2 root-rbp2
+if [ $mb -gt 4000 ]; then
+	mkfs.ext4 /dev/sda3
+	e2label /dev/sda3 data
+fi
 
 title "USB drive partitioned and formatted successfully."
