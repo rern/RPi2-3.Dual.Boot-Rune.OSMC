@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# formatusb.sh
+#
+# verify drive capacity >3.4GB
+# delete all partitions
+# 4GB: create partitions 2.4GB + the rest
+# >4GB: create partitions 2.4GB + 1.2GB + the rest
+# format
+
 line2='\e[0;36m=========================================================\e[m'
 line='\e[0;36m---------------------------------------------------------\e[m'
 bar=$( echo -e "$(tput setab 6)   $(tput setab 0)" )
@@ -38,15 +46,17 @@ if [ $mb -lt 4000 ]; then
     p1=2.4
     p2=$(awk "BEGIN {print ($mb - 2400) / 1000}")
 else
-    p1=$(awk "BEGIN {print $gb / 2}")
-    p2=$p1
+    p1=2.4
+    p2=1.2
+    p3=$(awk "BEGIN {print $size - 3.6}")
 fi
 
 title "$info Delete all USB partitions and create new ones:"
 echo 'Drive capacity:' $size
-echo 'Existing partiton: delete all'
+echo 'Existing partiton: \e[0;31mdelete all\e[m'
 echo 'New partiton #1:' $p1'GB'
 echo 'New partiton #2:' $p2'GB'
+[ $mb -gt 4000 ] && echo 'New partiton #3:' $p3'GB'
 echo -e '  \e[0;36m0\e[m No'
 echo -e '  \e[0;36m1\e[m Yes'
 echo
@@ -61,18 +71,19 @@ esac
 
 umount /dev/sda*
 title "Delete partitions ..."
-sfdisk --delete /dev/sda
+dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc
 
 title "Create new partitions ..."
-#echo -e "o\nn\n\n\n\n\+$p1G\nn\n\n\n\n\nw" | fdisk /dev/sda > /dev/null 2>&1
-sfdisk /dev/sda << EOF
-, $p1'G'
-;
-EOF
+if [ $mb -lt 4000 ]; then
+	echo -e ','$p1'G\n,;' | sfdisk /dev/sda
+else
+	echo -e ','$p1'G\n,'$p2'G\n,;' | sfdisk /dev/sda
+fi
 
-title "Format partitions to ext4 ..."
+title "Format partitions ..."
 partx -u /dev/sda
 mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda2
+[ $mb -gt 4000 ] && mkfs.ext4 /dev/sda3
 
 title "USB drive partitioned and formatted successfully."
