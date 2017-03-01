@@ -53,7 +53,7 @@ fi
 
 title "$info Delete all USB partitions and create new ones:"
 echo 'Drive capacity:' $gb'GB'
-echo 'Existing partiton: \e[0;31mdelete all\e[m'
+echo -e 'Existing partiton: \e[0;31mdelete all\e[m'
 echo 'New partiton #1:' $p1'GB'
 echo 'New partiton #2:' $p2'GB'
 [ $mb -gt 4000 ] && echo 'New partiton #3:' $p3'GB'
