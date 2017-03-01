@@ -37,22 +37,22 @@ size=$(lsblk | sed -n '/^sda/p' | awk '{print $4}')
 title "$info USB drive size: $size"
 
 gb=${size//[^0-9.]/}
-mb=$(awk "BEGIN {print $gb * 1000}")
+mb=$(python -c "print($gb * 1000)")
 if [ $mb -lt 3400 ]; then
     titleend "USB drive too small."
     exit
 fi
 if [ $mb -lt 4000 ]; then
     p1=2.4
-    p2=$(awk "BEGIN {print ($mb - 2400) / 1000}")
+    p2=$(python -c "print($gb - $p1)")
 else
     p1=2.4
     p2=1.2
-    p3=$(awk "BEGIN {print $size - 3.6}")
+    p3=$(python -c "print($gb - $p1 - $p2)")
 fi
 
 title "$info Delete all USB partitions and create new ones:"
-echo 'Drive capacity:' $size
+echo 'Drive capacity:' $gb'GB'
 echo 'Existing partiton: \e[0;31mdelete all\e[m'
 echo 'New partiton #1:' $p1'GB'
 echo 'New partiton #2:' $p2'GB'
