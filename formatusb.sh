@@ -75,9 +75,9 @@ dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc
 
 title "Create new partitions ..."
 if [ $mb -lt 4000 ]; then
-	echo -e ','$p1'G\n' | sfdisk /dev/sda
+	echo -e ','$p1'G\n,' | sfdisk /dev/sda
 else
-	echo -e ','$p1'G\n,'$p2'G\n' | sfdisk /dev/sda
+	echo -e ','$p1'G\n,'$p2'G\n,' | sfdisk /dev/sda
 fi
 
 title "Format partitions ..."
