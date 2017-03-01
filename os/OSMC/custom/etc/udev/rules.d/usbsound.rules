@@ -1,2 +1,2 @@
-ACTION=="add", KERNEL=="controlC1", SUBSYSTEM=="sound", RUN+="/home/osmc/usbsound.sh"
-ACTION=="remove", KERNEL=="controlC1", SUBSYSTEM=="sound", RUN+="/home/osmc/hdmisound.sh"
+ACTION=="add", KERNEL=="controlC1", SUBSYSTEM=="sound", RUN+="/home/osmc/soundusb.py"
+ACTION=="remove", KERNEL=="controlC1", SUBSYSTEM=="sound", RUN+="/home/osmc/soundhdmi.py"
