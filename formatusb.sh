@@ -82,12 +82,12 @@ fi
 
 title "Format partitions ..."
 partx -u /dev/sda
-y | mkfs.ext4 /dev/sda1
+yes | mkfs.ext4 /dev/sda1
 e2label /dev/sda1 root
-y | mkfs.ext4 /dev/sda2
+yes | mkfs.ext4 /dev/sda2
 e2label /dev/sda2 root-rbp2
 if [ $mb -gt 4000 ]; then
-	y | mkfs.ext4 /dev/sda3
+	yes | mkfs.ext4 /dev/sda3
 	e2label /dev/sda3 data
 fi
 
