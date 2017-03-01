@@ -1,24 +1,10 @@
 NOOBS to USB
 ---
-Insert only 1 usb drive with at least 4GB size.  
-
-**fdisk**
-```sh	
-			: p			(list existing partitions)
-				if needed only
-					: d			(delete a partition)
-					: <partition number>
-			: n			(create new partition)
-				: <enter>		(default primary)
-				: <enter>		(default number)
-				: <enter>		(default 1st sector)
-				: +4G				(+2.4G on 4GB drive)
-			: n
-				: <enter>
-				: <enter>
-				: <enter>
-				: <enter>		(default last sector)
-			: w			(save changes)
+ 
+**Prepare USB drive**  
+Insert only 1 usb drive with at least 4GB size.
+```sh
+wget -q --show-progress -O formatusb.sh "https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/formatusb.sh?raw=1"; chmod +x formatusb.sh; ./formatusb.sh
 ```
 
 **transfer filesystem**  
