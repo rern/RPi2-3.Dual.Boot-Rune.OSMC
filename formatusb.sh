@@ -37,11 +37,11 @@ lsblk
 size=$( lsblk | sed -n "/^${dev: -3}/p" | awk '{print $4}' )
 gb=${size//[^0-9.]/}
 mb=$( python -c "print( int($gb * 1000) )" )
-if [ $mb -lt 3400 ]; then
+if (( $mb < 3400 )); then
     titleend "USB drive too small."
     exit
 fi
-if [ $mb -lt 4000 ]; then
+if (( $mb < 4000 )); then
     p1=2.4
     p2=$( python -c "print($gb - $p1)" )
 else
@@ -55,7 +55,7 @@ echo 'Drive capacity:' $gb'GB'
 echo -e 'Existing partiton: \e[0;31mdelete all\e[m'
 echo 'New partiton #1:' $p1'GB'
 echo 'New partiton #2:' $p2'GB'
-[ $mb -gt 4000 ] && echo 'New partiton #3:' $p3'GB'
+(( $mb > 4000 )) && echo 'New partiton #3:' $p3'GB'
 echo -e '  \e[0;36m0\e[m No'
 echo -e '  \e[0;36m1\e[m Yes'
 echo
@@ -73,7 +73,7 @@ title "Delete partitions ..."
 dd if=/dev/zero of=$dev bs=512 count=1 conv=notrunc
 
 title "Create new partitions ..."
-if [ $mb -lt 4000 ]; then
+if (( $mb < 4000 )); then
 	echo -e ','$p1'G\n,' | sfdisk $dev
 else
 	echo -e ','$p1'G\n,'$p2'G\n,' | sfdisk $dev
