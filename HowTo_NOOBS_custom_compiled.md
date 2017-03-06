@@ -20,8 +20,6 @@ apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```sh
 cd
-mkdir noobs
-cd noobs
 git clone https://github.com/raspberrypi/noobs.git
 ```  
 **Edit ~/noobs/recovery/mainwindow.cpp** ( //-- = removed lines, //+++ added lines)  
