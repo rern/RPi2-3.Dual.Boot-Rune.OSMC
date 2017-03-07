@@ -22,7 +22,7 @@ apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-
 cd
 git clone https://github.com/raspberrypi/noobs.git
 ```  
-**Edit ~/noobs/recovery/mainwindow.cpp** ( //-- = removed lines, //+++ added lines)  
+**Edit ~/noobs/recovery/mainwindow.cpp**  
 ```sh
 sed -i -e 's/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1)/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE))/
 ' -e 's/settings.setValue("default_partition_to_boot", "800");/settings.setValue("default_partition_to_boot", "8");/
