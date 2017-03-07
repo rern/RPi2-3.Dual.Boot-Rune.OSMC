@@ -12,10 +12,10 @@ NOOBS custom compile
 	add ' silentinstall'
 - build  
 
+_(successfully compiled NOOBS 2.3 on Ubuntu 16.04 x64)_
 **Install build environment:**  
 ```sh
-sudo su
-apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git-all
+sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git-all
 ```
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```sh
