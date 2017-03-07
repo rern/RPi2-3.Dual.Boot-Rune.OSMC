@@ -22,25 +22,26 @@ sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4
 ```sh
 cd
 git clone https://github.com/raspberrypi/noobs.git
+cd noobs
 ```  
-**Edit ~/noobs/recovery/mainwindow.cpp**  
+**Edit recovery/mainwindow.cpp**  
 ```sh
 sed -i -e 's/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1)/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE))/
 ' -e 's/settings.setValue("default_partition_to_boot", "800");/settings.setValue("default_partition_to_boot", "8");/
 ' -e 's/tr("OS(es) Installed Successfully"), QMessageBox::Ok);/tr("OS(es) Installed Successfully"));/
-' noobs/recovery/mainwindow.cpp 
+' recovery/mainwindow.cpp 
 ```
-**Edit ~/BUILDME.sh**  
+**Edit BUILDME.sh**  
 ```sh
 sed -i '/cp "$IMAGES_DIR\/cmdline.txt" "$FINAL_OUTPUT_DIR\/recovery.cmdline"/ a\
 sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmdline"
 ' BUILDME.sh
 ```
-**Build:**  
+**Compile**  
 ```sh
 ./BUILDME.sh
 ```
-- Get **NOOBS** in **~/noobs/output** directory  
+- Get **NOOBS** in **output/** directory  
   
     
-_NOOBS install sequence can be found in /recovery/multiimagewritethread.cpp_
+_NOOBS install sequence can be found in recovery/multiimagewritethread.cpp_
