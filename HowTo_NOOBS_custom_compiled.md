@@ -24,26 +24,16 @@ git clone https://github.com/raspberrypi/noobs.git
 ```  
 **Edit ~/noobs/recovery/mainwindow.cpp** ( //-- = removed lines, //+++ added lines)  
 ```sh
-			...
-//---		if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1) //---  
-			if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE)) //+++ remove os count  
-			{
-				ui->list...  
-				if (ui->list->count() == 2) {ui->list->item(1)->setCheckState(Qt::Checked);} //+++ add checked to 2nd os list  
-				on_actionWrite...
-			}
-			...  
-//---		settings.setValue("default_partition_to_boot", "800"); //---  
-			settings.setValue("default_partition_to_boot", "8"); //+++ change boot partition  
-			...  
-//---		tr("OS(es) Installed Successfully"), QMessageBox::Ok); //---  
-			tr("OS(es) Installed Successfully")); //+++ remove OK dialog box  
-			...  
+sed -i -e 's/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1)/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE))/
+' -e 's/settings.setValue("default_partition_to_boot", "800");/settings.setValue("default_partition_to_boot", "8");/
+' -e 's/tr("OS(es) Installed Successfully"), QMessageBox::Ok);/tr("OS(es) Installed Successfully"));/
+' noobs/recovery/mainwindow.cpp 
 ```
-**insert ~/BUILDME.sh**  
+**Edit ~/BUILDME.sh** (//+++ added lines)  
 ```sh
-# after this line: cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
+sed -i '\|cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"| a\
 sed -i 's/\r//; s/\n//; s/$/ silentinstall/' "$FINAL_OUTPUT_DIR/recovery.cmdline"
+' BUILDME.sh
 ```
 **Build:**  
 ```sh
