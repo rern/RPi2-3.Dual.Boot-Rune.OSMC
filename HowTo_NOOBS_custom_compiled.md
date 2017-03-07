@@ -29,7 +29,7 @@ sed -i -e 's/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->l
 ' -e 's/tr("OS(es) Installed Successfully"), QMessageBox::Ok);/tr("OS(es) Installed Successfully"));/
 ' noobs/recovery/mainwindow.cpp 
 ```
-**Edit ~/BUILDME.sh** (//+++ added lines)  
+**Edit ~/BUILDME.sh**  
 ```sh
 sed -i '/cp "$IMAGES_DIR\/cmdline.txt" "$FINAL_OUTPUT_DIR\/recovery.cmdline"/ a\
 sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmdline"
