@@ -97,7 +97,9 @@ kpartx -dv RuneAudio_xxx.img
 **boot-rbp2.tar.xz**  
 >Get [boot-rbp2.tar.xz](http://ftp.fau.de/osmc/osmc/download/installers/noobs/)  
 >Copy **boot-rbp2.tar.xz** to **~/os/OSMC/**  
+
 or  
+
 >Install OSMC with SD card  
 >Create **boot-rbp2.tar.xz** from SD card root, all directories and files except `cmdline.txt` and `install.log`  
 
