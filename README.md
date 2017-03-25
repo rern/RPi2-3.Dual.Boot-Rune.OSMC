@@ -3,7 +3,7 @@ Dual Boot: Rune | OSMC (Pi2, Pi3)
 
 `Rune 0.3beta 20160321` + `OSMC 2017.02-1` in `NOOBS lite 2.1` (with 'silentinstall' tweaks)  
 
-[>> **Download**](https://drive.google.com/open?id=0B9KEjMAuGbejZ3JoUGNOTDFLakU)  
+[>> **Download**](https://drive.google.com/open?id=0B9KEjMAuGbejUnZaa2lOakFYYnM)  
 [>> Change Log](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/Changelog.md)
 
 Best of Audio Distro - [**Rune**](http://www.runeaudio.com/) (ArchLinux MPD)  
