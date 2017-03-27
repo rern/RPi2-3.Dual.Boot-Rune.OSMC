@@ -12,7 +12,7 @@ NOOBS custom compile
 	add ' silentinstall'
 - build  
 
-_(successfully compiled NOOBS 2.3 on Ubuntu 16.04 x64)_  
+_(successfully compiled NOOBS 2.3 on Ubuntu 16.04 x64 but failed on 16.10 x64)__  
 
 **Install build environment:**  
 ```sh
