@@ -41,8 +41,8 @@ sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQ
 sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/ssh/sshd_config
 
 # modify shutdown menu
-sed -i -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
-' -e 's|<label>13012</label>|<label>Restart Kodi</label>|
+sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
+' -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
 ' -e '/XBMC.Reset()/ a\
 \t\t\t\t\t\t<visible>System.CanReboot</visible>\
 \t\t\t\t\t</item>\
