@@ -43,7 +43,7 @@ sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/
 # modify shutdown menu
 sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 ' -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
-' -e '/XBMC.Reset()/ a\
+' -e '/Reset()/ a\
 \t\t\t\t\t\t<visible>System.CanReboot</visible>\
 \t\t\t\t\t</item>\
 \t\t\t\t\t<item>\
@@ -58,7 +58,7 @@ sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 \t\t\t\t\t</item>\
 \t\t\t\t\t<item>\
 \t\t\t\t\t\t<label>Skin Reload</label>\
-\t\t\t\t\t\t<onclick>XBMC.ReloadSkin()</onclick>
+\t\t\t\t\t\t<onclick>ReloadSkin()</onclick>
 ' /tmp/mount/usr/share/kodi/addons/skin.osmc/16x9/DialogButtonMenu.xml
 
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
