@@ -39,6 +39,16 @@ $part2  /    ext4      defaults,noatime    0   0
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
 sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/ssh/sshd_config
+sed -i '/ActivateWindow(Settings)/ a\
+\t</shortcut>\
+\t<shortcut>\
+\t\t<defaultID />\
+\t\t<label>GPIO</label>\
+\t\t<label2>Custom item</label2>\
+\t\t<icon>DefaultShortcut.png</icon>\
+\t\t<thumb />\
+\t\t<action>ActivateWindow(1111)</action>
+' /tmp/mount/home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml
 sed -i -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
 ' -e '/XBMC.Reset()/ a\
 \t\t\t\t\t\t<visible>System.CanReboot</visible>\
