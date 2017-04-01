@@ -50,6 +50,7 @@ sed -i '/ActivateWindow(Settings)/ a\
 \t\t<action>ActivateWindow(1111)</action>
 ' /tmp/mount/home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml
 sed -i -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
+' -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 ' -e '/XBMC.Reset()/ a\
 \t\t\t\t\t\t<visible>System.CanReboot</visible>\
 \t\t\t\t\t</item>\
@@ -61,6 +62,11 @@ sed -i -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
 \t\t\t\t\t<item>\
 \t\t\t\t\t\t<label>Reboot to OSMC</label>\
 \t\t\t\t\t\t<onclick>RunScript(/home/osmc/rebootosmc.py)</onclick>
+\t\t\t\t\t\t<visible>System.CanReboot</visible>\
+\t\t\t\t\t</item>\
+\t\t\t\t\t<item>\
+\t\t\t\t\t\t<label>Skin Reload</label>\
+\t\t\t\t\t\t<onclick>XBMC.ReloadSkin()</onclick>
 ' /tmp/mount/usr/share/kodi/addons/skin.osmc/16x9/DialogButtonMenu.xml
 
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
