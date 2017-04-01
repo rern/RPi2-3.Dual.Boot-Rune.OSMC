@@ -39,6 +39,19 @@ $part2  /    ext4      defaults,noatime    0   0
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
 sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/ssh/sshd_config
+sed -i -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
+' -e '/XBMC.Reset()/ a\
+\t\t\t\t\t\t<visible>System.CanReboot</visible>\
+\t\t\t\t\t</item>\
+\t\t\t\t\t<item>\
+\t\t\t\t\t\t<label>Reboot to RuneAudio</label>\
+\t\t\t\t\t\t<onclick>RunScript(/home/osmc/bootosmc.py)</onclick>\
+\t\t\t\t\t\t<visible>System.CanReboot</visible>\
+\t\t\t\t\t</item>\
+\t\t\t\t\t<item>\
+\t\t\t\t\t\t<label>Reboot to OSMC</label>\
+\t\t\t\t\t\t<onclick>RunScript(/home/osmc/bootosmc.py)</onclick>
+' /tmp/mount/usr/share/kodi/addons/skin.osmc/16x9/DialogButtonMenu.xml
 
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
 chmod 644 /etc/udev/rules.d/usbsound.rules
