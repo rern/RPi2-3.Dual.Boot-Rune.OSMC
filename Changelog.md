@@ -1,5 +1,9 @@
 Change Log
 -------------------------------------------------------------------------------------------------------------------------------------
+**20170325**  
+- Update OSMC 2017.03-1
+- Update NOOBS 2.3
+
 **20170108**  
 - Rune: remove UI mod to a separated installation - [**RuneUI_enhancement**](https://github.com/rern/RuneUI_enhancement)
 - Update OSMC 2016.12-1
