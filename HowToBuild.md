@@ -57,7 +57,7 @@ Prepare os directory
 	
 >**[icon].png**  
 >	40 x 40 pixel  
->	filename must be the same as "name" (in os.json) for display in NOOBS menu
+>	filename must be the same as `"name":` in `os.json` for display in NOOBS menu
 
 Download
 ---
@@ -104,6 +104,7 @@ or
 >Create **boot-rbp2.tar.xz** from SD card root, all directories and files except `cmdline.txt` and `install.log`  
 
 **filesystem.tar.xz**  
+(filename must be the same as `"label":` in `partitions.json` )  
 >Get [OSMC image](http://ftp.fau.de/osmc/osmc/download/installers/diskimages/)    
 >Decompress and extract image file (file.img)  
 >Copy **filesystem.tar.xz** to **~/os/OSMC/**	
