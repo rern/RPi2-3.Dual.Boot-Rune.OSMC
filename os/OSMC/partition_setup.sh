@@ -41,11 +41,11 @@ sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQ
 sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/ssh/sshd_config
 
 # modify shutdown menu
+line=$( sed -n '/Quit()/{=}' $file )
+line=$(( $line - 2 ))
 sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 ' -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
-' -e $'/Reset()/ a\
-\t\t\t\t\t\t<visible>System.CanReboot</visible>\
-\t\t\t\t\t</item>\
+' -e ''"$line"' i\
 \t\t\t\t\t<item>\
 \t\t\t\t\t\t<label>Reboot to RuneAudio</label>\
 \t\t\t\t\t\t<onclick>RunScript(/home/osmc/rebootrune.py)</onclick>\
@@ -58,7 +58,9 @@ sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 \t\t\t\t\t</item>\
 \t\t\t\t\t<item>\
 \t\t\t\t\t\t<label>Skin Reload</label>\
-\t\t\t\t\t\t<onclick>ReloadSkin()</onclick>
+\t\t\t\t\t\t<onclick>ReloadSkin()</onclick>\
+\t\t\t\t\t\t<visible>System.CanReboot</visible>\
+\t\t\t\t\t</item>
 ' /tmp/mount/usr/share/kodi/addons/skin.osmc/16x9/DialogButtonMenu.xml
 
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
