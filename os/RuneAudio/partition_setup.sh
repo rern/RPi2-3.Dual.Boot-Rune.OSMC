@@ -26,6 +26,6 @@ sed -i -e 's/Reboot/Reboot to NOOBS/
 		\$\.get(this\.id +'\.php');\
 	});\
 </script>
-' /tmp/mount/srv/http/app/templates/footer.php
+" /tmp/mount/srv/http/app/templates/footer.php
 
 umount /tmp/mount
