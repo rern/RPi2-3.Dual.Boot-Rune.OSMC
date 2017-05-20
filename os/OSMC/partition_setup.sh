@@ -44,21 +44,21 @@ sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/
 sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 ' -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
 ' -e '/Reset()/ a\
-\t\t\t\t\t\t<visible>System.CanReboot</visible>\
-\t\t\t\t\t</item>\
-\t\t\t\t\t<item>\
-\t\t\t\t\t\t<label>Reboot to RuneAudio</label>\
-\t\t\t\t\t\t<onclick>RunScript(/home/osmc/rebootrune.py)</onclick>\
-\t\t\t\t\t\t<visible>System.CanReboot</visible>\
-\t\t\t\t\t</item>\
-\t\t\t\t\t<item>\
-\t\t\t\t\t\t<label>Reboot to OSMC</label>\
-\t\t\t\t\t\t<onclick>RunScript(/home/osmc/rebootosmc.py)</onclick>\
-\t\t\t\t\t\t<visible>System.CanReboot</visible>\
-\t\t\t\t\t</item>\
-\t\t\t\t\t<item>\
-\t\t\t\t\t\t<label>Skin Reload</label>\
-\t\t\t\t\t\t<onclick>ReloadSkin()</onclick>
+<visible>System.CanReboot</visible>\
+</item>\
+<item>\
+<label>Reboot to RuneAudio</label>\
+<onclick>RunScript(/home/osmc/rebootrune.py)</onclick>\
+<visible>System.CanReboot</visible>\
+</item>\
+<item>\
+<label>Reboot to OSMC</label>\
+<onclick>RunScript(/home/osmc/rebootosmc.py)</onclick>\
+<visible>System.CanReboot</visible>\
+</item>\
+<item>\
+<label>Skin Reload</label>\
+<onclick>ReloadSkin()</onclick>
 ' /tmp/mount/usr/share/kodi/addons/skin.osmc/16x9/DialogButtonMenu.xml
 
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
