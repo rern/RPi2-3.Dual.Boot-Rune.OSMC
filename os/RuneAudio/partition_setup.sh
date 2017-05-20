@@ -18,8 +18,14 @@ chmod 755 /tmp/mount/root/*.py
 
 sed -i -e 's/Reboot/Reboot to NOOBS/
 ' -e $'/id="reboot"/ i\
-\t\t\t\t<button id="bootosmc" class="btn btn-primary btn-lg btn-block" data-dismiss="modal"><i class="fa fa-refresh"></i> Reboot to OSMC</button>\
-\t\t\t\t<button id="bootrune" class="btn btn-primary btn-lg btn-block" data-dismiss="modal"><i class="fa fa-refresh"></i> Reboot to RuneAudio</button>
+\t\t\t\t<button id="rebootosmc" class="btn btn-primary btn-lg btn-block" data-dismiss="modal"><i class="fa fa-refresh"></i> Reboot to OSMC</button>\
+\t\t\t\t<button id="rebootrune" class="btn btn-primary btn-lg btn-block" data-dismiss="modal"><i class="fa fa-refresh"></i> Reboot to RuneAudio</button>
+' -e '$ a\
+<script>\
+	$('#rebootosmc, #rebootrune').click(function() {\
+		$.get(this.id +'.php');\
+	});\
+</script>
 ' /tmp/mount/srv/http/app/templates/footer.php
 
 umount /tmp/mount
