@@ -42,8 +42,9 @@ Features
 Remote Control
 ---
 
-**Rune:**
-(Local browser must be left enabled as of default)
+**Rune:**  
+(`Local browser` must be left enabled as of default.)  
+
 	Button		|	Function
 	----------------|-----------------
 	`e-mail`	|	Boot OSMC
