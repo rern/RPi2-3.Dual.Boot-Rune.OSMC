@@ -45,26 +45,26 @@ Remote Control
 **Rune:**  
 (`Local browser` must be left enabled as of default.)  
 
-	Button		|	Function
-	------------|-----------------
-	`e-mail`	|	Boot OSMC
-	`left`		|	Previous
-	`enter`		|	Play / Pause
-	`right`		|	Next
-	`up`		|	Forward
-	`down`		|	Rewind
+|	Button		|	Function      |
+|	------------|-----------------|
+|	`e-mail`	|	Boot OSMC     |
+|	`left`		|	Previous      |
+|	`enter`		|	Play / Pause  |
+|	`right`		|	Next          |
+|	`up`		|	Forward       |
+|	`down`		|	Rewind        |
 		
 **OSMC:**
 
-	Button		|	Function		|	Function `In Video`
-	------------|-------------------|-------------------
-	`e-mail`	|	Boot Rune		|
-	`tab`		|	SystemInfo <-> Back	|	FullscreenInfo <-> Back
-	`open`		|	MovieTitles		|	MovieTitle <-> Fullscreen
-	`switchwindow`	|	Settings <-> Back	|	VideosSettings <-> Back
-	`blue`		|				|	NextSubtitle
-	`yellow`	|				|	AudioNextLanguage
-	`green`		|	ReloadKeymaps		|	OSDAudioSettings
+|	Button		    |	Function		    |	Function `In Video`        |
+|	----------------|-----------------------|------------------------------|
+|	`e-mail`	    |	Boot Rune		    |							   |
+|	`tab`		    |	SystemInfo <-> Back	|	FullscreenInfo <-> Back    |
+|	`open`		    |	MovieTitles		    |	MovieTitle <-> Fullscreen  |
+|	`switchwindow`	|	Settings <-> Back	|	VideosSettings <-> Back    |
+|	`blue`		    |				        |	NextSubtitle			   |
+|	`yellow`	    |				        |	AudioNextLanguage		   |
+|	`green`		    |	ReloadKeymaps		|	OSDAudioSettings		   |
 
 
 Installation
