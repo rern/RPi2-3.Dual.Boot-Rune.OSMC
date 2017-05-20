@@ -45,7 +45,7 @@ line=$( sed -n '/Quit()/{=}' $file )
 line=$(( $line - 2 ))
 sed -i -e 's|<label>13012</label>|<label>Restart Kodi</label>|
 ' -e 's|<label>13013</label>|<label>Reboot to NOOBS</label>|
-' -e ''"$line"' i\
+' -e $''"$line"' i\
 \t\t\t\t\t<item>\
 \t\t\t\t\t\t<label>Reboot to RuneAudio</label>\
 \t\t\t\t\t\t<onclick>RunScript(/home/osmc/rebootrune.py)</onclick>\
