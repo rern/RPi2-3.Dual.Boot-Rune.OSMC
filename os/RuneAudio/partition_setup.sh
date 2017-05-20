@@ -14,18 +14,5 @@ umount /tmp/mount
 mount $part2 /tmp/mount
 sed -i "s|^.* /boot |$part1  /boot |" /tmp/mount/etc/fstab
 cp -r /mnt/os/RuneAudio/custom/. /tmp/mount # customize files
-chmod 755 /tmp/mount/root/*.py
-
-sed -i -e 's/Reboot/Reboot to NOOBS/
-' -e $'/id="reboot"/ i\
-\t\t\t\t<button id="rebootosmc" class="btn btn-primary btn-lg btn-block" data-dismiss="modal"><i class="fa fa-refresh"></i> Reboot to OSMC</button>\
-\t\t\t\t<button id="rebootrune" class="btn btn-primary btn-lg btn-block" data-dismiss="modal"><i class="fa fa-refresh"></i> Reboot to RuneAudio</button>
-' -e $"$ a\
-<script>\n\
-\t\$('#rebootosmc, #rebootrune')\.click(function() {\n\
-\t\t\$\.get(this\.id +'\.php');\n\
-\t});\n\
-</script>
-" /tmp/mount/srv/http/app/templates/footer.php
 
 umount /tmp/mount
