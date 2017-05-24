@@ -46,7 +46,7 @@ Remote Control
 (`Local browser` must be left enabled as of default.)  
 
 |	Button		|	Function
-|	------------|-----------------
+|	------------|	--------------
 |	`e-mail`	|	Boot OSMC
 |	`left`		|	Previous
 |	`enter`		|	Play / Pause
@@ -57,7 +57,7 @@ Remote Control
 **OSMC:**
 
 |	Button		    |	Function		    |	Function `in Video`
-|	----------------|-----------------------|------------------------------
+|	----------------|	--------------------|	---------------------------
 |	`e-mail`	    |	Boot Rune		    |
 |	`tab`		    |	SystemInfo <-> Back	|	FullscreenInfo <-> Back
 |	`open`		    |	MovieTitles		    |	MovieTitle <-> Fullscreen
