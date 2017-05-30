@@ -47,7 +47,8 @@ Remote Control
 
 |	Button		|	Function
 |	------------|	--------------
-|	`e-mail`	|	Boot OSMC
+|	`e-mail`	|	Reboot to OSMC
+|	`amber`	    |	Reboot Rune
 |	`left`		|	Previous
 |	`enter`		|	Play / Pause
 |	`right`		|	Next
