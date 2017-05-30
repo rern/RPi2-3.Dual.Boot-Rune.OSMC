@@ -5,7 +5,7 @@
 
 # buttons from left to right
 
-# <email>
+# <email> reboot to OSMC
 "echo 6 > /sys/module/bcm2709/parameters/reboot_part; /var/www/command/rune_shutdown; reboot"
 	m:0x0 + c:163
 
@@ -21,9 +21,9 @@
 #"command"
 #	m:0xc + c:38
 
-# <amber>
-#"command"
-#	m:0xc + c:56
+# <amber> reboot
+"echo 8 > /sys/module/bcm2709/parameters/reboot_part; /var/www/command/rune_shutdown; reboot"
+	m:0xc + c:56
 
 # <blue> *** works once > locks all buttons | press <amber> to unlock
 #"command"
