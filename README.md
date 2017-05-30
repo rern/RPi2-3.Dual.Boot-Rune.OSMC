@@ -59,7 +59,8 @@ Remote Control
 
 |	Button		    |	Function		    |	Function `in Video`
 |	----------------|	--------------------|	---------------------------
-|	`e-mail`	    |	Boot Rune		    |
+|	`e-mail`	    |	Reboot to Rune		|
+|	`amber`	        |	Reboot OSMC		    |
 |	`tab`		    |	SystemInfo <-> Back	|	FullscreenInfo <-> Back
 |	`open`		    |	MovieTitles		    |	MovieTitle <-> Fullscreen
 |	`switchwindow`	|	Settings <-> Back	|	VideosSettings <-> Back
