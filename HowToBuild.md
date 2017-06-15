@@ -67,7 +67,7 @@ Download
 
 **boot.tar.xz**  
 >
-```sh
+```
 cd
 sudo su
 kpartx -av RuneAudio_xxx.img
@@ -81,7 +81,7 @@ xz -9ekv boot.tar
 
 **root.tar.xz**  
 >
-```sh
+```
 mount /dev/mapper/loop0p2 /mnt
 tar -cvpf root.tar -C /mnt . --exclude=proc/* --exclude=sys/* --exclude=dev/pts/* --exclude=boot/*
 umount /mnt
