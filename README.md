@@ -100,7 +100,7 @@ Installation
 3. Done!
 
 **NOOBS force recovery**
-```sh
+```
 echo " forcetrigger" >> recovery.cmdline
 ```
 
