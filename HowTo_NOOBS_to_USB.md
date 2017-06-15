@@ -3,7 +3,7 @@ NOOBS to USB
  
 **Prepare USB drive**  
 Insert only 1 usb drive with at least 4GB size.
-```sh
+```
 wget -q --show-progress -O formatusb.sh "https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/formatusb.sh?raw=1"; chmod +x formatusb.sh; ./formatusb.sh
 ```
 
@@ -12,7 +12,7 @@ wget -q --show-progress -O formatusb.sh "https://github.com/rern/RPi2-3.Dual.Boo
 **from RPi** (not from current root partition which dynamically changed)  
 	
 **Rune** on OSMC
-```sh
+```bash
 #!/bin/bash
 
 mkdir /mnt/root
@@ -41,7 +41,7 @@ rmdir /mnt/boot
 
 **OSMC** on Rune  
 _boot to OSMC at least once to finish setup_  
-```sh
+```bash
 #!/bin/bash
 
 mkdir /mnt/root
@@ -70,7 +70,7 @@ rmdir /mnt/boot
 (if not work: /dev/sda2)  
 
 **or from PC**
-```sh
+```
 cd /source
 tar -cvpf /destination/file.tar .
 cd /destination
@@ -90,7 +90,7 @@ Finish nornal NOOBS installation.
 	5 - Logical > 5MB | ext4  
 	6 - Logical > 200M | fat32 | bootrune  
 
-```sh
+```
 dosfsck -w -r -l -a -v /dev/sdb1
 dosfsck -w -r -l -a -v /dev/sdb6
 dosfsck -w -r -l -a -v /dev/sdb8
@@ -98,15 +98,15 @@ mount /device/sdb1 /mnt
 ```
 
 **Files:**
-```sh
+```
 gksu nautilus
 ```
-```sh
+```
 		copy /home/x/NOOBS_SD/RECOVERY/ to /media/x/mnt
 		copy /home/x/NOOBS_SD/SETTINGS/ to /media/x/SETTINGS
 		copy /home/x/NOOBS_SD/BOOT-RBP2/ to /media/x/bootosmc
 		copy /home/x/NOOBS_SD/BOOT/ to /media/x/bootrune
 ```
-```sh
+```
 umount /mnt
 ```
