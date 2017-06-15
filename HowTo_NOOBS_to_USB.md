@@ -102,10 +102,10 @@ mount /device/sdb1 /mnt
 gksu nautilus
 ```
 ```
-		copy /home/x/NOOBS_SD/RECOVERY/ to /media/x/mnt
-		copy /home/x/NOOBS_SD/SETTINGS/ to /media/x/SETTINGS
-		copy /home/x/NOOBS_SD/BOOT-RBP2/ to /media/x/bootosmc
-		copy /home/x/NOOBS_SD/BOOT/ to /media/x/bootrune
+cp /home/x/NOOBS_SD/RECOVERY/ /media/x/mnt
+cp /home/x/NOOBS_SD/SETTINGS/ /media/x/SETTINGS
+cp /home/x/NOOBS_SD/BOOT-RBP2/ /media/x/bootosmc
+cp /home/x/NOOBS_SD/BOOT/ /media/x/bootrune
 ```
 ```
 umount /mnt
