@@ -15,7 +15,7 @@ _(successfully compiled NOOBS 2.3 on Ubuntu 16.04 x64 but failed on 16.10 x64)__
 
 **Install build environment:**  
 ```
-sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git-all
+sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git
 ```
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```
