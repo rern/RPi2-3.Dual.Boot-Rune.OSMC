@@ -1,7 +1,6 @@
 NOOBS custom compile
 ---
 
-- add unattended install option
 - install build environment
 - clone source
 - edit custom compile  
