@@ -36,8 +36,8 @@ sed -i -e 's/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->l
 ```
 **Edit BUILDME.sh**  
 ```
-sed -i '/cp "$IMAGES_DIR\/cmdline.txt" "$FINAL_OUTPUT_DIR\/recovery.cmdline"/ a\ 
-"s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmdline"
+sed -i -e '/cp "$IMAGES_DIR\/cmdline.txt" "$FINAL_OUTPUT_DIR\/recovery.cmdline"/ a\
+sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmdline"
 ' BUILDME.sh
 ```
 **Compile**  
