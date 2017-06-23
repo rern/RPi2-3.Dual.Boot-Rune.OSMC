@@ -19,6 +19,7 @@ sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4
 ```
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```
+sudo su user
 cd
 git clone https://github.com/raspberrypi/noobs.git
 cd noobs
