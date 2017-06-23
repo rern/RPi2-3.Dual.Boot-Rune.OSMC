@@ -44,6 +44,10 @@ sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmd
 ./BUILDME.sh
 ```
 - Get **NOOBS** in **output/** directory  
-  
+
+**Clean cache for fresh compile**  
+```
+git clean -d -x -f
+```
     
 _NOOBS install sequence can be found in recovery/multiimagewritethread.cpp_
