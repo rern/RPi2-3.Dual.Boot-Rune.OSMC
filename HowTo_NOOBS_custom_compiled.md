@@ -6,8 +6,10 @@ NOOBS custom compile
 - edit custom compile  
 	remove os count  
 	add checked to 2nd os list  
+	change installed os numbers
 	change boot partition  
 	remove OK dialog box  
+	
 	add ' silentinstall'
 - build  
 
