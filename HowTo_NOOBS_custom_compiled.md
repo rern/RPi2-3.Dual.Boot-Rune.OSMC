@@ -25,12 +25,9 @@ cd noobs
 ```  
 **Edit recovery/mainwindow.cpp**  
 ```
-sed -i -e 's/if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1)/ \
-	if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE))/
-' -e 's/settings.setValue("default_partition_to_boot", "800");/ \
-	settings.setValue("default_partition_to_boot", "8");/
-' -e 's/tr("OS(es) Installed Successfully"), QMessageBox::Ok);/ \
-	tr("OS(es) Installed Successfully"));/
+sed -i -e 's/if (_allowSilent && .*)/if (_allowSilent)/
+' -e 's/"default_partition_to_boot", "800"/"default_partition_to_boot", "8"/
+' -e 's/tr("OS(es) Installed Successfully"), QMessageBox::Ok)/tr("OS(es) Installed Successfully")/
 ' recovery/mainwindow.cpp 
 ```
 **Edit BUILDME.sh**  
