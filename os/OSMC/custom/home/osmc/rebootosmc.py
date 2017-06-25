@@ -1,4 +1,5 @@
 #!/usr/bin/python
 import os
 
-os.system('sudo su -c "echo 6 > /sys/module/bcm2709/parameters/reboot_part; reboot"')
+os.system('sudo /home/osmc/gpiooff.py')
+os.system('sudo /home/osmc/rebootosmc.sh')
