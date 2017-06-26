@@ -111,3 +111,21 @@ or
 >Copy **filesystem.tar.xz** to **~/os/OSMC/**	
 
 **Done !**  
+  
+  
+**Set boot partition**  
+( '6' - OSMC, '8' - Rune )
+- #1 - skip boot menu
+```
+echo 6 > /sys/module/bcm2709/parameters/reboot_part
+```
+- #2 - skip boot menu (remove the file to get back default boot)
+```
+echo boot_partition=6 > /boot/autoboot.txt
+```
+- #3 - show boot menu
+```
+mkdir -p /tmp/p5
+mount /dev/mmcblk0p5 /tmp/p5
+sed -i "s/default_partition_to_boot=./default_partition_to_boot=6/" /tmp/p5/noobs.conf
+```
