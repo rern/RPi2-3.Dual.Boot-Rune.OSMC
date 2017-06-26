@@ -49,7 +49,8 @@ Prepare os directory
 
 >**partition.json**  
 >	"label" must be the same as 'boot' and 'root' compressed filename  
->	"uncompressed_tarball_size" must be checked and roundup to next MB
+>	"uncompressed_tarball_size" must be checked and roundup to next MB  
+> `xz -l root.tar.xz` / `xz -l filesystem.tar.xz`
 
 >**partition_setup.sh**  
 >	add customizing commands to run after installation finished  
