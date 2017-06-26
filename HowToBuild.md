@@ -122,7 +122,9 @@ echo 6 > /sys/module/bcm2709/parameters/reboot_part
 ```
 - Method 2 - skip boot menu (permanent - remove the file to get back default boot)
 ```
-echo boot_partition=6 > /boot/autoboot.txt
+mkdir -p /tmp/p1
+mount /dev/mmcblk0p1 /tmp/p1
+echo boot_partition=6 > /tmp/p1/autoboot.txt
 ```
 - Method 3 - show boot menu
 ```
