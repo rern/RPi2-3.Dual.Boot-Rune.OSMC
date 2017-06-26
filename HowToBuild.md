@@ -117,17 +117,19 @@ or
 **Set boot partition**  
 ( '6' - OSMC | '8' - Rune )
 - Method 1 - skip boot menu
-```
+```sh
 echo 6 > /sys/module/bcm2709/parameters/reboot_part
 ```
 - Method 2 - skip boot menu (permanent - remove the file to get back default boot)
-```
+```sh
+# RECOVERY partition
 mkdir -p /tmp/p1
 mount /dev/mmcblk0p1 /tmp/p1
 echo boot_partition=6 > /tmp/p1/autoboot.txt
 ```
 - Method 3 - show boot menu
-```
+```sh
+# SETTINGS partition
 mkdir -p /tmp/p5
 mount /dev/mmcblk0p5 /tmp/p5
 sed -i "s/default_partition_to_boot=./default_partition_to_boot=6/" /tmp/p5/noobs.conf
