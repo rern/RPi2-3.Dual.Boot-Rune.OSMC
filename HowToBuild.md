@@ -116,15 +116,15 @@ or
   
 **Set boot partition**  
 ( '6' - OSMC | '8' - Rune )
-- #1 - skip boot menu
+- Method 1 - skip boot menu
 ```
 echo 6 > /sys/module/bcm2709/parameters/reboot_part
 ```
-- #2 - skip boot menu (permanent - remove the file to get back default boot)
+- Method 2 - skip boot menu (permanent - remove the file to get back default boot)
 ```
 echo boot_partition=6 > /boot/autoboot.txt
 ```
-- #3 - show boot menu
+- Method 3 - show boot menu
 ```
 mkdir -p /tmp/p5
 mount /dev/mmcblk0p5 /tmp/p5
