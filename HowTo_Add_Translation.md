@@ -7,12 +7,12 @@ How To Add Translation
 - `recovery/icons/th.png` ( [**flags**](http://www.famfamfam.com/lab/icons/flags/famfamfam_flag_icons.zip) )
 - `buildroot/output/build/recovery-1.0/translation_th.qm` (create with `lrelease recovery.pro`)
 - `buildroot/package/recovery/unicode-fonts/DejaVuSansThai.ttf` (if characters not available in default)
-- `buildroot/package/recovery/unicode-fonts/DejaVuSansThaiBold.ttf`
+- `buildroot/package/recovery/unicode-fonts/DejaVuSansThai-Bold.ttf`
 
 **edit**
 - `recovery/recovery.pro`
 - `recovery/icons.qrc`
-
+- `buildroot/package/recovery/recovery.mk`
 
 **edit** `recovery/recovery.pro`  
 add a line
@@ -48,7 +48,15 @@ lrelease buildroot/output/build/recovery-1.0/recovery.pro
 ```
 
 **add fonts**  
+ttf font
 `buildroot/package/recovery/unicode-fonts/`  
+
+**edit** `buildroot/package/recovery/recovery.mk`  
+add lines
+```sh
+	$(INSTALL) -m 0755 package/recovery/unicode-fonts/DejaVuSans.ttf $(TARGET_DIR)/usr/lib/fonts/DejaVuSansThai.ttf
+	$(INSTALL) -m 0755 package/recovery/unicode-fonts/DejaVuSans-Bold.ttf $(TARGET_DIR)/usr/lib/fonts/DejaVuSansThai-Bold.ttf
+```
 
 **build**  
 ```sh
