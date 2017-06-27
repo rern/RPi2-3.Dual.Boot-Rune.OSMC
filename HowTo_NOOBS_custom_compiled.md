@@ -21,7 +21,7 @@ successfully compiled NOOBS 2.4 on `ubuntu-17.04-desktop-amd64` (gcc-6, g++-6 do
 ```sh
 sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git
 
-# !important: NOOBS need gcc-5, g++-5
+# !important: NOOBS needs gcc-5 and g++-5
 sudo apt install gcc-5 g++-5
 sudo rm /usr/bin/gcc
 sudo rm /usr/bin/g++
