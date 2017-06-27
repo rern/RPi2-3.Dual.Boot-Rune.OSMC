@@ -1,19 +1,21 @@
 NOOBS custom compile
 ---
+successfully compiled NOOBS 2.4 on Ubuntu (16.10 and 17.04 need gcc-5 and g++-5 downgrade) 
 
-- install build environment
-- clone source
+- install build environment  
+- clone source  
 - edit custom compile  
-	remove os count  
-	add checked to 2nd os list  
-	change installed os numbers  
-	change boot partition  
-	remove OK dialog box  
-	
-	add ' silentinstall'
-- build  
 
-_(successfully compiled NOOBS 2.4 on Ubuntu 16.04 but 17.04 needs gcc-5 and g++-5)__  
+	`recovery/mainwindow.cpp`  
+	* remove os count  
+	* add checked to 2nd os list  
+	* change installed os numbers  
+	* change boot partition  
+	* remove OK dialog box  
+	
+	`BUILDME.sh`  
+	* add ' silentinstall'  
+- build  
 
 **Install build environment:**  
 ```sh
