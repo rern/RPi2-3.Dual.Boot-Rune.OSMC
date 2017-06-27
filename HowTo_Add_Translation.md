@@ -1,6 +1,6 @@
 How To Add Translation 
 ---
-(This example as of Thai - th language)  
+(This example as of Thai - **th** language)  
 
 **add**  
 - `recovery/translation_th.ts` (create with `lupdate recovery.pro` or use one from GitHub)
