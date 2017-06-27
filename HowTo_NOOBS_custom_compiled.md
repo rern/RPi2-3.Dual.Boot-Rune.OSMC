@@ -1,6 +1,6 @@
 NOOBS custom compile
 ---
-successfully compiled NOOBS 2.4 on `ubuntu-17.04-desktop-amd64` (gcc-6, g++-6 downgrade to gcc-5, g++-5 needed)  
+successfully compiled NOOBS 2.4 on `ubuntu-17.04-desktop-amd64` (`gcc-6`, `g++-6` downgrade to `gcc-5`, `g++-5` needed)  
 
 - install build environment  
 - clone source  
