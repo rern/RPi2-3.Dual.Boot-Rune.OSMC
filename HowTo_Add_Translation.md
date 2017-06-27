@@ -60,5 +60,5 @@ add lines
 
 **build**  
 ```sh
-./BUILD.sh
+./BUILDME.sh
 ```
