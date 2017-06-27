@@ -43,8 +43,13 @@ add lines
 
 **generate .qm file**  
 ```sh
-lrelease /home/x/noobs/buildroot/output/build/recovery-1.0/lrelease recovery.pro
+lrelease buildroot/output/build/recovery-1.0/recovery.pro
 ```
 
 **add fonts**  
 `buildroot/package/recovery/unicode-fonts/`  
+
+**build**  
+```sh
+./BUILD.sh
+```
