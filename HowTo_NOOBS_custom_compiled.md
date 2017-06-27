@@ -25,7 +25,7 @@ cd noobs
 * add checked to 2nd os list  
 * change installed os numbers  
 * change boot partition  
-* remove OK dialog box 
+* remove OK prompt on finished 
 ```
 sed -i -e 's/if (_allowSilent && .*)/if (_allowSilent)/
 ' -e '/ui->list->item(0)->setCheckState(Qt::Checked);/ a\
