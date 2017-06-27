@@ -1,6 +1,6 @@
 NOOBS custom compile
 ---
-successfully compiled NOOBS 2.4 on Ubuntu (16.10, 17.04 need gcc-5, g++-5) 
+successfully compiled NOOBS 2.4 on `ubuntu-17.04-desktop-amd64` (gcc-6, g++-6 downgrade to gcc-5, g++-5 needed)  
 
 - install build environment  
 - clone source  
@@ -21,7 +21,7 @@ successfully compiled NOOBS 2.4 on Ubuntu (16.10, 17.04 need gcc-5, g++-5)
 ```sh
 sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git
 
-# !important: ubuntu 16.10, 17.04 need gcc-5, g++-5
+# !important: NOOBS need gcc-5, g++-5
 sudo apt install gcc-5 g++-5
 sudo rm /usr/bin/gcc
 sudo rm /usr/bin/g++
