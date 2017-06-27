@@ -46,4 +46,5 @@ add lines
 lrelease /home/x/noobs/buildroot/output/build/recovery-1.0/lrelease recovery.pro
 ```
 
-**fonts**  
+**add fonts**  
+`buildroot/package/recovery/unicode-fonts/`  
