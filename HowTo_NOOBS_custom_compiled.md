@@ -1,21 +1,7 @@
 NOOBS custom compile
 ---
 successfully compiled NOOBS 2.4 on `ubuntu-17.04-desktop-amd64` (`gcc-6`, `g++-6` downgrade to `gcc-5`, `g++-5` needed)  
-
-- install build environment  
-- clone source  
-- edit custom compile  
-
-	`recovery/mainwindow.cpp`  
-	* remove os count  
-	* add checked to 2nd os list  
-	* change installed os numbers  
-	* change boot partition  
-	* remove OK dialog box  
-	
-	`BUILDME.sh`  
-	* add ' silentinstall'  
-- build  
+ 
 
 **Install build environment:**  
 ```sh
@@ -35,6 +21,11 @@ git clone https://github.com/raspberrypi/noobs.git
 cd noobs
 ```  
 **Edit recovery/mainwindow.cpp**  
+* remove os count  
+* add checked to 2nd os list  
+* change installed os numbers  
+* change boot partition  
+* remove OK dialog box 
 ```
 sed -i -e 's/if (_allowSilent && .*)/if (_allowSilent)/
 ' -e '/ui->list->item(0)->setCheckState(Qt::Checked);/ a\
@@ -45,6 +36,7 @@ sed -i -e 's/if (_allowSilent && .*)/if (_allowSilent)/
 ' recovery/mainwindow.cpp 
 ```
 **Edit BUILDME.sh**  
+* add ' silentinstall'
 ```
 sed -i -e '/cp "$IMAGES_DIR\/cmdline.txt" "$FINAL_OUTPUT_DIR\/recovery.cmdline"/ a\
 sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmdline"
