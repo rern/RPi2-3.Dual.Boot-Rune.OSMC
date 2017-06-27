@@ -13,11 +13,18 @@ NOOBS custom compile
 	add ' silentinstall'
 - build  
 
-_(successfully compiled NOOBS 2.4 on Ubuntu 16.04 but failed on 16.10, 17.04)__  
+_(successfully compiled NOOBS 2.4 on Ubuntu 16.04 but 17.04 needs gcc-5 and g++-5)__  
 
 **Install build environment:**  
-```
+```sh
 sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git
+
+# !important: ubuntu 16.10 - 17.04 need gcc-5, g++-5
+sudo apt install gcc-5 g++-5
+sudo rm /usr/bin/gcc
+sudo rm /usr/bin/g++
+sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
+sudo ln -s /usr/bin/g++-5 /usr/bin/g++
 ```
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```
