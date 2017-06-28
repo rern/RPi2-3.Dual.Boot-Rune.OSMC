@@ -35,16 +35,17 @@ lupdate recovery/recovery.pro
 `translation_th.ts` to `recovery/`  
 `th.png` to `recovery/icons/`   
 
+
+**generate .qm file**  
+```sh
+lrelease recovery/recovery.pro
+```
+
 **edit** `recovery/icons.qrc`  
 add lines
 ```sh
         <file>translation_th.qm</file>
         <file>icons/th.png</file>
-```
-
-**generate .qm file**  
-```sh
-lrelease buildroot/output/build/recovery-1.0/recovery.pro
 ```
 
 **add fonts**  
