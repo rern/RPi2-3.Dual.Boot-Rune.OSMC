@@ -14,7 +14,8 @@ How To Add Translation
 - `recovery/icons.qrc`
 - `buildroot/package/recovery/recovery.mk`
 
-**edit** `recovery/recovery.pro`  
+**edit**  
+`recovery/recovery.pro`  
 add a line
 ```sh
 # TRANSLATIONS += 
