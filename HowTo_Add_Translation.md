@@ -21,7 +21,8 @@ add a line
     translation_th.ts \
 ```
 
-**generate .ts file**  
+**generate**  
+`recovery/translation_th.ts`   
 ```sh
 cd
 cd noobs
@@ -36,12 +37,14 @@ lupdate recovery/recovery.pro
 `th.png` to `recovery/icons/`   
 
 
-**generate .qm file**  
+**generate**  
+`recovery/translation_th.qm`   
 ```sh
 lrelease recovery/recovery.pro
 ```
 
-**edit** `recovery/icons.qrc`  
+**edit**  
+`recovery/icons.qrc`  
 add lines
 ```sh
         <file>translation_th.qm</file>
@@ -52,7 +55,8 @@ add lines
 ttf font
 `buildroot/package/recovery/unicode-fonts/`  
 
-**edit** `buildroot/package/recovery/recovery.mk`  
+**edit**  
+`buildroot/package/recovery/recovery.mk`  
 add lines
 ```sh
 	$(INSTALL) -m 0755 package/recovery/unicode-fonts/DejaVuSans.ttf $(TARGET_DIR)/usr/lib/fonts/DejaVuSansThai.ttf
