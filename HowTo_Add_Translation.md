@@ -34,8 +34,8 @@ lupdate recovery/recovery.pro
 ```
 
 **copy**  
-`translation_th.ts` to `recovery/`  
-`th.png` to `recovery/icons/`   
+`recovery/translation_th.ts` (translated)  
+`recovery/icons/th.png`   
 
 
 **generate**  
