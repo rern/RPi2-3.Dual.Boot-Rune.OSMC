@@ -5,7 +5,7 @@ How To Add Translation
 **add**  
 - `recovery/translation_th.ts` (create with `lupdate recovery.pro` or use one from GitHub)
 - `recovery/icons/th.png` ( [**flags**](http://www.famfamfam.com/lab/icons/flags/famfamfam_flag_icons.zip) )
-- `buildroot/output/build/recovery-1.0/translation_th.qm` (create with `lrelease recovery.pro`)
+- `recovery/translation_th.qm` (create with `lrelease recovery.pro`)
 - `buildroot/package/recovery/unicode-fonts/DejaVuSansThai.ttf` (if characters not available in default)
 - `buildroot/package/recovery/unicode-fonts/DejaVuSansThai-Bold.ttf`
 
