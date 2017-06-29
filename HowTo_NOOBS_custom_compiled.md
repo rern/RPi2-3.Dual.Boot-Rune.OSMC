@@ -44,7 +44,7 @@ sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmd
 ```
 **Compile**  
 ```sh
-# If available, reuse previously downloaded packages by backup-restore noobs/buildroot/dl/*
+# If available, reuse previously downloaded packages by backup-restore noobs/buildroot/dl/* to avoid slow download
 
 ./BUILDME.sh
 ```
