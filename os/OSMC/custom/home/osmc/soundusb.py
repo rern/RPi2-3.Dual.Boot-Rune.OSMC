@@ -5,7 +5,7 @@ import os
 import requests
 
 if len(sys.argv) > 1: # usb 'remove'
-	os.system('/usr/bin/xbmc-send -a "Notification(AUDIO OUTPUT,Switched to HDMI)"')
+	os.system('/usr/bin/xbmc-send -a "Notification(AUDIO OUTPUT,Switched to HDMI)" &')
 	exit()
 
 xml = minidom.parse('/home/osmc/.kodi/userdata/guisettings.xml')
