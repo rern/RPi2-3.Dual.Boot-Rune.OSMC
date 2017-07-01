@@ -21,4 +21,4 @@ payload = '{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"set
 # request.post(url, data = {'key':'value'}, headers = {'key':'value'})
 requests.post('http://localhost:'+ port +'/jsonrpc', data=payload, headers={'content-type': 'application/json'})
 
-os.system('/usr/bin/xbmc-send -a "Notification(AUDIO OUTPUT,Switched to USB DAC)"')
+os.system('/usr/bin/xbmc-send -a "Notification(AUDIO OUTPUT,Switched to USB DAC)" &')
