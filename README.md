@@ -101,6 +101,8 @@ Installation
 
 **NOOBS force recovery**
 ```
-echo -n " forcetrigger" >> recovery.cmdline
+mkdir /tmp/p1
+mount /dev/mmcblk0p1 /tmp/p1
+echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
 ```
 
