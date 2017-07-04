@@ -101,6 +101,6 @@ Installation
 
 **NOOBS force recovery**
 ```
-echo " forcetrigger" >> recovery.cmdline
+echo -n " forcetrigger" >> recovery.cmdline
 ```
 
