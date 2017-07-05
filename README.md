@@ -19,9 +19,10 @@ Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
 >[Remote Control](#remote-control)  
 >[Installation](#installation)  
 
-[**HowTo:** Build Offline Custom NOOBS](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/HowToBuild.md)  
-For more **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement)  
-(actual labels on RPi: `/dev/mmcblk0pn`)  
+**Note:**  
+- [**HowTo:** Build Offline Custom NOOBS](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/HowToBuild.md)  
+- **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement)  
+- partition allocation (actual labels on RPi: `/dev/mmcblk0pn`)  
 ![partitions](https://github.com/rern/Assets/blob/master/RPi2-3.Dual.Boot-Rune.OSMC/NOOBS_partitions.PNG)  
 
 Features
