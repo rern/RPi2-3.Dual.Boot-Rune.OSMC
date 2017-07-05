@@ -100,11 +100,12 @@ Installation
 
 3. Done!
 
-**NOOBS force reinstall**
+**Force reinstall OSes**
 ```sh
 mkdir /tmp/p1
 mount /dev/mmcblk0p1 /tmp/p1
 echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
+reboot
 
 # after 1st reboot
 mkdir /tmp/p1
