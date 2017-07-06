@@ -1,7 +1,7 @@
 Dual Boot: Rune | OSMC (Pi2, Pi3)
 ---
 
-`Rune 0.3beta 20160321` + `OSMC 2017.05-2` in `NOOBS lite 2.4` (with 'silentinstall' tweaks)  
+`Rune 0.3beta 20160321` + `OSMC 2017.06-1` in `NOOBS lite 2.4` (with 'silentinstall' tweaks)  
 
 [>> **Download**](https://drive.google.com/open?id=0B9KEjMAuGbejUnZaa2lOakFYYnM)  
 [>> Change Log](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/Changelog.md)
