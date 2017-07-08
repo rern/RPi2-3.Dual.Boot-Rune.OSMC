@@ -106,10 +106,5 @@ mkdir /tmp/p1
 mount /dev/mmcblk0p1 /tmp/p1
 echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
 reboot
-
-# after 1st reboot
-mkdir /tmp/p1
-mount /dev/mmcblk0p1 /tmp/p1
-sed -i "s/ forcetrigger//" /tmp/p1/recovery.cmdline
 ```
-
+` forcetrigger` removed by `partition_setup.sh` in Rune  
