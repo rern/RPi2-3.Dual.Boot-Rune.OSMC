@@ -4,10 +4,8 @@ mkdir -p /tmp/mount
 
 mount $part1 /tmp/mount
 sed -i "s|root=/dev/[^ ]*|root=$part2|" /tmp/mount/cmdline.txt
-echo "
-hdmi_group=1
-hdmi_mode=32
-" >> /tmp/mount/config.txt
+# remove force reinstall if any
+sed -i "s| forcetrigger||" /tmp/mount/recovery.cmdline
 umount /tmp/mount
 
 mount $part2 /tmp/mount
