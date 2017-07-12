@@ -23,8 +23,7 @@ Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
 - [**HowTo:** Build Offline Custom NOOBS](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/HowToBuild.md)  
 - **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement)  
 - partition allocation (actual labels on RPi: `/dev/mmcblk0pn`)  
-![partitions](https://github.com/rern/Assets/blob/master/RPi2-3.Dual.Boot-Rune.OSMC/NOOBS_partitions.PNG)  
-
+![partitions](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/_repo/NOOBS_partitions.PNG)  
 Features
 ---
 
@@ -79,7 +78,7 @@ Installation
 - 8GB SD card
 - $4 USB PC Remote: ID 1d57:ad02 Xenta SE340D PC Remote Control
 		
-    ![remote](https://github.com/rern/Assets/blob/master/RPi2-3.Dual.Boot-Rune.OSMC/irremote.jpg)
+    ![remote](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/_repo/irremote.jpg)
     
     more detail:
     * [IR Remote - Using Cheap USB PC Remote with Rune](http://www.runeaudio.com/forum/ir-remote-using-cheap-usb-pc-remote-with-rune-t3901.html)
