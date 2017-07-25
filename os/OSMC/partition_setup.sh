@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 # Let OSIRIS see what we are doing
 set -x
@@ -26,12 +26,15 @@ umount /tmp/mount
 sync
 # Fix the fstab
 mount $part2 /tmp/mount
-echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0
-$ext4_part      /                  ext4     defaults,noatime  0   0
-/dev/mmcblk0p1  /media/RECOVERY    vfat     noauto,noatime    0   0
-/dev/mmcblk0p5  /media/SETTINGS    ext4     noauto,noatime    0   0
-/dev/mmcblk0p8  /media/boot        vfat     noauto,noatime    0   0
-/dev/mmcblk0p9  /media/root        ext4     noauto,noatime    0   0
+echo "# filesystem	dir	             type  options           dump pass
+------------------------------------------------------------------
+$part1  /boot            vfat  defaults,noatime  0    0
+$part2  /                ext4  defaults,noatime  0    0
+/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0    0
+/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0    0
+/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime    0    0
+/dev/mmcblk0p9  /media/root      ext4  noauto,noatime    0    0
+/dev/sda1       /mnt/hdd         ext4  defaults,noatime  0    0
 ">/tmp/mount/etc/fstab
 
 # customize files
@@ -46,4 +49,3 @@ chown -R 1000:1000 /tmp/mount/home/osmc # 'osmc' dir copied as root before os cr
 umount /tmp/mount
 # Wait
 sync
-
