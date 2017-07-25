@@ -26,8 +26,9 @@ umount /tmp/mount
 sync
 # Fix the fstab
 mount $part2 /tmp/mount
-echo "# filesystem	dir	             type  options           dump pass
-------------------------------------------------------------------
+echo "
+# filesystem	dir      type  options           dump pass
+#-----------------------------------------------------------------
 $part1  /boot            vfat  defaults,noatime  0    0
 $part2  /                ext4  defaults,noatime  0    0
 /dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0    0
