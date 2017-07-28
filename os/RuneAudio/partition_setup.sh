@@ -9,7 +9,12 @@ sed -i "s| forcetrigger||" /tmp/mount/recovery.cmdline
 umount /tmp/mount
 
 mount $part2 /tmp/mount
-sed -i "s|^.* /boot |$part1  /boot |" /tmp/mount/etc/fstab
+file=/tmp/mount/etc/fstab
+sed -i -e "s|^.* /boot |$part1  /boot |
+" -e '/^#/ d
+' $file
+mv $file{,.original}
+column -t $file'.original' > $file
 cp -r /mnt/os/RuneAudio/custom/. /tmp/mount # customize files
 
 umount /tmp/mount
