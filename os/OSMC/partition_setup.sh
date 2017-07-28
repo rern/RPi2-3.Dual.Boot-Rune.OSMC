@@ -27,11 +27,11 @@ sync
 # Fix the fstab
 mount $part2 /tmp/mount
 echo "
-$vfat_part /boot            vfat  defaults,noatime  0    0
-/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0    0
-/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0    0
-/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime    0    0
-/dev/mmcblk0p9  /media/root      ext4  noauto,noatime    0    0
+$vfat_part /boot            vfat  defaults,noatime  0  0
+/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0  0
+/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0  0
+/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime    0  0
+/dev/mmcblk0p9  /media/root      ext4  noauto,noatime    0  0
 " > /tmp/mount/etc/fstab
 
 # customize files
