@@ -13,6 +13,7 @@ file=/tmp/mount/etc/fstab
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
 ' $file
+# format column
 mv $file{,.original}
 column -t $file'.original' > $file
 cp -r /mnt/os/RuneAudio/custom/. /tmp/mount # customize files
