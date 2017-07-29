@@ -15,7 +15,10 @@ sed -i -e "s|^.* /boot |$part1  /boot |
 ' $file
 # format column
 mv $file{,.original}
-column -t $file'.original' > $file
+sed '1 i\#device mount type option dump pass' $file'.original' | column -t > $file
+w=$( wc -L < $file )                 # widest line
+hr=$( printf "%${w}s\n" | tr ' ' - ) # horizontal line
+sed -i '1 a\#'$hr $file
 cp -r /mnt/os/RuneAudio/custom/. /tmp/mount # customize files
 
 umount /tmp/mount
