@@ -19,6 +19,7 @@ sed '1 i\#device mount type option dump pass' $file'.original' | column -t > $fi
 w=$( wc -L < $file )                 # widest line
 hr=$( printf "%${w}s\n" | tr ' ' - ) # horizontal line
 sed -i '1 a\#'$hr $file
+
 cp -r /mnt/os/RuneAudio/custom/. /tmp/mount # customize files
 
 umount /tmp/mount
