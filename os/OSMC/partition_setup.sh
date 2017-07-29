@@ -28,7 +28,7 @@ sync
 mount $part2 /tmp/mount
 
 fstabcontent="
-#filesystem     dir              type  options           dump pass
+#device         mount            type  options           dump pass
 $vfat_part      /boot            vfat  defaults,noatime  0    0
 /dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0    0
 /dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0    0
