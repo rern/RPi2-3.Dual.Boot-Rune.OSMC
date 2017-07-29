@@ -26,13 +26,20 @@ umount /tmp/mount
 sync
 # Fix the fstab
 mount $part2 /tmp/mount
-echo "
-$vfat_part /boot            vfat  defaults,noatime  0  0
-/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0  0
-/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0  0
-/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime    0  0
-/dev/mmcblk0p9  /media/root      ext4  noauto,noatime    0  0
-" > /tmp/mount/etc/fstab
+
+fstabcontent="
+#filesystem     dir              type  options           dump pass
+$vfat_part      /boot            vfat  defaults,noatime  0    0
+/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0    0
+/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0    0
+/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime    0    0
+/dev/mmcblk0p9  /media/root      ext4  noauto,noatime    0    0
+"
+file=/tmp/mount/etc/fstab
+echo "$fstabcontent" | column -t > $file
+w=$( wc -L < $file )                 # widest line
+hr=$( printf "%${w}s\n" | tr ' ' - ) # horizontal line
+sed -i '1 a'$hr $file
 
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
