@@ -28,12 +28,12 @@ sync
 mount $part2 /tmp/mount
 
 fstabcontent="
-#device         mount            type  options           dump pass
-$vfat_part      /boot            vfat  defaults,noatime  0    0
-/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime    0    0
-/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime    0    0
-/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime    0    0
-/dev/mmcblk0p9  /media/root      ext4  noauto,noatime    0    0
+#device         mount            type  options
+$vfat_part      /boot            vfat  defaults,noatime
+/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime
+/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime
+/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime
+/dev/mmcblk0p9  /media/root      ext4  noauto,noatime
 "
 file=/tmp/mount/etc/fstab
 echo "$fstabcontent" | column -t > $file
