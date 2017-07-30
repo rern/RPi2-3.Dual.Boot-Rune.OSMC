@@ -28,18 +28,21 @@ sync
 mount $part2 /tmp/mount
 
 fstabcontent="
-#device         mount            type  options
-$vfat_part      /boot            vfat  defaults,noatime
-/dev/mmcblk0p1  /media/RECOVERY  vfat  noauto,noatime
-/dev/mmcblk0p5  /media/SETTINGS  ext4  noauto,noatime
-/dev/mmcblk0p8  /media/boot      vfat  noauto,noatime
-/dev/mmcblk0p9  /media/root      ext4  noauto,noatime
+#device         mount      type  options
+$vfat_part      /boot      vfat  defaults,noatime
+/dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
+/dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
+/dev/mmcblk0p8  /media/p8  vfat  noauto,noatime
+/dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
 "
 file=/tmp/mount/etc/fstab
 echo "$fstabcontent" | column -t > $file
+# format column
 w=$( wc -L < $file )                 # widest line
 hr=$( printf "%${w}s\n" | tr ' ' - ) # horizontal line
 sed -i '1 a\#'$hr $file
+
+mkdir -p /media/p1 /media/p5 /media/p8 /media/p9
 
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
