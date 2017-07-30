@@ -36,8 +36,6 @@ $vfat_part  /boot      vfat  defaults,noatime
 /dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
 " > /tmp/mount/etc/fstab
 
-mkdir -p /media/p1 /media/p5 /media/p8 /media/p9
-
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
 sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/" /tmp/mount/etc/ssh/sshd_config
