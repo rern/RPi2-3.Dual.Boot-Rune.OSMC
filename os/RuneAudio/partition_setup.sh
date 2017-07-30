@@ -1,16 +1,20 @@
 #!/bin/bash
 
-mkdir -p /tmp/mount
+mnt=/tmp/mount
 
-mount $part1 /tmp/mount
-sed -i "s|root=/dev/[^ ]*|root=$part2|" /tmp/mount/cmdline.txt
+mkdir -p $mnt
+
+mount $part1 $mnt
+
+sed -i "s|root=/dev/[^ ]*|root=$part2|" $mnt/cmdline.txt
+
 # remove force reinstall if any
-sed -i "s| forcetrigger||" /tmp/mount/recovery.cmdline
-umount /tmp/mount
+sed -i "s| forcetrigger||" $mnt/recovery.cmdline
+umount $mnt
 
-mount $part2 /tmp/mount
+mount $part2 $mnt
 
-file=/tmp/mount/etc/fstab
+file=$mnt/etc/fstab
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s\+$//
@@ -22,6 +26,6 @@ w=$( wc -L < $file )                 # widest line
 hr=$( printf "%${w}s\n" | tr ' ' - ) # horizontal line
 sed -i '1 a\#'$hr $file
 
-cp -r /mnt/os/RuneAudio/custom/. /tmp/mount # customize files
+cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
 
-umount /tmp/mount
+umount $mnt
