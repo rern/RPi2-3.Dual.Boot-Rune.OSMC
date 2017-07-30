@@ -12,6 +12,7 @@ mount $part2 /tmp/mount
 file=/tmp/mount/etc/fstab
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
+' -e 's/\s\+0\s\+0\s\+$//
 ' $file
 # format column
 mv $file{,.original}
