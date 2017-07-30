@@ -27,20 +27,14 @@ sync
 # Fix the fstab
 mount $part2 /tmp/mount
 
-fstabcontent="
+echo "
 #device         mount      type  options
-$vfat_part      /boot      vfat  defaults,noatime
+$vfat_part  /boot      vfat  defaults,noatime
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 /dev/mmcblk0p8  /media/p8  vfat  noauto,noatime
 /dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
-"
-file=/tmp/mount/etc/fstab
-echo "$fstabcontent" | column -t > $file
-# format column
-w=$( wc -L < $file )                 # widest line
-hr=$( printf "%${w}s\n" | tr ' ' - ) # horizontal line
-sed -i '1 a\#'$hr $file
+" > /tmp/mount/etc/fstab
 
 mkdir -p /media/p1 /media/p5 /media/p8 /media/p9
 
