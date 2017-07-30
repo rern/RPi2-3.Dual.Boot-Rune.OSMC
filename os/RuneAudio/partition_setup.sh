@@ -16,7 +16,7 @@ mount $part2 $mnt
 
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
-' -e 's/\s\+0\s\+0\s\+$//
+' -e 's/\s\+0\s\+0\s*$//
 ' $mnt/etc/fstab
 
 cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
