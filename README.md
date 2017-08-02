@@ -37,6 +37,7 @@ Features
 
 **OSMC:**
 - Allow SSH as 'root' with password 'rune', the same as in Rune
+- Fix slow SSH login
 - Autoswitch audio output to/from USB DAC when on/off
 
 Remote Control
