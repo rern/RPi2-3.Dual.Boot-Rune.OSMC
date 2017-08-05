@@ -39,8 +39,8 @@
   <global>
     <keyboard>
       <!-- e-mail --><launch_mail>RunScript(/home/osmc/rebootrune.py)</launch_mail>
-      <!-- www --><homepage>RunScript(/home/osmc/gpioonsudo.py)</homepage>
-      <!-- close --><f4 mod="alt">RunScript(/home/osmc/gpiooffsudo.py)</f4>
+      <!-- www --><homepage></homepage>
+      <!-- close --><f4 mod="alt"></f4>
       <!-- yellow --><d mod="ctrl,alt"></d>
       <!-- blue --><c mod="ctrl,alt"></c>
       <!-- amber --><b mod="ctrl,alt">RunScript(/home/osmc/rebootosmc.py)</b>
