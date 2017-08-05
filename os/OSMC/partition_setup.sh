@@ -38,7 +38,6 @@ $vfat_part  /boot      vfat  defaults,noatime
 
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
-sed -i "s/^root.\+/&osmc/" /etc/group  # for access /dev/snd
 # 'UseDNS no' fixes slow login
 sed -i -e "s/PermitRootLogin without-password/PermitRootLogin yes/
 " -e "1 i\UseDNS no
