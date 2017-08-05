@@ -38,12 +38,12 @@
 -->
   <global>
     <keyboard>
-      <!-- e-mail --><launch_mail>RunScript(/home/osmc/rebootrune.sh)</launch_mail>
+      <!-- e-mail --><launch_mail>RunScript(/home/osmc/rebootrune.py)</launch_mail>
       <!-- www --><homepage></homepage>
       <!-- close --><f4 mod="alt"></f4>
       <!-- yellow --><d mod="ctrl,alt"></d>
       <!-- blue --><c mod="ctrl,alt"></c>
-      <!-- amber --><b mod="ctrl,alt">RunScript(/home/osmc/rebootosmc.sh)</b>
+      <!-- amber --><b mod="ctrl,alt">RunScript(/home/osmc/rebootosmc.py)</b>
       <!-- green --><a mod="ctrl,alt">reloadkeymaps</a>
       <!-- mute --><!-- <key id="61596"></key> -->
       <!-- vol- --><!-- <key id="61597"></key> -->
