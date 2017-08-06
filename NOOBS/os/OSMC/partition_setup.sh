@@ -41,11 +41,11 @@ $vfat_part  /boot      vfat  defaults,noatime
 
 # customize files
 sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" /tmp/mount/etc/shadow
-sed -i -e 's/PermitRootLogin without-password/PermitRootLogin yes/
-' -e '/^KexAlgorithms/ s/^/#/
+sed -i -e "s/PermitRootLogin .*/PermitRootLogin yes/
+" -e '/^KexAlgorithms/ s/^/#/
 ' -e '/^Ciphers/ s/^/#/
 ' -e '/^MACs/ s/^/#/
-' /etc/ssh/sshd_config
+' /tmp/mount/etc/ssh/sshd_config
 
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
 chmod 644 /tmp/mount/etc/udev/rules.d/usbsound.rules
