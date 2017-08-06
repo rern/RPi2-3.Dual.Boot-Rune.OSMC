@@ -18,6 +18,8 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 
 [[ -z $1 ]] && yesno "Reboot to Rune after reset:" ansre
 
+time0=$( date +%s )
+
 echo -e "\nRune reset ...\n"
 umount -l /dev/mmcblk0p9 &> /dev/null
 echo "Format partition ..."
@@ -49,6 +51,11 @@ chmod 755 $pathrune/usr/local/bin/*
 umount -l /tmp/p1
 umount -l /tmp/p9
 
+time1=$( date +%s )
+timediff=$(( $time1 - $time0 ))
+timemin=$(( $timediff / 60 ))
+timesec=$(( $timediff % 60 ))
+echo -e "\nDuration: $timemin min $timesec sec"
 echo -e "\nRune reset successfully.\n"
 
 [[ $ansre == 1 ]] && reboot 8
