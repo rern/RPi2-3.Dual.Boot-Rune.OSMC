@@ -19,7 +19,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 }
 
 yesno "Reset Rune:" ans
-[[ $ans != 1 ]] && exit
+[[ $ans != 1 ]] && return
 
 [[ -z $1 ]] && yesno "Reboot to Rune after reset:" ansre
 
