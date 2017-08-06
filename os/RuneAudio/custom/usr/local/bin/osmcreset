@@ -41,10 +41,6 @@ bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C $pathosmc \
 vfat_part=$( blkid /dev/mmcblk0p6 | awk '{ print $2 }' )
 vfat_part=${vfat_part//\"/}
 
-mnt0=$( mount | grep '/dev/sda1' | awk '{ print $3 }' )
-label=${mnt0##/*/}
-mnt="/mnt/$label"
-
 echo "
 #device         mount      type  options
 $vfat_part      /boot      vfat  defaults,noatime
