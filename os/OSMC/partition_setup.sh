@@ -47,7 +47,7 @@ sed -i -e "s/PermitRootLogin without-password/PermitRootLogin yes/
 cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
 chmod 644 /tmp/mount/etc/udev/rules.d/usbsound.rules
 chmod 755 /tmp/mount/home/osmc/*.py
-chmod 755 /tmp/mount/usr/local/bin/runereset
+chmod 755 /tmp/mount/usr/local/bin/*reset
 chown -R 1000:1000 /tmp/mount/home/osmc # 'osmc' dir copied as root before os create - chown needed
 
 umount /tmp/mount
