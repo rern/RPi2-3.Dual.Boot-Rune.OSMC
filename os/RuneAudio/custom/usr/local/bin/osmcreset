@@ -6,8 +6,11 @@ if [[ ! $( mount | grep p$1 ) ]]; then
   mount /dev/mmcblk0p$1 /tmp/p$1
 fi
 }
+li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
+info='\e[30m\e[43m ! \e[0m $1'
+bar='\e[36m\e[46m . \e[0m $1'
 yesno() { # $1 = header string; $2 = input or <enter> = ''
-	echo -e "\n\e[30m\e[43m ! \e[0m $1"
+	echo -e "$info $1"
 	echo -e '  \e[0;36m0\e[m No'
 	echo -e '  \e[0;36m1\e[m Yes'
 	echo -e '\n\e[0;36m0\e[m / 1 ? '
@@ -15,20 +18,26 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 }
 
+yesno "Reset OSMC:" ans
+[[ $ans != 1 ]] && exit
+
 [[ -z $1 ]] && yesno "Reboot to OSMC after reset:" ansre
 
 time0=$( date +%s )
 
-echo -e "\nOSMC reset ...\n"
+echo $li
+echo -e "$bar OSMC reset"
+echo $li
 umount -l /dev/mmcblk0p7 &> /dev/null
 # format with label to match cmdline.txt
-echo -e "Format partition ..."
+echo -e "$bar Format partition ..."
 mmc 1
 mmc 6
 mmc 7
 label=$( cat /tmp/p6/cmdline.txt | awk '{print $1}' | sed 's/root=LABEL=//' )
 echo y | mkfs.ext4 -L $label /dev/mmcblk0p7 &> /dev/null
 # extract image files
+echo -e "$bar Extract files ..."
 pathosmc=/tmp/p7
 bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C $pathosmc \
   --exclude=./var/cache/apt \
@@ -37,6 +46,7 @@ bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C $pathosmc \
   --exclude=./usr/share/{doc,gtk-doc,info,man}
 
 # from partition_setup.sh
+echo -e "$bar Partition setup ..."
 vfat_part=$( blkid /dev/mmcblk0p6 | awk '{ print $2 }' )
 vfat_part=${vfat_part//\"/}
 
@@ -68,7 +78,8 @@ timediff=$(( $time1 - $time0 ))
 timemin=$(( $timediff / 60 ))
 timesec=$(( $timediff % 60 ))
 echo -e "\nDuration: $timemin min $timesec sec"
-
-echo -e "\nOSMC reset successfully.\n"
+echo $li
+echo -e "$bar OSMC reset successfully."
+echo $li
 
 [[ $ansre == 1 ]] && reboot 6
