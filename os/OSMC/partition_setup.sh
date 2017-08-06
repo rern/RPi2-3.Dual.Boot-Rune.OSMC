@@ -21,6 +21,9 @@ if [ -n $id2 ]; then ext4_part=$id2; fi
 # Fix the cmdline.txt
 mount $part1 /tmp/mount
 echo "root=$ext4_part osmcdev=$dev rootfstype=ext4 rootwait quiet" > /tmp/mount/cmdline.txt
+# remove force reinstall if any
+sed -i "s| forcetrigger||" $mnt/recovery.cmdline
+
 umount /tmp/mount
 # Wait
 sync
