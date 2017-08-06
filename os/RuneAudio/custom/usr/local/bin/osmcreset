@@ -75,6 +75,6 @@ timemin=$(( $timediff / 60 ))
 timesec=$(( $timediff % 60 ))
 echo -e "\nDuration: $timemin min $timesec sec"
 
-echo -e "OSMC reset successfully.\n"
+echo -e "\nOSMC reset successfully.\n"
 
 [[ $ansre == 1 ]] && reboot 6
