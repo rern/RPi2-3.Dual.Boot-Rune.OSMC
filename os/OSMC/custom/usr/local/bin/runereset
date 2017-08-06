@@ -18,6 +18,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 }
 
+runereset() {
 yesno "Reset Rune:" ans
 [[ $ans != 1 ]] && exit
 
@@ -68,3 +69,4 @@ echo -e "$bar Rune reset successfully."
 echo $li
 
 [[ $ansre == 1 ]] && reboot 8
+}
