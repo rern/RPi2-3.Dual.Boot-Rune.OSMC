@@ -67,4 +67,6 @@ umount -l /tmp/p1
 umount -l /tmp/p6
 umount -l /tmp/p7
 
+echo -e "\nOSMC reset successfully.\n"
+
 [[ $ansre == 1 ]] && reboot 6
