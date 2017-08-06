@@ -59,10 +59,13 @@ $vfat_part      /boot      vfat  defaults,noatime
 /dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
 " > $pathosmc/etc/fstab
 
-sed -i "s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/" $pathosmc/etc/shadow
-sed -i -e "s/PermitRootLogin without-password/PermitRootLogin yes/
-" -e "1 i\UseDNS no
-" $pathosmc/etc/ssh/sshd_config
+sed -i 1s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/
+' $pathosmc/etc/shadow
+sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
+' -e '/^KexAlgorithms/ s/^/#/
+' -e '/^Ciphers/ s/^/#/
+' -e '/^MACs/ s/^/#/
+' $pathosmc/etc/ssh/sshd_config
 cp -r /tmp/p1/os/OSMC/custom/. $pathosmc
 chmod 644 $pathosmc/etc/udev/rules.d/usbsound.rules
 chmod 755 $pathosmc/home/osmc/*.py
