@@ -101,6 +101,6 @@ Installation
 3. Done!
 
 **Force reinstall without rebuild SD card**  
-Reinstall OSMC: on Rune - `osmcreset`  
-Reinstall Rune: on OSMC - `runereset`  
-Reinstall both: `noobsreset`  
+- Reinstall OSMC: on Rune - `osmcreset`  
+- Reinstall Rune: on OSMC - `runereset`  
+- Reinstall both: `noobsreset`  
