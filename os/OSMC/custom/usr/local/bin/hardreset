@@ -1,0 +1,39 @@
+#!/bin/bash
+
+echo "Rune reset ..."
+umount -l /dev/mmcblk0p9 &> /dev/null
+echo "Format partition ..."
+echo y | mkfs.ext4 /dev/mmcblk0p9 &> /dev/null
+mmc 9
+mmc 1
+
+if ! type bsdtar &>/dev/null; then
+  echo "Install bsdtar ..."
+  apt update
+  apt install -y bsdtar
+fi
+pathrune=/tmp/p9
+bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $pathrune \
+  --exclude=./srv/http/.git \
+  --exclude=./usr/include \
+  --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
+  --exclude=./usr/share/{doc,gtk-doc,info,man}
+
+# from partition_setup.sh
+sed -i -e 's|^.* /boot |/dev/mmcblk0p8  /boot |
+' -e '/^#/ d
+' -e 's/\s\+0\s\+0\s*$//
+' $pathrune/etc/fstab
+
+cp -r /tmp/p1/os/RuneAudio/custom/. $pathrune
+
+echo "Rune reset successfully."
+echo
+echo "Reboot to Rune:"
+echo -e '  \e[0;36m0\e[m No'
+echo -e '  \e[0;36m1\e[m Yes'
+echo
+echo -e '\e[0;36m0\e[m / 1 ? '
+read -n 1 ansre
+echo
+[[ $ansre == 1 ]] && reboot 8
