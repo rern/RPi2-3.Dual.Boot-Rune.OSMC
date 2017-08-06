@@ -7,8 +7,8 @@ mmc() {
 	fi
 }
 li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
-info='\e[30m\e[43m ! \e[0m $1'
-bar='\e[36m\e[46m . \e[0m $1'
+info='\e[30m\e[43m ! \e[0m'
+bar='\e[36m\e[46m . \e[0m'
 yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo -e "$info $1"
 	echo -e '  \e[0;36m0\e[m No'
