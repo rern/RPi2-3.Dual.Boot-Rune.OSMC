@@ -52,6 +52,10 @@ chmod 755 $pathosmc/home/osmc/*.py
 chmod 755 $pathosmc/usr/local/bin/*
 chown -R 1000:1000 $pathosmc/home/osmc
 
+umount -l /tmp/p1
+umount -l /tmp/p6
+umount -l /tmp/p7
+
 echo -e "\nOSMC reset successfully.\n"
 echo "Reboot to OSMC:"
 echo -e '  \e[0;36m0\e[m No'
