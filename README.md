@@ -1,7 +1,7 @@
 Dual Boot: Rune | OSMC (Pi2, Pi3)
 ---
 
-`Rune 0.3beta 20160321` + `OSMC 2017.06-1` in `NOOBS lite 2.4` (with 'silentinstall' tweaks)  
+`Rune 0.3beta 20160321` + `OSMC 2017.07-1` in `NOOBS lite 2.4` (with 'silentinstall' tweaks)  
 
 [>> **Download**](https://drive.google.com/open?id=0B9KEjMAuGbejUnZaa2lOakFYYnM)  
 [>> Change Log](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/Changelog.md)
@@ -100,11 +100,7 @@ Installation
 
 3. Done!
 
-**Force reinstall OSes**
-```sh
-mkdir /tmp/p1
-mount /dev/mmcblk0p1 /tmp/p1
-echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
-reboot
-```
-` forcetrigger` removed by `partition_setup.sh` in Rune  
+**Force reinstall without rebuild SD card**  
+Reinstall OSMC: on Rune - `osmcreset`  
+Reinstall Rune: on OSMC - `runereset`  
+Reinstall both: `noobsreset`  
