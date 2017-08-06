@@ -20,5 +20,6 @@ sed -i -e "s|^.* /boot |$part1  /boot |
 ' $mnt/etc/fstab
 
 cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
+chmod 755 /tmp/mount/usr/local/bin/*
 
 umount $mnt
