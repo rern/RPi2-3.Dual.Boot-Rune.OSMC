@@ -11,12 +11,12 @@ echo -e "\nOSMC reset ...\n"
 umount -l /dev/mmcblk0p7 &> /dev/null
 # format with label to match cmdline.txt
 echo -e "Format partition ..."
+mmc 1
 mmc 6
+mmc 7
 label=$( cat /tmp/p6/cmdline.txt | awk '{print $1}' | sed 's/root=LABEL=//' )
 echo y | mkfs.ext4 -L $label /dev/mmcblk0p7 &> /dev/null
 # extract image files
-mmc 1
-mmc 7
 pathosmc=/tmp/p7
 bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C $pathosmc \
   --exclude=./var/cache/apt \
