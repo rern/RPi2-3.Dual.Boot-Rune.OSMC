@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ ! $( mount | grep p1 ) ]]; then
+  mkdir -p /tmp/p1
+  mount /dev/mmcblk0p1 /tmp/p1
+fi
+
+echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
+
+umount -l /tmp/p1
+
+reboot
