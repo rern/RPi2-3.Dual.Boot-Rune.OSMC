@@ -26,7 +26,7 @@ yesno "Reset Rune:" ans
 time0=$( date +%s )
 
 echo $li
-echo -e "$bar Rune reset ..."
+echo -e "$bar Rune reset"
 echo $li
 umount -l /dev/mmcblk0p9 &> /dev/null
 echo -e "$bar Format partition ..."
@@ -39,6 +39,7 @@ if ! type bsdtar &>/dev/null; then
   apt update
   apt install -y bsdtar
 fi
+echo -e "$bar Extract files ..."
 pathrune=/tmp/p9
 bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $pathrune \
   --exclude=./srv/http/.git \
@@ -47,6 +48,7 @@ bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $pathrune \
   --exclude=./usr/share/{doc,gtk-doc,info,man}
 
 # from partition_setup.sh
+echo -e "$bar Partition setup ..."
 sed -i -e 's|^.* /boot |/dev/mmcblk0p8  /boot |
 ' -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s*$//
