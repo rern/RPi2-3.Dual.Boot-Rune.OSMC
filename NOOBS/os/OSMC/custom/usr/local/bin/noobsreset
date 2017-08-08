@@ -1,19 +1,27 @@
 #!/bin/bash
 
-echo -e "\e[30m\e[43m ! \e[0m Reset NOOBS"
-echo -e '  \e[0;36m0\e[m No'
-echo -e '  \e[0;36m1\e[m Yes'
-echo -e '\n\e[0;36m0\e[m / 1 ? '
-read -n 1 ans
+mmc() {
+	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
+	if [[ ! $( mount | grep $mntdir ) ]]; then
+		mkdir -p $mntdir
+		mount /dev/mmcblk0p$1 $mntdir
+	fi
+}
+yesno() { # $1 = header string; $2 = input or <enter> = ''
+	echo -e "$1"
+	echo -e '  \e[0;36m0\e[m No'
+	echo -e '  \e[0;36m1\e[m Yes\n'
+	echo -e '\e[0;36m0\e[m / 1 ? '
+	read -n 1 $2
+	echo
+}
+
+yesno "\e[30m\e[43m ! \e[0m Reset NOOBS" ans
 [[ $ans != 1 ]] && exit
 	
-if [[ ! $( mount | grep p1 ) ]]; then
-  mkdir -p /tmp/p1
-  mount /dev/mmcblk0p1 /tmp/p1
-fi
-
+mmc 1
 echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
-
 umount -l /tmp/p1
 
+/var/www/command/rune_shutdown
 reboot
