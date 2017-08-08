@@ -1,22 +1,24 @@
 #!/bin/bash
 
 mmc() {
-	if [[ ! $( mount | grep p$1 ) ]]; then
-		mkdir -p /tmp/p$1
-		mount /dev/mmcblk0p$1 /tmp/p$1
+	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
+	if [[ ! $( mount | grep $mntdir ) ]]; then
+		mkdir -p $mntdir
+		mount /dev/mmcblk0p$1 $mntdir
 	fi
 }
-li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
-info='\e[30m\e[43m ! \e[0m'
-bar='\e[36m\e[46m . \e[0m'
 yesno() { # $1 = header string; $2 = input or <enter> = ''
-	echo -e "$info $1"
+	echo -e "$1"
 	echo -e '  \e[0;36m0\e[m No'
-	echo -e '  \e[0;36m1\e[m Yes'
-	echo -e '\n\e[0;36m0\e[m / 1 ? '
+	echo -e '  \e[0;36m1\e[m Yes\n'
+	echo -e '\e[0;36m0\e[m / 1 ? '
 	read -n 1 $2
 	echo
 }
+
+li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
+info='\e[30m\e[43m ! \e[0m'
+bar='\e[36m\e[46m . \e[0m'
 
 yesno "Reset Rune:" ans
 [[ $ans != 1 ]] && return 1
