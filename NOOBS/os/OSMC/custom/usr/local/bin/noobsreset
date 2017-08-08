@@ -23,5 +23,4 @@ mmc 1
 echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
 umount -l /tmp/p1
 
-/var/www/command/rune_shutdown
 reboot
