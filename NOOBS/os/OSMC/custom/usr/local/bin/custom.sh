@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# for use in: ./OSMC/partition_setup.sh, ./RuneAudio/custom/usr/local/bin/osmcreset
+# for source in: ./OSMC/partition_setup.sh, ./RuneAudio/custom/usr/local/bin/osmcreset
 
 mntroot=/tmp/mount
 if ! grep '/boot' $mntroot/etc/fstab &> /dev/null; then
