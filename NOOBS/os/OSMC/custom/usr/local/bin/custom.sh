@@ -3,12 +3,11 @@
 # for source in: ./OSMC/partition_setup.sh, ./RuneAudio/custom/usr/local/bin/osmcreset
 
 mntroot=/tmp/mount
-if ! grep '/boot' $mntroot/etc/fstab &> /dev/null; then
+if ! grep -q '/boot' $mntroot/etc/fstab; then
 	vfat_part=$( blkid /dev/mmcblk0p6 | awk '{ print $2 }' )
 	vfat_part=${vfat_part//\"/}
-	boot="$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0"
 fi
-echo "$boot
+echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 /dev/mmcblk0p8  /media/p8  vfat  noauto,noatime
