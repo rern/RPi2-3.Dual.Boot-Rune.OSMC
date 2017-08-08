@@ -4,7 +4,7 @@ echo -e "\e[30m\e[43m ! \e[0m Reset NOOBS"
 echo -e '  \e[0;36m0\e[m No'
 echo -e '  \e[0;36m1\e[m Yes'
 echo -e '\n\e[0;36m0\e[m / 1 ? '
-read -n 1 $ans
+read -n 1 ans
 [[ $ans != 1 ]] && exit
 	
 if [[ ! $( mount | grep p1 ) ]]; then
