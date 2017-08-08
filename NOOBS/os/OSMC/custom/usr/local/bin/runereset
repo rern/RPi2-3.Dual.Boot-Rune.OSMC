@@ -33,8 +33,6 @@ echo $li
 umount -l /dev/mmcblk0p9 &> /dev/null
 echo -e "$bar Format partition ..."
 echo y | mkfs.ext4 /dev/mmcblk0p9 &> /dev/null
-mmc 1
-mmc 9
 
 if ! type bsdtar &>/dev/null; then
   echo -e "$bar Install bsdtar ..."
@@ -42,8 +40,10 @@ if ! type bsdtar &>/dev/null; then
   apt install -y bsdtar
 fi
 echo -e "$bar Extract files ..."
-pathrune=/tmp/p9
-bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $pathrune \
+mmc 1
+mmc 9
+mntroot=/tmp/p9
+bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $mntroot \
   --exclude=./srv/http/.git \
   --exclude=./usr/include \
   --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
@@ -54,10 +54,10 @@ echo -e "$bar Partition setup ..."
 sed -i -e 's|^.* /boot |/dev/mmcblk0p8  /boot |
 ' -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s*$//
-' $pathrune/etc/fstab
+' $mntroot/etc/fstab
 
-cp -r /tmp/p1/os/RuneAudio/custom/. $pathrune
-chmod 755 $pathrune/usr/local/bin/*reset
+cp -r /tmp/p1/os/RuneAudio/custom/. $mntroot
+chmod 755 $mntroot/usr/local/bin/*reset
 
 umount -l /tmp/p1
 umount -l /tmp/p9
