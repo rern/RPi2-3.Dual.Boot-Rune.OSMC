@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# for use in: ./OSMC/partition_setup.sh, ./RuneAudio/custom/usr/local/bin/osmcreset
+
 mntroot=/tmp/mount
 if ! grep '/boot' $mntroot/etc/fstab &> /dev/null; then
 	vfat_part=$( blkid /dev/mmcblk0p6 | awk '{ print $2 }' )
