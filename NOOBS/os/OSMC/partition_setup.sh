@@ -21,38 +21,16 @@ if [ -n $id2 ]; then ext4_part=$id2; fi
 # Fix the cmdline.txt
 mount $part1 /tmp/mount
 echo "root=$ext4_part osmcdev=$dev rootfstype=ext4 rootwait quiet" > /tmp/mount/cmdline.txt
-# remove force reinstall if any
-sed -i "s| forcetrigger||" $mnt/recovery.cmdline
 
 umount /tmp/mount
 # Wait
 sync
 # Fix the fstab
 mount $part2 /tmp/mount
+echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0
+">/tmp/mount/etc/fstab
 
-echo "
-#device         mount      type  options
-$vfat_part  /boot      vfat  defaults,noatime
-/dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
-/dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
-/dev/mmcblk0p8  /media/p8  vfat  noauto,noatime
-/dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
-" > /tmp/mount/etc/fstab
-
-# customize files
-sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::|
-' /tmp/mount/etc/shadow
-sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
-' -e '/^KexAlgorithms/ s/^/#/
-' -e '/^Ciphers/ s/^/#/
-' -e '/^MACs/ s/^/#/
-' /tmp/mount/etc/ssh/sshd_config
-
-cp -r /mnt/os/OSMC/custom/. /tmp/mount # copy recursive include hidden ('.' not '*')
-chmod 644 /tmp/mount/etc/udev/rules.d/usbsound.rules
-chmod 755 /tmp/mount/home/osmc/*.py
-chmod 755 /tmp/mount/usr/local/bin/*reset
-chown -R 1000:1000 /tmp/mount/home/osmc # 'osmc' dir copied as root before os create - chown needed
+. /mnt/os/OSMC/custom/usr/local/bin/custom.sh
 
 umount /tmp/mount
 # Wait

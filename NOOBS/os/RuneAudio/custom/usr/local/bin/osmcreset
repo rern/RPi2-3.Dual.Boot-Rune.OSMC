@@ -33,13 +33,13 @@ umount -l /dev/mmcblk0p7 &> /dev/null
 echo -e "$bar Format partition ..."
 mmc 1
 mmc 6
-mmc 7
 label=$( cat /tmp/p6/cmdline.txt | awk '{print $1}' | sed 's/root=LABEL=//' )
 echo y | mkfs.ext4 -L $label /dev/mmcblk0p7 &> /dev/null
 # extract image files
 echo -e "$bar Extract files ..."
-pathosmc=/tmp/p7
-bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C $pathosmc \
+mkdir -p /tmp/mount
+mount /dev/mmcblk0p7 /tmp/mount
+bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C /tmp/mount \
   --exclude=./var/cache/apt \
   --exclude=./usr/include \
   --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
@@ -47,34 +47,11 @@ bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C $pathosmc \
 
 # from partition_setup.sh
 echo -e "$bar Partition setup ..."
-vfat_part=$( blkid /dev/mmcblk0p6 | awk '{ print $2 }' )
-vfat_part=${vfat_part//\"/}
-
-echo "
-#device         mount      type  options
-$vfat_part      /boot      vfat  defaults,noatime
-/dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
-/dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
-/dev/mmcblk0p8  /media/p8  vfat  noauto,noatime
-/dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
-" > $pathosmc/etc/fstab
-
-sed -i 1s/root:.*/root:\$6\$X6cgc9tb\$wTTiWttk\/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX\/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::/
-' $pathosmc/etc/shadow
-sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
-' -e '/^KexAlgorithms/ s/^/#/
-' -e '/^Ciphers/ s/^/#/
-' -e '/^MACs/ s/^/#/
-' $pathosmc/etc/ssh/sshd_config
-cp -r /tmp/p1/os/OSMC/custom/. $pathosmc
-chmod 644 $pathosmc/etc/udev/rules.d/usbsound.rules
-chmod 755 $pathosmc/home/osmc/*.py
-chmod 755 $pathosmc/usr/local/bin/*
-chown -R 1000:1000 $pathosmc/home/osmc
+. /tmp/p1/os/OSMC/custom/usr/local/bin/custom.sh
 
 umount -l /tmp/p1
 umount -l /tmp/p6
-umount -l /tmp/p7
+umount -l /tmp/mount
 
 time1=$( date +%s )
 timediff=$(( $time1 - $time0 ))

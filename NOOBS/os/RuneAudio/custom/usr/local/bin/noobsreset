@@ -6,7 +6,7 @@ echo -e '  \e[0;36m1\e[m Yes'
 echo -e '\n\e[0;36m0\e[m / 1 ? '
 read -n 1 ans
 [[ $ans != 1 ]] && exit
-	
+
 if [[ ! $( mount | grep p1 ) ]]; then
   mkdir -p /tmp/p1
   mount /dev/mmcblk0p1 /tmp/p1

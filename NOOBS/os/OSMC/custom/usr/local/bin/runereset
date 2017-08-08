@@ -55,7 +55,7 @@ sed -i -e 's|^.* /boot |/dev/mmcblk0p8  /boot |
 ' $pathrune/etc/fstab
 
 cp -r /tmp/p1/os/RuneAudio/custom/. $pathrune
-chmod 755 $pathrune/usr/local/bin/*
+chmod 755 $pathrune/usr/local/bin/*reset
 
 umount -l /tmp/p1
 umount -l /tmp/p9
