@@ -70,5 +70,6 @@ echo -e "\nDuration: $timemin min $timesec sec"
 echo $li
 echo -e "$bar Rune reset successfully."
 echo $li
+success=1
 
 [[ $ansre == 1 ]] && reboot 8
