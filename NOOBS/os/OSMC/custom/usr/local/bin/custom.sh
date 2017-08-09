@@ -5,7 +5,7 @@
 mntroot=/tmp/mount
 if ! grep -q '/boot' $mntroot/etc/fstab; then
 	vfat_part=$( blkid /dev/mmcblk0p6 | awk '{ print $2 }' | sed 's/"//g' )
-	mntboot="$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0"
+	mntboot="$vfat_part  /boot  vfat  defaults,noatime"
 fi
 echo "$mntboot
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
