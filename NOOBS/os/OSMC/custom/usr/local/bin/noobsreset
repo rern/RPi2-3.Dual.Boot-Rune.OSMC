@@ -16,7 +16,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 }
 
-yesno "\e[30m\e[43m ! \e[0m Reset NOOBS" ans
+yesno "Reset NOOBS" ans
 [[ $ans != 1 ]] && exit
 	
 mmc 1
