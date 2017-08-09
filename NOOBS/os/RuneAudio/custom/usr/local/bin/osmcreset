@@ -21,7 +21,7 @@ info='\e[30m\e[43m ! \e[0m'
 bar='\e[36m\e[46m . \e[0m'
 
 yesno "Reset OSMC:" ans
-[[ $ans != 1 ]] && return 1
+[[ $ans != 1 ]] && exit
 
 [[ -z $1 ]] && yesno "Reboot to OSMC after reset:" ansre
 
