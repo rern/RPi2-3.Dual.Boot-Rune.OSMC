@@ -8,7 +8,7 @@ mmc() {
 	fi
 }
 yesno() { # $1 = header string; $2 = input or <enter> = ''
-	echo -e "$1"
+	echo -e "\e[30m\e[43m i \e[0m $1"
 	echo -e '  \e[0;36m0\e[m No'
 	echo -e '  \e[0;36m1\e[m Yes\n'
 	echo -e '\e[0;36m0\e[m / 1 ? '
@@ -16,7 +16,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 }
 
-yesno "\e[30m\e[43m ! \e[0m Reset NOOBS" ans
+yesno "Reset NOOBS" ans
 [[ $ans != 1 ]] && exit
 
 mmc 1
