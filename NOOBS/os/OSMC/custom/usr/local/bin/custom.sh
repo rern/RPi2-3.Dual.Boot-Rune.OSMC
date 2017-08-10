@@ -26,7 +26,7 @@ cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.
 chmod 644 $mntroot/etc/udev/rules.d/usbsound.rules
 chmod 755 $mntroot/home/osmc/*.py
 chmod 755 $mntroot/usr/local/bin/*reset
-chown -R 1000:1000 $mntroot/home/osmc # use uid of 'osmc'
+chown -R 1000:1000 $mntroot/home/osmc # no user 'osmc' within noobs - use uid instead
 
 # remove force reinstall if any
 sed -i 's/ forcetrigger//' $mntrecovery/recovery.cmdline
