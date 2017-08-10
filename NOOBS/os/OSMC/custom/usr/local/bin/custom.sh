@@ -1,6 +1,13 @@
 #!/bin/bash
 
+### customize osmc install
+
 # for source in: ./OSMC/partition_setup.sh, ./RuneAudio/custom/usr/local/bin/osmcreset
+# fstab boot partition, omit others
+# config ssh login for root
+# fix ssh algorithm negotiation failed
+# copt custom files
+# remove forcetrigger
 
 mntroot=/tmp/mount
 ! grep -q '/boot' $mntroot/etc/fstab && mntboot='/dev/mmcblk0p6  /boot  vfat  defaults,noatime'
