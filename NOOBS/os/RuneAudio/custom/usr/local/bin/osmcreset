@@ -4,8 +4,7 @@
 
 # format partition
 # extract root partition
-# fstab for boot partition, omit other partitions
-# edit, copy custom files
+# customize install
 
 mmc() {
 	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
