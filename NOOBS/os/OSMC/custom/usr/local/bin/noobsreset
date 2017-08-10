@@ -1,5 +1,7 @@
 #!/bin/bash
 
+### reset all partitions to noobs virgin state
+
 mmc() {
 	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
 	if [[ ! $( mount | grep $mntdir ) ]]; then
