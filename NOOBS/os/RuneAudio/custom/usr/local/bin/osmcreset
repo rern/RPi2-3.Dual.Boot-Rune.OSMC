@@ -1,5 +1,12 @@
 #!/bin/bash
 
+### reset rune root partition to virgin state
+
+# format partition
+# extract root partition
+# fstab for boot partition, omit other partitions
+# edit, copy custom files
+
 mmc() {
 	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
 	if [[ ! $( mount | grep $mntdir ) ]]; then
