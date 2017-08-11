@@ -1,8 +1,9 @@
 # /root/xbindkeysrc
 
-# for Xenta USB PC Remote (ID 1d57:ad02 Xenta SE340D PC Remote Control)
-####################################################################
+# caution: "command" and <key code> CANNOT have anything between the lines
 
+# for Xenta USB PC Remote (ID 1d57:ad02 Xenta SE340D PC Remote Control)
+#######################################################################
 # buttons from left to right
 
 # <email> reboot to OSMC
