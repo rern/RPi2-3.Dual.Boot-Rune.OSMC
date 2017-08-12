@@ -8,7 +8,6 @@
 # copy custom files
 
 li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
-info='\e[30m\e[43m ! \e[0m'
 bar='\e[36m\e[46m . \e[0m'
 
 mmc() {
@@ -19,7 +18,7 @@ mmc() {
 	fi
 }
 yesno() { # $1 = header string; $2 = input or <enter> = ''
-	echo -e "$info $1"
+	echo -e "\e[30m\e[43m ? \e[0m' $1"
 	echo -e '  \e[0;36m0\e[m No'
 	echo -e '  \e[0;36m1\e[m Yes\n'
 	echo -e '\e[0;36m0\e[m / 1 ? '
