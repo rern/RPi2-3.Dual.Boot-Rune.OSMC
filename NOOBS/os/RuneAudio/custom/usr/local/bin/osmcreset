@@ -6,28 +6,31 @@
 # extract root partition
 # customize install
 
+li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
+bar='\e[36m\e[46m . \e[0m'
+
 mmc() {
-	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
+	[[ $2 ]] && mntdir=/tmp/$2 || mntdir=/tmp/p$1
 	if [[ ! $( mount | grep $mntdir ) ]]; then
 		mkdir -p $mntdir
 		mount /dev/mmcblk0p$1 $mntdir
 	fi
 }
-yesno() { # $1 = header string; $2 = input or <enter> = ''
-	echo -e "\e[30m\e[43m i \e[0m $1"
-	echo -e '  \e[0;36m0\e[m No'
-	echo -e '  \e[0;36m1\e[m Yes\n'
-	echo -e '\e[0;36m0\e[m / 1 ? '
-	read -n 1 $2
+yesno() { # $1: header string; $2 : optional return variable (default - answer)
 	echo
+	echo -e "\e[30m\e[43m ? \e[0m $1"
+	echo -e '  \e[36m0\e[m No'
+	echo -e '  \e[36m1\e[m Yes'
+	echo
+	echo -e '\e[36m0\e[m / 1 ? '
+	read -n 1 answer
+	echo
+	[[ $2 ]] && eval $2=$answer
 }
 
-li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
-info='\e[30m\e[43m ! \e[0m'
-bar='\e[36m\e[46m . \e[0m'
 
-yesno "Reset OSMC:" ans
-[[ $ans != 1 ]] && exit
+yesno "Reset OSMC:"
+[[ $answer != 1 ]] && exit
 
 yesno "Reboot to OSMC after reset:" ansre
 
