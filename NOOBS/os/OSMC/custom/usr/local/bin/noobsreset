@@ -3,14 +3,14 @@
 ### reset all partitions to noobs virgin state
 
 mmc() {
-	[[ -z $2 ]] && mntdir=/tmp/p$1 || mntdir=/tmp/$2
+	[[ $2 ]] && mntdir=/tmp/$2 || mntdir=/tmp/p$1
 	if [[ ! $( mount | grep $mntdir ) ]]; then
 		mkdir -p $mntdir
 		mount /dev/mmcblk0p$1 $mntdir
 	fi
 }
 yesno() { # $1 = header string; $2 = input or <enter> = ''
-	echo -e "\e[30m\e[43m i \e[0m $1"
+	echo -e "\e[30m\e[43m ? \e[0m' $1"
 	echo -e '  \e[0;36m0\e[m No'
 	echo -e '  \e[0;36m1\e[m Yes\n'
 	echo -e '\e[0;36m0\e[m / 1 ? '
@@ -18,8 +18,9 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 }
 
-yesno "Reset NOOBS" ans
-[[ $ans != 1 ]] && exit
+
+yesno "Reset NOOBS"
+[[ $answer != 1 ]] && exit
 	
 mmc 1
 echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
