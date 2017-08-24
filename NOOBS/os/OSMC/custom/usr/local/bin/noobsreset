@@ -22,7 +22,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 }
 
 
-yesno "Reset NOOBS"
+yesno "Reset NOOBS:"
 [[ $answer != 1 ]] && exit
 	
 mmc 1
