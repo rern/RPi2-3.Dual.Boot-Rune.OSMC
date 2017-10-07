@@ -102,7 +102,7 @@ kpartx -dv RuneAudio_xxx.img
 or  
 
 >Install OSMC with SD card  
->Create **boot-rbp2.tar.xz** from SD card root, all directories and files except `cmdline.txt` and `install.log`  
+>Create **boot-rbp2.tar.xz** from SD card root, all directories and files **except** `cmdline.txt` and `install.log`  
 
 **filesystem.tar.xz**  
 (filename must be the same as `"label":` in `partitions.json` )  
@@ -115,7 +115,7 @@ or
 ---
   
 **Set boot partition**  
-( '6' - OSMC | '8' - Rune )
+( `6` - OSMC | `8` - Rune )
 - Method 1 - skip boot menu
 ```sh
 echo 6 > /sys/module/bcm2709/parameters/reboot_part
