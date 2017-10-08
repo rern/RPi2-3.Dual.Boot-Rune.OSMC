@@ -1,5 +1,4 @@
-var hammeraddons = new Hammer( $( '#addons' )[ 0 ] );
-hammeraddons.on( 'tap', function () {
+$( '#addons' ).click( function () {
 	// fix path if click in other menu pages
 	var path = /\/.*\//.test( location.pathname ) ? '../../' : '';
 	
@@ -11,32 +10,6 @@ hammeraddons.on( 'tap', function () {
 			addonsdl( exit, path );
 		}
 	);
-} );
-
-// for branch testing
-hammeraddons.on( 'press', function () {
-	var path = /\/.*\//.test( location.pathname ) ? '../../' : '';
-	
-	info( {
-		title    : 'Addons Menu Branch Test',
-		textlabel: 'Branch',
-		textvalue: 'UPDATE',
-		cancel   : function() {
-			$( '#loader' ).addClass( 'hide' );
-		},
-		ok       : function() {
-			var branch = $( '#infoTextbox' ).val();
-			$( '#loader' ).removeClass( 'hide' );
-			if ( branch ) {
-				$.get(
-					path +'addonsdl.php?branch='+ branch,
-					function( exit ) {
-						addonsdl( exit, path );
-					}
-				);
-			}
-		}
-	} );
 } );
 
 function addonsdl( exit, path ) {
@@ -53,3 +26,17 @@ function addonsdl( exit, path ) {
 		location.href = path +'addons.php';
 	}
 }
+
+// nginx pushstream websocket
+var pushstreamAddons = new PushStream( {
+	host: window.location.hostname,
+	port: window.location.port,
+	modes: GUI.mode
+} );
+pushstreamAddons.onmessage = function( update ) {
+	if ( update == 1 && !$( '#loader' ).hasClass( 'hide' ) ) {
+		$( '#loadercontent' ).html( '<i class="fa fa-gear fa-spin"></i>Updating...' );
+	}
+}
+pushstreamAddons.addChannel('addons');
+pushstreamAddons.connect();
