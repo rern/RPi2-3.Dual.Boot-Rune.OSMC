@@ -59,10 +59,6 @@ bsdtar -xvf /tmp/p1/os/OSMC/root-rbp2.tar.xz -C /tmp/mount \
 echo -e "$bar Partition setup ..."
 . /tmp/p1/os/OSMC/custom/usr/local/bin/custom.sh
 
-umount -l /tmp/p1
-umount -l /tmp/p6
-umount -l /tmp/mount
-
 time1=$( date +%s )
 timediff=$(( $time1 - $time0 ))
 timemin=$(( $timediff / 60 ))
