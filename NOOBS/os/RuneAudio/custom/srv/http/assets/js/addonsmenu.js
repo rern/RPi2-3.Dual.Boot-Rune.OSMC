@@ -15,7 +15,7 @@ $( '#addons' ).click( function () {
 
 function addonsdl( exit, path ) {
 	if ( exit != 0 ) {
-		var error = ( exit == 5 ) ? 'Addons server CA-certficate error.' : 'Download from Addons server failed.';
+		var error = ( exit == 5 ) ? 'Addons server certficate error.' : 'Download from Addons server failed.';
 		
 		info( {
 			icon   : '<i class="fa fa-info-circle fa-2x">',
