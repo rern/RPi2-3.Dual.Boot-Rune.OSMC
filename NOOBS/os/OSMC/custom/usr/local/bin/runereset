@@ -68,16 +68,16 @@ sed -i -e 's|^.* /boot |/dev/mmcblk0p8  /boot |
 # addons menu
 sed -i '/poweroff-modal/ i\
             <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
-' $mnt/srv/http/app/templates/header.php
+' $mntroot/srv/http/app/templates/header.php
 
 echo '<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
-' >> $mnt/srv/http/app/templates/footer.php
+' >> $mntroot/srv/http/app/templates/footer.php
 
-echo 'http ALL=NOPASSWD: ALL' > /etc/sudoers.d/http
+echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
 
-cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
-chmod 755 /tmp/mount/usr/local/bin/*reset /srv/http/addons*
-chown http:http /srv/http/addons* /srv/http/assets/js/addons*
+cp -r /tmp/p1/os/RuneAudio/custom/. $mntroot
+chmod 755 $mntroot/usr/local/bin/*reset $mntroot/srv/http/addons*
+chown http:http $mntroot/srv/http/addons* $mntroot/srv/http/assets/js/addons*
 
 umount -l /tmp/p1
 umount -l /tmp/p9
