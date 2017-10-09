@@ -77,10 +77,7 @@ echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
 
 cp -r /tmp/p1/os/RuneAudio/custom/. $mntroot
 chmod 755 $mntroot/usr/local/bin/*reset $mntroot/srv/http/addons*
-chown http:http $mntroot/srv/http/addons* $mntroot/srv/http/assets/js/addons*
-
-umount -l /tmp/p1
-umount -l /tmp/p9
+#chown http:http $mntroot/srv/http/addons* $mntroot/srv/http/assets/js/addons*
 
 time1=$( date +%s )
 timediff=$(( $time1 - $time0 ))
