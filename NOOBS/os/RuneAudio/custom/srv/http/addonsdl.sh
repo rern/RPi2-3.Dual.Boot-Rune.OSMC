@@ -5,11 +5,8 @@ if [[ $? == 5 ]]; then # github 'certificate error' code
 	systemctl stop ntpd
 	ntpdate pool.ntp.org
 	systemctl start ntpd
-	echo "$dl"
-	[[ $? == 5 ]] && exit 5
+	echo "$dl" || exit 1
 fi
-
-[[ $? != 0 ]] && exit 1
 
 chmod 755 /srv/http/install.sh
 /srv/http/install.sh
