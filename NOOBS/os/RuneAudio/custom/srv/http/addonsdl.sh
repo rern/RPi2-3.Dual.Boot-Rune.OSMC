@@ -1,7 +1,5 @@
 #!/bin/bash
 
-gitpath=https://github.com/rern/RuneAudio_Addons/raw/master
-
 dl=$( wget -qN https://github.com/rern/RuneAudio_Addons/raw/master/install.sh -P /srv/http )
 if [[ $? != 0 ]]; then
 	if [[ $? == 5 ]]; then # github 'ca certificate failed' code > update time
