@@ -6,9 +6,9 @@ Dual Boot: Rune | OSMC (Pi2, Pi3)
 [>> **Download**](https://drive.google.com/open?id=0B9KEjMAuGbejUnZaa2lOakFYYnM)  
 [>> Change Log](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/Changelog.md)
 
-Best of Audio Distro - [**Rune**](http://www.runeaudio.com/) (ArchLinux MPD)  
-Best of Video Distro - [**OSMC**](https://osmc.tv/) (Raspbian Kodi)  
-Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
+> Best of Audio Distro - [**Rune**](http://www.runeaudio.com/) (ArchLinux MPD)  
+> Best of Video Distro - [**OSMC**](https://osmc.tv/) (Raspbian Kodi)  
+> Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
 
 - Easy to switch with a single button from a cheap IR remote
 - Install easier than normal NOOBS itself with 1 complete package (GitHub `Download Zip` not support large files, the download hosted on  Google Drive)
