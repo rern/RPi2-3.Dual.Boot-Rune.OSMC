@@ -29,7 +29,7 @@ echo '<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
 
 echo 'http ALL=NOPASSWD: ALL' > /etc/sudoers.d/http
 
-cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
+cp -r $mnt/os/RuneAudio/custom/. $mnt # customize files
 chmod 755 /tmp/mount/usr/local/bin/*reset /srv/http/addons*
 chown http:http /srv/http/addons*
 
