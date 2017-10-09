@@ -21,7 +21,6 @@ Best of Dual Boot - [**NOOBS**](https://www.raspberrypi.org/downloads/noobs/)
 
 **Note:**  
 - [**HowTo:** Build Offline Custom NOOBS](https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/HowToBuild.md)  
-- **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement)  
 - partition allocation (actual labels on RPi: `/dev/mmcblk0pn`)  
 ![partitions](https://github.com/rern/_assets/blob/master/RPi2-3.Dual.Boot-Rune.OSMC/NOOBS_partitions.PNG)  
 Features
@@ -34,6 +33,10 @@ Features
 **Boot Switch: OSMC <-> Boot Rune**
 - with `e-mail` button from the remote
 - bypass 'Select OS to boot'
+
+**RuneAudio**  
+- Addons Menu ready for various improvements and packages
+- **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement)  
 
 **OSMC:**
 - Allow SSH as 'root' with password 'rune', the same as in Rune
