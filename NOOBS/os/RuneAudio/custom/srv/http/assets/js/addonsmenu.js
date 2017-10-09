@@ -2,6 +2,7 @@ $( '#addons' ).click( function () {
 	// fix path if click in other menu pages
 	var path = /\/.*\//.test( location.pathname ) ? '../../' : '';
 	
+	$( '#loadercontent' ).html( '<i class="fa fa-gear fa-spin"></i>Installing...' );
 	$( '#loader' ).removeClass( 'hide' );
 	
 	$.get(
@@ -19,24 +20,13 @@ function addonsdl( exit, path ) {
 		info( {
 			icon   : '<i class="fa fa-info-circle fa-2x">',
 			message: error
-				+'<br>Please try again later.' 
+				+'<br>Please try again later.',
+			ok     : function() {
+				$( '#loader' ).addClass( 'hide' );
+				$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
+			}
 		} );
-		$( '#loader' ).addClass( 'hide' );
 	} else {
 		location.href = path +'addons.php';
 	}
 }
-
-// nginx pushstream websocket
-var pushstreamAddons = new PushStream( {
-	host: window.location.hostname,
-	port: window.location.port,
-	modes: GUI.mode
-} );
-pushstreamAddons.onmessage = function( update ) {
-	if ( update == 1 && !$( '#loader' ).hasClass( 'hide' ) ) {
-		$( '#loadercontent' ).html( '<i class="fa fa-gear fa-spin"></i>Updating...' );
-	}
-}
-pushstreamAddons.addChannel('addons');
-pushstreamAddons.connect();
