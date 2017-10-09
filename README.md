@@ -38,7 +38,7 @@ Features
 - Addons Menu ready for various improvements and packages
 - **minimalism RuneUI** plus some more features: [**RuneUI Enhancement**](https://github.com/rern/RuneUI_enhancement)  
 
-**OSMC:**
+**OSMC**
 - Allow SSH as 'root' with password 'rune', the same as in Rune
 - Fix slow SSH login
 - Autoswitch audio output to/from USB DAC when on/off
