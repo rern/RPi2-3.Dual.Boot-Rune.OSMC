@@ -27,10 +27,10 @@ sed -i '/poweroff-modal/ i\
 echo '<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
 ' >> $mnt/srv/http/app/templates/footer.php
 
-echo 'http ALL=NOPASSWD: ALL' > /etc/sudoers.d/http
+echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
 
 cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
-chmod 755 /tmp/mount/usr/local/bin/*reset /srv/http/addons*
-chown http:http /srv/http/addons*
+chmod 755 $mnt/usr/local/bin/*reset $mnt/srv/http/addons*
+chown http:http $mnt/srv/http/addons* $mnt/srv/http/assets/js/addons*
 
 umount $mnt
