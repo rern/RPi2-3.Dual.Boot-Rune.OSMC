@@ -16,16 +16,9 @@ $( '#addons' ).click( function () {
 function addonsdl( exit, path ) {
 	if ( exit != 0 ) {
 		var error = ( exit == 5 ) ? 'Addons server certficate error.' : 'Download from Addons server failed.';
-		
-		info( {
-			icon   : '<i class="fa fa-info-circle fa-2x">',
-			message: error
-				+'<br>Please try again later.',
-			ok     : function() {
-				$( '#loader' ).addClass( 'hide' );
-				$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
-			}
-		} );
+		alert( error +"\nPlease try again later." );
+		$( '#loader' ).addClass( 'hide' );
+		$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
 	} else {
 		location.href = path +'addons.php';
 	}
