@@ -8,18 +8,14 @@ $( '#addons' ).click( function () {
 	$.get(
 		path +'addonsdl.php',
 		function( exit ) {
-			addonsdl( exit, path );
+			if ( exit == 5 || exit == 1 ) {
+				var error = ( exit == 5 ) ? 'Addons server certficate error.' : 'Download from Addons server failed.';
+				alert( error +"\nPlease try again later." );
+				$( '#loader' ).addClass( 'hide' );
+				$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
+			} else {
+				location.href = path +'addons.php';
+			}
 		}
 	);
 } );
-
-function addonsdl( exit, path ) {
-	if ( exit == 5 || exit == 1 ) {
-		var error = ( exit == 5 ) ? 'Addons server certficate error.' : 'Download from Addons server failed.';
-		alert( error +"\nPlease try again later." );
-		$( '#loader' ).addClass( 'hide' );
-		$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
-	} else {
-		location.href = path +'addons.php';
-	}
-}
