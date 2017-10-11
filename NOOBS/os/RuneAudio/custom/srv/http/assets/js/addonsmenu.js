@@ -8,13 +8,31 @@ $( '#addons' ).click( function () {
 	$.get(
 		path +'addonsdl.php',
 		function( exit ) {
-			if ( exit == 1 ) {
-				alert( "Download from Addons server failed.\nPlease try again later." );
-				$( '#loader' ).addClass( 'hide' );
-				$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
+			if ( exit == 5 ) {
+				$.get(
+					path +'addonsdl.php',
+					function( exit ) {
+						addonsdl( exit, path );
+					}
+				);
 			} else {
-				location.href = path +'addons.php';
+				addonsdl( exit, path );
 			}
 		}
 	);
 } );
+
+function addonsdl( exit, path ) {
+	if ( exit == 1 ) {
+		info( {
+			icon   : '<i class="fa fa-info-circle fa-2x">',
+			message: 'Download from Addons server failed.'
+				+'<br>Please try again later.',
+			ok     : function() {
+				$( '#loader' ).addClass( 'hide' );
+			}
+		} );
+	} else {
+		location.href = path +'addons.php';
+	}
+}
