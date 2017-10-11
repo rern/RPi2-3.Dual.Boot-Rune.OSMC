@@ -8,7 +8,7 @@ $( '#addons' ).click( function () {
 	$.get(
 		path +'addonsdl.php',
 		function( exit ) {
-			if ( exit == 8 ) { // server error
+			if ( exit == 1 ) {
 				alert( "Download from Addons server failed.\nPlease try again later." );
 				$( '#loader' ).addClass( 'hide' );
 				$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
