@@ -8,9 +8,8 @@ $( '#addons' ).click( function () {
 	$.get(
 		path +'addonsdl.php',
 		function( exit ) {
-			if ( exit == 5 || exit == 1 ) {
-				var error = ( exit == 5 ) ? 'Addons server certficate error.' : 'Download from Addons server failed.';
-				alert( error +"\nPlease try again later." );
+			if ( exit == 8 ) { // server error
+				alert( "Download from Addons server failed.\nPlease try again later." );
 				$( '#loader' ).addClass( 'hide' );
 				$( '#loadercontent' ).html( '<i class="fa fa-refresh fa-spin"></i>connecting...' );
 			} else {
