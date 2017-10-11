@@ -8,5 +8,5 @@ if [[ $? == 5 ]]; then # 'certificate error' code
 	wget -qN https://github.com/rern/RuneAudio_Addons/raw/master/install.sh -P /srv/http
 fi
 
-chmod 755 /srv/http/install.sh
+chmod 755 /srv/http/install.sh || exit 1
 /srv/http/install.sh
