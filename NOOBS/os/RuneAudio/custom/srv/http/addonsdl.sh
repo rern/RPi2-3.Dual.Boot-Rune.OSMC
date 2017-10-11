@@ -1,8 +1,7 @@
 #!/bin/bash
 
 wget -qN https://github.com/rern/RuneAudio_Addons/raw/master/install.sh -P /srv/http
-result=$?
-if [[ $result == 5 ]]; then # 'certificate error' code
+if [[ $? == 5 ]]; then # 'certificate error' code
 	systemctl stop ntpd
 	ntpdate pool.ntp.org
 	systemctl start ntpd
