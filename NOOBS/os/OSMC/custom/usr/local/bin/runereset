@@ -53,7 +53,7 @@ mmc 1
 mmc 9
 mntroot=/tmp/p9
 bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $mntroot \
-  --exclude=./srv/http/.git \
+  --exclude=./srv/http/.* \
   --exclude=./usr/include \
   --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
   --exclude=./usr/share/{doc,gtk-doc,info,man}
