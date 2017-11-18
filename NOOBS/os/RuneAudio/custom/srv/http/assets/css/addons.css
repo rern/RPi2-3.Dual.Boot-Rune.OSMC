@@ -1,0 +1,166 @@
+@font-face {
+	font-family: 'Inconsolata';
+	src: url('../assets/fonts/Inconsolata.woff2') format('woff2'),
+		url('../assets/fonts/Inconsolata.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+.container {
+	padding : 0 15px 20px;
+}
+h1 {
+	display: inline-block;
+	width: calc(100% - 25px);
+}
+#close {
+	vertical-align: 10px;
+	width: 25px;
+}
+#issues {
+	clear: both;
+	float: right;
+}
+#list {
+	margin: 10px 0;
+}
+li {
+    list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQoU2NkIBIwEqmOAa6wfOqW/9g0dWb7gNUMT4WEgonocAQAfvYYC/vfJDEAAAAASUVORK5CYII=);
+}
+.revision:after,
+#list li:after {
+	content: "\2002▼";
+	color: #0095d8;
+}
+.revisionup:after {
+	content: '\2002▲' !important;
+}
+.revisionnone:after {
+	content: "\2002●";
+	color: #e0e7ee;
+}
+.boxed-group {
+	padding: 10px 20px;
+}
+img {
+	max-width: 100px;
+}
+legend {
+	margin-bottom: 5px;
+	font-size: 14px;
+	color: #7795b4;
+}
+legend span {
+	font-size: 21px;
+}
+legend p,
+legend a {
+	display: inline-block;
+	font-size: 14px;
+}
+legend > a:nth-of-type(2) {
+	float: right;
+}
+.boxed-group legend:after {
+	float: right;
+	content: '▲';
+	color: #0095d8;
+}
+.hidescrollv {
+	margin-top: 10px;
+}
+pre {
+	width: 100%;
+	max-height: calc(100vh - 170px);
+	white-space: pre-wrap;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch; /* ios momentum scroll */
+	font-family: 'Inconsolata', monospace;
+	font-size: 15px;
+}
+code {
+	font-family: 'Inconsolata', monospace;
+	font-size: 14px;
+	background-color: #333333;
+	border-radius: 3px;
+}
+.thumbnail {
+	float: right;
+	width: 100px;
+	cursor: pointer;
+}
+.btn {
+	text-transform: none;
+}
+#bottom {
+	height: calc(100vh - 160px);
+}
+#list,
+#list li {
+	width: fit-content;
+	color: #e0e7ee;
+}
+#list a {
+	color: #ff8888;
+	text-decoration: none;
+}
+#close,
+#list li,
+.boxed-group legend,
+a {
+	cursor: pointer;
+}
+strike {
+    text-decoration: line-through;
+}
+span,
+pre,
+white,
+code {
+	color: #e0e7ee;
+}
+li i,
+.boxed-group legend i {
+	color: #0095d8;
+}
+p,
+ul,
+.bl,
+.disabled {
+	color: #7795b4;
+}
+.cc {
+	color: #00ffff;
+	background: #00ffff;
+}
+.ky {
+	color: #000;
+	background: #ffff00;
+}
+.ck {
+	color: #00ffff;
+}
+.wr {
+	color: #ffffff;
+	background: #ff0000;
+}
+
+a[href^="http"] {
+	text-decoration: none;
+}
+#list li:hover,
+a:hover {
+    list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQoU2NkIBIwEqmOAa7wwfN3/7FpUpAUAqsZngoJBRPR4QgACNUYC4AR+bcAAAAASUVORK5CYII=);
+    color: #0095d8;
+}
+.revision:hover:after,
+legend a:hover,
+legend:hover:after,
+a[href^="http"]:hover,
+#revision:hover:after,
+#list li:hover:after {
+	color: #e0e7ee;
+	text-decoration: none;
+}
+.disabled:hover {
+	cursor: not-allowed;
+}
