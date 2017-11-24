@@ -11,11 +11,11 @@ partroot=$( mount | grep 'on / ' | cut -d' ' -f1 )
 if [[ $partroot == /dev/mmcblk0p9 ]]; then
 	partreset=/dev/mmcblk0p11
 	partnum=11
-	runeversion=Rune04b
+	runeversion=RuneAudio 0.3
 else
 	partreset=/dev/mmcblk0p9
 	partnum=9
-	runeversion=Rune03
+	runeversion=RuneAudio 0.4b
 fi
 li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
 bar='\e[36m\e[46m . \e[0m'
