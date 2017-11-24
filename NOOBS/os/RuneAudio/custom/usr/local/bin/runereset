@@ -100,4 +100,4 @@ echo -e "$bar Rune reset successfully."
 echo $li
 success=1
 
-[[ $ansre == 1 && $# == 0 ]] && reboot 8
+[[ $ansre == 1 && $# == 0 ]] && reboot $(( $partnum - 1 ))
