@@ -11,11 +11,11 @@ partroot=$( mount | grep 'on / ' | cut -d' ' -f1 )
 if [[ $partroot == /dev/mmcblk0p9 ]]; then
 	partreset=/dev/mmcblk0p11
 	partnum=11
-	runeversion=RuneAudio 0.3
+	runeversion=RuneAudio
 else
 	partreset=/dev/mmcblk0p9
 	partnum=9
-	runeversion=RuneAudio 0.4b
+	runeversion=Rune04b
 fi
 li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
 bar='\e[36m\e[46m . \e[0m'
@@ -53,16 +53,11 @@ umount -l $partreset &> /dev/null
 echo -e "$bar Format partition ..."
 echo y | mkfs.ext4 /dev/$partreset &> /dev/null
 
-if ! type bsdtar &>/dev/null; then
-  echo -e "$bar Install bsdtar ..."
-  apt update
-  apt install -y bsdtar
-fi
 echo -e "$bar Extract files ..."
 mmc 1
 mmc $partnum
 mntroot=/tmp/p$partnum
-bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $mntroot \
+bsdtar -xvf /tmp/p1/os/$runeversion/root.tar.xz -C $mntroot \
   --exclude=./srv/http/.* \
   --exclude=./usr/include \
   --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
