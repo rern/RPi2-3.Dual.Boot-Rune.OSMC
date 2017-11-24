@@ -20,11 +20,14 @@ sed -i -e "s|^.* /boot |$part1  /boot |
 ' $mnt/etc/fstab
 
 # addons menu
-sed -i '/poweroff-modal/ i\
+sed -i '/runeui.css/ a\
+    <link rel="stylesheet" href="<?=$this->asset('"'"'/css/addonsinfo.css'"'"')?>">
+' -e '/poweroff-modal/ i\
             <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
 ' $mnt/srv/http/app/templates/header.php
 
 echo '
+<script src="<?=$this->asset('"'"'/js/addonsinfo.js'"'"')?>"></script>
 <script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
 ' >> $mnt/srv/http/app/templates/footer.php
 
