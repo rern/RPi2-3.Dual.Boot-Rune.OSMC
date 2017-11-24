@@ -70,8 +70,9 @@ bsdtar -xvf /tmp/p1/os/RuneAudio/root.tar.xz -C $mntroot \
 
 # from partition_setup.sh
 echo -e "$bar Partition setup ..."
-sed -i -e 's|^.* /boot |/dev/mmcblk0p8  /boot |
-' -e '/^#/ d
+partboot=/dev/mmcblk0p$(( $partnum - 1 ))
+sed -i -e "s|^.* /boot |$partboot  /boot |
+" -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s*$//
 ' $mntroot/etc/fstab
 
