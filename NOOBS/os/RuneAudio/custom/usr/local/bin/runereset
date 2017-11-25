@@ -51,7 +51,7 @@ echo -e "$bar $runeversion reset"
 echo $li
 umount -l $partreset &> /dev/null
 echo -e "$bar Format partition ..."
-echo y | mkfs.ext4 /dev/$partreset &> /dev/null
+echo y | mkfs.ext4 $partreset &> /dev/null
 
 echo -e "$bar Extract files ..."
 mmc 1
