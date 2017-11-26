@@ -79,7 +79,8 @@ sed -i '/poweroff-modal/ i\
 echo '<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
 ' >> $mntroot/srv/http/app/templates/footer.php
 
-echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
+echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
+chmod 4755 $mnt/usr/bin/sudo
 
 cp -r /tmp/p1/os/RuneAudio/custom/. $mntroot
 chmod 755 $mntroot/usr/local/bin/*reset $mntroot/srv/http/addons*
