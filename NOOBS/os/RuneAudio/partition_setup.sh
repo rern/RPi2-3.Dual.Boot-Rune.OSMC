@@ -32,6 +32,7 @@ sed -i '$ a\
 ' $mnt/srv/http/app/templates/footer.php
 
 echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
+chmod 4755 $mnt/usr/bin/sudo
 
 cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
 chmod 755 $mnt/usr/local/bin/*reset $mnt/srv/http/addons*
