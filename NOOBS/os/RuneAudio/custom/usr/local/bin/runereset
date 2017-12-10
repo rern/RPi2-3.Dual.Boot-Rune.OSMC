@@ -76,7 +76,9 @@ sed -i '/poweroff-modal/ i\
             <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
 ' $mntroot/srv/http/app/templates/header.php
 
-echo '<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
+sed -i '$ a\
+<script src="<?=$this->asset('"'"'/js/addonsinfo.js'"'"')?>"></script>\
+<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
 ' >> $mntroot/srv/http/app/templates/footer.php
 
 echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
