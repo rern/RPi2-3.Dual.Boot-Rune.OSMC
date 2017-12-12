@@ -81,10 +81,10 @@ sed -i -e '/runeui.css/ a\
 sed -i '$ a\
 <script src="<?=$this->asset('"'"'/js/addonsinfo.js'"'"')?>"></script>\
 <script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
-' >> $mntroot/srv/http/app/templates/footer.php
+' $mntroot/srv/http/app/templates/footer.php
 
-echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
-chmod 4755 $mnt/usr/bin/sudo
+echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
+chmod 4755 $mntroot/usr/bin/sudo
 
 cp -r /tmp/p1/os/RuneAudio/custom/. $mntroot
 chmod 755 $mntroot/usr/local/bin/*reset $mntroot/srv/http/addons*
