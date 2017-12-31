@@ -70,7 +70,7 @@ rmdir /mnt/boot
 ```	
 (if not work: /dev/sda2)  
 
-**or from PC**
+**or from PC**  
 _VirtualBox Ubuntu has trouble manage multiple USB drives_
 ```sh
 cd /source
@@ -88,9 +88,9 @@ Finish nornal NOOBS installation.
 	1 - Primary > 750MB | fat32 | RECOVERY  
 	2 - Extend > all the rest  
 	3 - Logical > 40MB | ext4 | SETTINGS  
-	4 - Logical > 80MB | fat32 | bootosmc  
+	4 - Logical > 40MB | fat32 | bootosmc  
 	5 - Logical > 5MB | ext4  
-	6 - Logical > 200M | fat32 | bootrune  
+	6 - Logical > 40M | fat32 | bootrune  
 
 ```sh
 dosfsck -w -r -l -a -v /dev/sdb1
