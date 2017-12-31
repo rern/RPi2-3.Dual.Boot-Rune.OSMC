@@ -3,16 +3,17 @@ NOOBS to USB
  
 **Prepare USB drive**  
 Insert only 1 usb drive with at least 4GB size.
-```
+```sh
 wget -q --show-progress -O formatusb.sh "https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/blob/master/formatusb.sh?raw=1"; chmod +x formatusb.sh; ./formatusb.sh
 ```
 
 **transfer filesystem**  
 
-**from RPi** (not from current root partition which dynamically changed)  
+**from RPi**  
+_not from current root partition which dynamically changed_  
 	
 **Rune** on OSMC
-```bash
+```sh
 #!/bin/bash
 
 mkdir /mnt/root
@@ -41,7 +42,7 @@ rmdir /mnt/boot
 
 **OSMC** on Rune  
 _boot to OSMC at least once to finish setup_  
-```bash
+```sh
 #!/bin/bash
 
 mkdir /mnt/root
@@ -70,7 +71,8 @@ rmdir /mnt/boot
 (if not work: /dev/sda2)  
 
 **or from PC**
-```
+_Ubuntu has trouble continuously read SD card_
+```sh
 cd /source
 tar -cvpf /destination/file.tar .
 cd /destination
@@ -90,7 +92,7 @@ Finish nornal NOOBS installation.
 	5 - Logical > 5MB | ext4  
 	6 - Logical > 200M | fat32 | bootrune  
 
-```
+```sh
 dosfsck -w -r -l -a -v /dev/sdb1
 dosfsck -w -r -l -a -v /dev/sdb6
 dosfsck -w -r -l -a -v /dev/sdb8
@@ -98,15 +100,13 @@ mount /device/sdb1 /mnt
 ```
 
 **Files:**
-```
+```sh
 gksu nautilus
-```
-```
+
 cp /home/x/NOOBS_SD/RECOVERY/ /media/x/mnt
 cp /home/x/NOOBS_SD/SETTINGS/ /media/x/SETTINGS
 cp /home/x/NOOBS_SD/BOOT-RBP2/ /media/x/bootosmc
 cp /home/x/NOOBS_SD/BOOT/ /media/x/bootrune
-```
-```
+
 umount /mnt
 ```
