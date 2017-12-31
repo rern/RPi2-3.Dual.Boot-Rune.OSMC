@@ -71,7 +71,7 @@ rmdir /mnt/boot
 (if not work: /dev/sda2)  
 
 **or from PC**
-_Ubuntu has trouble continuously read SD card_
+_VirtualBox Ubuntu has trouble manage multiple USB drives_
 ```sh
 cd /source
 tar -cvpf /destination/file.tar .
