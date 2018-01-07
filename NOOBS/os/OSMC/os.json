@@ -5,12 +5,12 @@
 	"release_date": "2017-10-29",
 	"kernel": "4.9.29",
 	"description": "A fast and feature filled open source media center",
-	"username": "osmc",
-	"password": "osmc",
 	"supported_hex_revisions": "1040,1041,2082",
 	"supported_models": [
-            "Pi 2",
-            "Pi 3"
-         ],
-	"feature_level": 0
+		"Pi 2",
+		"Pi 3"
+	],
+	"feature_level": 0,
+	"username": "root",
+	"password": "rune"
 }
