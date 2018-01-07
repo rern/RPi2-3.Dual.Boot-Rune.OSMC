@@ -1,0 +1,24 @@
+        {
+            "os_name":	    "Arch2",
+            "description":  "An Arch Linux port for ARM devices RPi2/3",
+            "release_date": "2017-05-17",
+            "feature_level": 0,
+            "supported_hex_revisions": "1040,1041,2082",    
+            "supported_models": [
+                "Pi 2",
+                "Pi 3"
+            ],            
+            "url":      "https://archlinuxarm.org/platforms/armv6/raspberry-pi",
+            "group":    "Minimal",
+            "os_info":          "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch2/os.json",
+            "partitions_info":  "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch2/partitions.json",
+            "icon":             "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch2/Arch.png",
+            "marketing_info":   "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch2/marketing.tar",
+            "partition_setup":  "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch2/partition_setup.sh",
+            "tarballs": [
+                                "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch2/boot_arch.tar.xz",
+                                "http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz"
+            ],
+            "nominal_size": 916
+        }
+
