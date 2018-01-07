@@ -62,7 +62,10 @@ Prepare os directory
 
 Download
 ---
-**Rune**  
+
+- OSes need to be prepared with this procedure, both `boot` and `root`. Othewise they might not be extracted properly.
+
+### Rune  
 - Get [**RuneAudio image**](http://www.runeaudio.com/download/) image file  
 - Decompress and move the image file(file.img) to current user **home** directory  
 
@@ -93,7 +96,7 @@ kpartx -dv RuneAudio_xxx.img
 >Copy **root.tar.xz** to **~/os/RuneAudio/**  
  	
 #
-**OSMC**  
+### OSMC  
 
 **boot-rbp2.tar.xz**  
 >Get [boot-rbp2.tar.xz](http://ftp.fau.de/osmc/osmc/download/installers/noobs/)  
