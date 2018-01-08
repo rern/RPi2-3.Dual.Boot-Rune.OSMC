@@ -1,0 +1,16 @@
+{
+	"name":	        "ArchLinuxArm",
+	"version":	    "20170405",
+	"release_date": "2017-05-17",
+	"kernel":	    "4.4.39",
+	"description":  "Arch Linux ARM for RPi2/3",
+	"url":          "https://archlinuxarm.org/platforms/armv6/raspberry-pi",
+	"feature_level": 0,
+	"supported_hex_revisions": "1040,1041,2082",    
+	"supported_models": [
+		"Pi 2",
+		"Pi 3"
+	],
+	"username":    "root",
+	"password":    "rune"
+}
