@@ -39,17 +39,21 @@ Prepare os directory
 >	filesystem.tar.xz  
 
 #
-**Rune | OSMC**
+### Rune | OSMC
+- `<name>` must be the same:
+	- folder: `/os/<name>`
+	- icon: `/os/<name>/<name>.png`
+	- name: `/os/<name>/os.json` > `"name": <name>,`
 
 >**./slides_vga/**  
 >	one or several 400x300 px images: A.png, B.png, C.png, ... for a slideshow during installation
 	
 >**os.json**  
->	edit "name", "version", "release_date", "kernel"
+>	edit `"name":` and `"version":`, `"release_date":`, `"kernel":`
 
 >**partition.json**  
->	"label" must be the same as 'boot' and 'root' compressed filename  
->	"uncompressed_tarball_size" must be checked and roundup to next MB  
+>	`"label":` must be the same as `boot` and `root` compressed filename  
+>	`"uncompressed_tarball_size":` must be checked and roundup to next MB  
 > `xz -l root.tar.xz` / `xz -l filesystem.tar.xz`
 
 >**partition_setup.sh**  
@@ -58,7 +62,6 @@ Prepare os directory
 	
 >**[icon].png**  
 >	40 x 40 pixel  
->	filename must be the same as `"name":` in `os.json` for display in NOOBS menu
 
 Download
 ---
