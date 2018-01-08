@@ -17,30 +17,16 @@ Get custom compiled NOOBS
 Prepare os directory
 ---
 
-**~/os/RuneAudio/** 
-
+### `~/os/<name>/`
 >./slides_vga/  
 >	os.json  
 >	partition_setup.sh  
 >	partition.json  
->	RuneAudio.png  
->	boot.tar.xz  
->	root.tar.xz  
+>	<name>.png  
+>	<boot>.tar.xz  
+>	<root>.tar.xz  
 
-		
-**~/os/OSMC/**  
-
->./slides_vga/  
->	os.json  
->	partition_setup.sh  
->	partition.json  
->	OSMC.png  
->	boot-rbp2.tar.xz  
->	filesystem.tar.xz  
-
-#
-### Rune | OSMC
-- `<name>` must be the same:
+- `<name>`s must be consistent:
 	- folder: `/os/<name>`
 	- icon: `/os/<name>/<name>.png`
 	- name: `/os/<name>/os.json` > `"name": <name>,`
@@ -50,75 +36,50 @@ Prepare os directory
 	
 >**os.json**  
 >	edit `"name":`  
->	edit `"username":` and `"password":` for terminal login (root SSH must be permitted in `/etc/ssh/sshd_config`) 
->	edit `"version":`, `"release_date":`, `"kernel":`  
+>	(optional) edit `"version":`, `"release_date":`, `"kernel":`, `"username":` and `"password":` 
 
 >**partition.json**  
->	`"label":` must be the same as `boot` and `root` compressed filename  
+>	`"label": "<boot>"`, `"label": "<root>"` must be consistent with `<boot>.tar.xz` and `<root>.tar.xz` 
+>	`"partition_size_nominal":` to be allocated porportionally to other OSes
 >	`"uncompressed_tarball_size":` must be checked and roundup to next MB  
->	`xz -l root.tar.xz` / `xz -l filesystem.tar.xz`
 
 >**partition_setup.sh**  
 >	add customizing commands to run after installation finished  
->	**warning** verify that every lines end with **LF** not **CRLF**
+>	**EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)
 	
 >**[icon].png**  
 >	40 x 40 pixel  
 
-Download
----
-
-- OSes need to be prepared with this procedure, both `boot` and `root`. Othewise they might not be extracted properly.
-
-### Rune  
-- Get [**RuneAudio image**](http://www.runeaudio.com/download/) image file  
-- Decompress and move the image file(file.img) to current user **home** directory  
-
-**boot.tar.xz**  
->
+### `<boot>.tar.xz` and `<root>.tar.xz`
+- OSes need to be prepared with this procedure, both `<boot>.tar.xz` and `<root>.tar.xz`. Othewise they might not be extracted properly.
+ 
+- **Rune**:
+	- Download [RuneAudio image](http://www.runeaudio.com/download/)
+	- Decompress and move `<imagefile>.img` to current user **home** directory 
+- **OSMC**:
+	- Download ready-to-use [boot-rbp2.tar.xz, root-rbp2.tar.xz](http://ftp.fau.de/osmc/osmc/download/installers/noobs/)  
+	- **or**
+	- [OSMC image](http://ftp.fau.de/osmc/osmc/download/installers/diskimages/)
+	- Install OSMC with SD card  
+	- **boot-rbp2.tar.xz** must be created from SD card `/boot`, all directories and files **except** `cmdline.txt` and `install.log`
+- **Create files**
 ```
 cd
 sudo su
-kpartx -av RuneAudio_xxx.img
+kpartx -av <imagefile>.img
 mount /dev/mapper/loop0p1 /mnt
 tar -cvpf boot.tar -C /mnt .
 umount /mnt
 xz -9ekv boot.tar
-```
->
->Copy **boot.tar.xz** to **~/os/RuneAudio/**  
 
-**root.tar.xz**  
->
-```
 mount /dev/mapper/loop0p2 /mnt
 tar -cvpf root.tar -C /mnt . --exclude=proc/* --exclude=sys/* --exclude=dev/pts/* --exclude=boot/*
 umount /mnt
 xz -9ekv root.tar
-kpartx -dv RuneAudio_xxx.img
+kpartx -dv <imagefile>.img
 ```
->
->Copy **root.tar.xz** to **~/os/RuneAudio/**  
- 	
-#
-### OSMC  
 
-**boot-rbp2.tar.xz**  
->Get [boot-rbp2.tar.xz](http://ftp.fau.de/osmc/osmc/download/installers/noobs/)  
->Copy **boot-rbp2.tar.xz** to **~/os/OSMC/**  
-
-or  
-
->Install OSMC with SD card  
->Create **boot-rbp2.tar.xz** from SD card root, all directories and files **except** `cmdline.txt` and `install.log`  
-
-**filesystem.tar.xz**  
-(filename must be the same as `"label":` in `partitions.json` )  
->Get [OSMC image](http://ftp.fau.de/osmc/osmc/download/installers/diskimages/)    
->Decompress and extract image file (file.img)  
->Copy **filesystem.tar.xz** to **~/os/OSMC/**	
-
-**Done !**  
+- **Done !**  
 
 ---
   
