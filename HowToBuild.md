@@ -42,6 +42,7 @@ Prepare os directory
 >	`"label": "<boot>"`, `"label": "<root>"` must be consistent with `<boot>.tar.xz` and `<root>.tar.xz` 
 >	`"partition_size_nominal":` to be allocated porportionally to other OSes
 >	`"uncompressed_tarball_size":` must be checked and roundup to next MB  
+>	`NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size
 
 >**partition_setup.sh**  
 >	add customizing commands to run after installation finished  
