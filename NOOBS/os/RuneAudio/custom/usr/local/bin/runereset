@@ -46,8 +46,7 @@ for (( i=0; i < ilength; i++ )); do
 	if (( $(( i % 2 )) == 0 )); then
 		echo -e "  \e[36m$(( i / 2 + 1 ))\e[m ${partarray[ i ]}"
 	else
-		j=$(( i + 6 ))
-		os[$j]=${partarray[i - 1]}
+		os[$(( i + 6 ))]=${partarray[i - 1]}
 	fi
 done
 echo
@@ -56,20 +55,21 @@ read -n 1 ans
 echo
 [[ -z $ans || $ans == 0 ]] && exit
 partnum=$(( ans * 2 + 5 ))
+partboot=$(( partnum - 1 ))
 partreset=/dev/mmcblk0p$partnum
-
+osname=$( echo -e "\e[36m${os[$partnum]}\e[m" )
 li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
 bar='\e[36m\e[46m . \e[0m'
 
-yesno "Reset ${os[$partnum]}:"
+yesno "Reset $osname:"
 [[ $answer != 1 ]] && exit
 
-yesno "Reboot to ${os[$partnum]} after reset:" ansre
+yesno "Reboot to $osname after reset:" ansre
 
 time0=$( date +%s )
 
 echo $li
-echo -e "$bar ${os[$partnum]} reset"
+echo -e "$bar $osname reset ..."
 echo $li
 umount -l $partreset &> /dev/null
 echo -e "$bar Format partition ..."
@@ -87,8 +87,7 @@ bsdtar -xvf /tmp/p1/os/${os[$partnum]}/root.tar.xz -C $mntroot \
 
 # from partition_setup.sh
 echo -e "$bar Partition setup ..."
-partboot=/dev/mmcblk0p$(( $partnum - 1 ))
-sed -i -e "s|^.* /boot |$partboot  /boot |
+sed -i -e "s|^.* /boot |/dev/mmcblk0p$partboot  /boot |
 " -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s*$//
 ' $mntroot/etc/fstab
@@ -118,11 +117,11 @@ timemin=$(( $timediff / 60 ))
 timesec=$(( $timediff % 60 ))
 echo -e "\nDuration: $timemin min $timesec sec"
 echo $li
-echo -e "$bar ${os[$partnum]} reset successfully."
+echo -e "$bar $osname reset successfully."
 echo $li
 success=1
 
 if [[ $ansre == 1 && $# == 0 ]]; then
-	echo $(( $partnum - 1 )) > /sys/module/bcm2709/parameters/reboot_part
+	echo $partboot > /sys/module/bcm2709/parameters/reboot_part
 	/var/www/command/rune_shutdown 2> /dev/null; reboot
 fi
