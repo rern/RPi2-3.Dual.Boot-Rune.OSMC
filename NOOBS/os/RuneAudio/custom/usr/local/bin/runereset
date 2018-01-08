@@ -7,26 +7,6 @@
 # fstab for boot partition
 # copy custom files
 
-partroot=$( mount | grep 'on / ' | cut -d' ' -f1 )
-if [[ $partroot == /dev/mmcblk0p9 ]]; then
-	partreset=/dev/mmcblk0p11
-	partnum=11
-	runeversion=RuneAudio
-else
-	partreset=/dev/mmcblk0p9
-	partnum=9
-	runeversion=Rune04b
-fi
-li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
-bar='\e[36m\e[46m . \e[0m'
-
-mmc() {
-	[[ $2 ]] && mntdir=/tmp/$2 || mntdir=/tmp/p$1
-	if [[ ! $( mount | grep $mntdir ) ]]; then
-		mkdir -p $mntdir
-		mount /dev/mmcblk0p$1 $mntdir
-	fi
-}
 yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 	echo -e "\e[30m\e[43m ? \e[0m $1"
@@ -38,16 +18,58 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 	[[ $2 ]] && eval $2=$answer
 }
+mmc() {
+	[[ $2 ]] && mntdir=/tmp/$2 || mntdir=/tmp/p$1
+	if [[ ! $( mount | grep $mntdir ) ]]; then
+		mkdir -p $mntdir
+		mount /dev/mmcblk0p$1 $mntdir
+	fi
+}
 
-yesno "Reset $runeversion:"
+mmc 5
+# omit current os from list
+partroot=$( mount | grep 'on / ' | cut -d' ' -f1 )
+partroot=${partroot/\/dev\/}
+partline=$( sed -n "/$partroot/=" /tmp/p5/installed_os.json )
+partline0=$(( partline - 3 ))
+sed "$(( partline - 3 )), $partline d" /tmp/p5/installed_os.json > /tmp/installed_os.json
+# filter names and boot partitions
+part=$( sed -n '/name/,/mmcblk/ p' /tmp/installed_os.json | sed '/part/ d; s/\s//g; s/"//g; s/,//; s/name://' )
+partarray=( $( echo $part ) )
+
+ilength=${#partarray[*]}
+declare -A os
+
+echo -e "\n\e[30m\e[43m ? \e[0m Reset OS:"
+echo -e '  \e[36m0\e[m Cancel'
+for (( i=0; i < ilength; i++ )); do
+	if (( $(( i % 2 )) == 0 )); then
+		echo -e "  \e[36m$(( i / 2 + 1 ))\e[m ${partarray[ i ]}"
+	else
+		j=$(( i + 6 ))
+		os[$j]=${partarray[i - 1]}
+	fi
+done
+echo
+echo 'Which ? '
+read -n 1 ans
+echo
+[[ -z $ans || $ans == 0 ]] && exit
+partnum=$(( ans * 2 + 5 ))
+partreset=/dev/mmcblk0p$partnum
+
+li=$( printf "\e[36m%*s\e[0m\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' "=" )
+bar='\e[36m\e[46m . \e[0m'
+
+yesno "Reset ${os[$partnum]}:"
 [[ $answer != 1 ]] && exit
 
-yesno "Reboot to $runeversion after reset:" ansre
+yesno "Reboot to ${os[$partnum]} after reset:" ansre
 
 time0=$( date +%s )
 
 echo $li
-echo -e "$bar $runeversion reset"
+echo -e "$bar ${os[$partnum]} reset"
 echo $li
 umount -l $partreset &> /dev/null
 echo -e "$bar Format partition ..."
@@ -57,7 +79,7 @@ echo -e "$bar Extract files ..."
 mmc 1
 mmc $partnum
 mntroot=/tmp/p$partnum
-bsdtar -xvf /tmp/p1/os/$runeversion/root.tar.xz -C $mntroot \
+bsdtar -xvf /tmp/p1/os/${os[$partnum]}/root.tar.xz -C $mntroot \
   --exclude=./srv/http/.* \
   --exclude=./usr/include \
   --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
@@ -96,7 +118,7 @@ timemin=$(( $timediff / 60 ))
 timesec=$(( $timediff % 60 ))
 echo -e "\nDuration: $timemin min $timesec sec"
 echo $li
-echo -e "$bar Rune reset successfully."
+echo -e "$bar ${os[$partnum]} reset successfully."
 echo $li
 success=1
 
