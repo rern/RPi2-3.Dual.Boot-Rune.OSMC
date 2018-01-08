@@ -1,0 +1,16 @@
+{
+	"name": "Rune04b",
+	"version": "v0.4b",
+	"release_date": "2017-02-29",
+	"kernel": "4.4.39-1-ARCH",
+	"description": "A free Hi-Fi digital audio player based on Arch Linux",
+	"url": "http://www.runeaudio.com",
+	"supported_hex_revisions": "1040,1041,2082",    
+	"supported_models": [
+		"Pi 2",
+		"Pi 3"
+	],
+	"feature_level": 0,
+	"username": "root",
+	"password": "rune"
+}
