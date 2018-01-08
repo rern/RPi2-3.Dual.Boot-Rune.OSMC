@@ -84,10 +84,14 @@ kpartx -dv <imagefile>.img
 ---
   
 **Set boot partition**  
-( `6` - OSMC | `8` - Rune )
 - Method 1 - skip boot menu
 ```sh
-echo 6 > /sys/module/bcm2709/parameters/reboot_part
+# Rune
+# N = partition number
+echo N > /sys/module/bcm2709/parameters/reboot_part
+
+# OSMC
+reboot N
 ```
 - Method 2 - skip boot menu (permanent - remove the file to get back default boot)
 ```sh
