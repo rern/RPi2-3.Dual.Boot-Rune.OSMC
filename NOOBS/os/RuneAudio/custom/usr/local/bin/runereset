@@ -122,4 +122,7 @@ echo -e "$bar ${os[$partnum]} reset successfully."
 echo $li
 success=1
 
-[[ $ansre == 1 && $# == 0 ]] && reboot $(( $partnum - 1 ))
+if [[ $ansre == 1 && $# == 0 ]]; then
+	echo $(( $partnum - 1 )) > /sys/module/bcm2709/parameters/reboot_part
+	/var/www/command/rune_shutdown 2> /dev/null; reboot
+fi
