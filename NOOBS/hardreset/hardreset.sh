@@ -7,6 +7,8 @@
 # fstab for boot partition
 # copy custom files
 
+rm $0
+
 yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 	echo -e "\e[30m\e[43m ? \e[0m $1"
