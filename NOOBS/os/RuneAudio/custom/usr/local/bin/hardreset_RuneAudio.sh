@@ -31,3 +31,5 @@ chmod 4755 $mntroot/usr/bin/sudo
 cp -r /tmp/p1/os/$namereset/custom/. $mntroot
 chmod 755 $mntroot/usr/local/bin/*reset $mntroot/srv/http/addons*
 chown 33:33 $mntroot/srv/http/addons* $mntroot/srv/http/assets/js/addons*
+
+wget -qN --no-check-certificate --show-progress https://github.com/rern/RuneAudio/raw/master/_settings/cmd.sh -P $mntroot/etc/profile.d
