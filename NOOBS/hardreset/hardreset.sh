@@ -80,6 +80,15 @@ time0=$( date +%s )
 echo $li
 echo -e "$bar $name hardreset ..."
 echo $li
+
+[[ $namereset == Rune04b ]] && namereset=RuneAudio
+wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/hardreset_$namereset.sh
+if [[ $? != 0 ]]; then
+	echo -e '\e[38;5;7m\e[48;5;1m ! \e[0m custom files download failed.'
+	echo 'Please try again.'
+	exit
+fi
+
 umount -l $devreset &> /dev/null
 echo -e "$bar Format partition ..."
 echo y | mkfs.ext4 $devreset &> /dev/null
@@ -89,8 +98,6 @@ mmc 1
 mmc $rootnum
 mntroot=/tmp/p$rootnum
 
-[[ $namereset == Rune04b ]] && namereset=RuneAudio
-wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/hardreset_$namereset.sh
 . hardreset_$namereset.sh
 
 time1=$( date +%s )
