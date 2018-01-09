@@ -9,15 +9,29 @@
 # copt custom files
 # remove forcetrigger
 
+# no automount other partitions
 mntroot=/tmp/mount
-! grep -q '/boot' $mntroot/etc/fstab && mntboot='/dev/mmcblk0p6  /boot  vfat  defaults,noatime'
-
-echo "$mntboot
+rootnum=${mmcroot/\/dev\/mmcblk0p}
+fstab=$mntroot/etc/fstab
+echo "/dev/mmcblk0p$(( rootnum + 1 ))  /boot  vfat  defaults,noatime
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
-/dev/mmcblk0p8  /media/p8  vfat  noauto,noatime
-/dev/mmcblk0p9  /media/p9  ext4  noauto,noatime
-" >> $mntroot/etc/fstab
+" >> $fstab
+
+mmc 5
+# omit current os from installed_os.json
+mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
+mmcline=$( sed -n "/$mmcroot/=" /tmp/p5/installed_os.json )
+sed "$(( mmcline - 3 )), $mmcline d" /tmp/p5/installed_os.json > /tmp/installed_os.json
+# filter names and boot partitions > array
+partlist=$( grep 'mmcblk' /tmp/installed_os.json | sed 's/"//g; s/,//; s/\/dev\/mmcblk0p//' )
+partarray=( $( echo $partlist ) )
+ilength=${#partarray[*]}
+for (( i=0; i < ilength; i++ )); do
+	(( $(( i % 2 )) == 0 )) && parttype=vfat || parttype=ext4
+	j=${partarray[i]}
+	echo "/dev/mmcblk0p$j  /media/p$j  $parttype  noauto,noatime" >> $fstab
+done
 
 # customize files
 sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::|
@@ -32,7 +46,7 @@ sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
 cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
 chmod 644 $mntroot/etc/udev/rules.d/usbsound.rules
 chmod 755 $mntroot/home/osmc/*.py
-chmod 755 $mntroot/usr/local/bin/*reset
+chmod 755 $mntroot/usr/local/bin/hardreset*
 chown -R 1000:1000 $mntroot/home/osmc # no user 'osmc' within noobs - use uid instead
 
 # remove force reinstall if any
