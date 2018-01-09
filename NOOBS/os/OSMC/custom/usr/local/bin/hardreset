@@ -89,6 +89,7 @@ mmc 1
 mmc $rootnum
 mntroot=/tmp/p$rootnum
 
+[[ $namereset == Rune04b ]] && namereset=RuneAudio
 . /usr/local/bin/hardreset_$namereset.sh
 
 time1=$( date +%s )
