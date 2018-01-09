@@ -35,7 +35,8 @@ echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
 chmod 4755 $mnt/usr/bin/sudo
 
 cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
-chmod 755 $mnt/usr/local/bin/*reset $mnt/srv/http/addons*
+ln -s $mnt/usr/local/bin/hardreset_Rune{Audio,04b}.sh
+chmod 755 $mnt/usr/local/bin/hardreset* $mnt/srv/http/addons*
 chown 33:33 $mnt/srv/http/addons* $mnt/srv/http/assets/js/addons*
 
 umount $mnt
