@@ -90,7 +90,8 @@ mmc $rootnum
 mntroot=/tmp/p$rootnum
 
 [[ $namereset == Rune04b ]] && namereset=RuneAudio
-. /usr/local/bin/hardreset_$namereset.sh
+wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/hardreset_$namereset.sh
+. hardreset_$namereset.sh
 
 time1=$( date +%s )
 timediff=$(( $time1 - $time0 ))
