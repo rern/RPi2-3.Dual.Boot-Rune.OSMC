@@ -1,7 +1,5 @@
 #!/bin/bash
 
-bsdtar -xpvf /tmp/p1/os/$namereset/root.tar.xz -C $mntroot
-
 # from partition_setup.sh
 echo -e "$bar Partition setup ..."
 sed -i -e "s|^.* /boot |/dev/mmcblk0p$bootnum  /boot |
