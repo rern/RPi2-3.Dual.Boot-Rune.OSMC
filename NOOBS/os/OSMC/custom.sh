@@ -18,12 +18,12 @@ echo "/dev/mmcblk0p$(( rootnum + 1 ))  /boot  vfat  defaults,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 " >> $fstab
 
-mntrecovery=/tmp/recovery
-mkdir -p $mntrecovery
-mount /dev/mmcblk0p5 $mntrecovery
+mntsetting=/tmp/setting
+mkdir -p $mntsetting
+mount /dev/mmcblk0p5 $mntsetting
 # omit current os from installed_os.json
-mmcline=$( sed -n "/$mmcroot/=" $mntrecovery/installed_os.json )
-sed "$(( mmcline - 3 )), $mmcline d" $mntrecovery/installed_os.json > /tmp/installed_os.json
+mmcline=$( sed -n "/$mmcroot/=" $mntsetting/installed_os.json )
+sed "$(( mmcline - 3 )), $mmcline d" $mntsetting/installed_os.json > /tmp/installed_os.json
 # filter names and boot partitions > array
 partlist=$( grep 'mmcblk' /tmp/installed_os.json | sed 's/"//g; s/,//; s/\/dev\/mmcblk0p//' )
 partarray=( $( echo $partlist ) )
