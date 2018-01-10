@@ -17,8 +17,8 @@ Get custom compiled NOOBS
 Prepare os directory
 ---
 
-### `~/os/<name>/`
->./slides_vga/  
+### `/os/<name>/`
+>**/os/<name>/slides_vga/**  
 >	os.json  
 >	partition_setup.sh  
 >	partition.json  
@@ -30,23 +30,25 @@ Prepare os directory
 	- folder: `/os/<name>`
 	- icon: `/os/<name>/<name>.png`
 	- name: `/os/<name>/os.json` > `"name": <name>,`
+- `<label>`s in `/os/partitions.json` must be consistent:
+	- `"label": "<boot>"` and `/os/<name>/<boot>.tar.xz`
+	- `"label": "<root>"` and `/os/<name>/<root>.tar.xz`
 
->**./slides_vga/**  
->	one or several 400x300 px images: A.png, B.png, C.png, ... for a slideshow during installation
+>**/os/<name>/slides_vga/**  
+>	one or several 400x300 px images: A.png, B.png, C.png, ... for a slideshow during installation  
 	
->**os.json**  
+>**/os/<name>/os.json**  
 >	edit `"name":`  
->	(optional) edit `"version":`, `"release_date":`, `"kernel":`, `"username":` and `"password":` 
+>	(optional) edit `"version":`, `"release_date":`, `"kernel":`, `"username":` and `"password":`  
 
->**partition.json**  
->	`"label": "<boot>"`, `"label": "<root>"` must be consistent with `<boot>.tar.xz` and `<root>.tar.xz` 
->	`"partition_size_nominal":` to be allocated porportionally to other OSes
+>**/os/<name>/partition.json**  
+>	`"partition_size_nominal":` to be allocated porportionally to other OSes  
 >	`"uncompressed_tarball_size":` must be checked and roundup to next MB  
->	`NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size
+>	`NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size  
 
->**partition_setup.sh**  
+>**/os/<name>/partition_setup.sh**  
 >	add customizing commands to run after installation finished  
->	**EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)
+>	**EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)  
 	
 >**[icon].png**  
 >	40 x 40 pixel  
