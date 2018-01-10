@@ -14,16 +14,17 @@ mntsetting=/tmp/setting
 mkdir -p $mntsetting
 mount /dev/mmcblk0p5 $mntsetting
 devboot=$( sed -n '/OSMC/,/mmcblk/ p' $mntsetting/installed_os.json | grep 'mmcblk' | sed 's/"//g; s/,//' )
+devbootline=$( sed -n "/$devboot/=" $mntsetting/installed_os.json )
+sed "$(( devbootline - 2 )), $(( devbootline + 1 )) d" $mntsetting/installed_os.json > /tmp/installed_os.json
 
 fstab=$mntroot/etc/fstab
-echo "$devboot  /boot      vfat  defaults,noatime
+[[ ! grep $devboot $fstab ]] && echo "$devboot  /boot      vfat  defaults,noatime,noauto,x-systemd.automount    0   0" >> $fstab
+
+# omit current os from installed_os.json
+echo "
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 " >> $fstab
-
-# omit current os from installed_os.json
-devbootline=$( sed -n "/$devboot/=" $mntsetting/installed_os.json )
-sed "$(( devbootline - 2 )), $(( devbootline + 1 )) d" $mntsetting/installed_os.json > /tmp/installed_os.json
 
 # filter names and boot partitions > array
 partlist=$( grep 'mmcblk' /tmp/installed_os.json | sed 's/"//g; s/,//; s/\/dev\/mmcblk0p//' )
