@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bsdtar -xvf /tmp/p1/os/$namereset/root-rbp2.tar.xz -C $mntroot \
+bsdtar -xpvf /tmp/p1/os/$namereset/root-rbp2.tar.xz -C $mntroot \
   --exclude=./var/cache/apt \
   --exclude=./usr/include \
   --exclude=./usr/lib/{python2.7/test,python3*,libgo.*} \
