@@ -1,17 +1,18 @@
 #!/bin/bash
 
-mntboot=/tmp/mount
+mntboot=/tmp/boot
+mntroot=/tmp/root
 
 mkdir -p $mntboot
+mkdir -p $mntroot
 
 mount $part1 $mntboot
+mount $part2 $mntroot
 
 sed -i "s|root=/dev/[^ ]*|root=$part2|" $mntboot/cmdline.txt
 
 # remove force reinstall if any
 sed -i "s| forcetrigger||" $mntboot/recovery.cmdline
-
-mount $part2 $mntroot
 
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
