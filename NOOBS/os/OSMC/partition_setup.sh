@@ -33,12 +33,11 @@ echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount 
 umount /tmp/mount
 
 # customize #####################
-mntrecovery=/mnt
-
 mntroot=/tmp/root
 mkdir -p $mntroot
 mount $part2 $mntroot
 
+mntrecovery=/mnt
 . $mntrecovery/os/OSMC/custom.sh
 
 umount /tmp/recovery
