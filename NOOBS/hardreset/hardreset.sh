@@ -20,19 +20,14 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	echo
 	[[ $2 ]] && eval $2=$answer
 }
-mmc() {
-	[[ $2 ]] && mntdir=/tmp/$2 || mntdir=/tmp/p$1
-	if [[ ! $( mount | grep $mntdir ) ]]; then
-		mkdir -p $mntdir
-		mount /dev/mmcblk0p$1 $mntdir
-	fi
-}
 
-mmc 5
+mntsettings=/tmp/settings
+mkdir -p /tmp/settings
+mount /dev/mmcblk0p5 /tmp/settings
 # omit current os from installed_os.json
 mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
-mmcline=$( sed -n "/$mmcroot/=" /tmp/p5/installed_os.json )
-sed "$(( mmcline - 3 )), $mmcline d" /tmp/p5/installed_os.json > /tmp/installed_os.json
+mmcline=$( sed -n "/$mmcroot/=" $mntsettings/installed_os.json )
+sed "$(( mmcline - 3 )), $mmcline d" $mntsettings/installed_os.json > /tmp/installed_os.json
 # filter names and boot partitions > array
 oslist=$( sed -n '/name/,/mmcblk/ p' /tmp/installed_os.json | sed '/part/ d; s/\s//g; s/"//g; s/,//; s/name://; s/\/dev\/mmcblk0p//' )
 osarray=( $( echo $oslist ) )
