@@ -20,4 +20,5 @@ mntrecovery=/mnt
 # remove force reinstall if any
 sed -i "s| forcetrigger||" $mntrecovery/recovery.cmdline
 
-umount $mntroot
+umount /tmp/1
+umount /tmp/2
