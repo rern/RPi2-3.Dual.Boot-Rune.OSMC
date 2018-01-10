@@ -1,15 +1,15 @@
 {
     "partitions": [
         {
-            "label": "boot-rbp2",
+            "label": "boot-osmc",
             "filesystem_type": "FAT",
             "partition_size_nominal": 80,
+            "uncompressed_tarball_size": 23,
             "want_maximised": false,
-            "mkfs_options": "-F32",
-            "uncompressed_tarball_size": 23
+            "mkfs_options": "-F32"
         },
         {
-            "label": "root-rbp2",
+            "label": "root-osmc",
             "filesystem_type": "ext4",
             "partition_size_nominal": 1024,
             "uncompressed_tarball_size": 540,
