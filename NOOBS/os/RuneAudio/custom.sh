@@ -5,16 +5,16 @@ sed -i -e '/runeui.css/ a\
     <link rel="stylesheet" href="<?=$this->asset('"'"'/css/addonsinfo.css'"'"')?>">
 ' -e '/poweroff-modal/ i\
             <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
-' $mnt/srv/http/app/templates/header.php
+' $mntroot/srv/http/app/templates/header.php
 
 sed -i '$ a\
 <script src="<?=$this->asset('"'"'/js/addonsinfo.js'"'"')?>"></script>\
 <script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
-' $mnt/srv/http/app/templates/footer.php
+' $mntroot/srv/http/app/templates/footer.php
 
-echo 'http ALL=NOPASSWD: ALL' > $mnt/etc/sudoers.d/http
-chmod 4755 $mnt/usr/bin/sudo
+echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
+chmod 4755 $mntroot/usr/bin/sudo
 
-cp -r /mnt/os/RuneAudio/custom/. $mnt # customize files
-chmod 755 $mnt/usr/local/bin/hardreset $mnt/srv/http/addons*
-chown 33:33 $mnt/srv/http/addons* $mnt/srv/http/assets/js/addons*
+cp -r $mntboot/os/RuneAudio/custom/. $mntroot # customize files
+chmod 755 $mntroot/usr/local/bin/hardreset $mntroot/srv/http/addons*
+chown 33:33 $mntroot/srv/http/addons* $mntroot/srv/http/assets/js/addons*
