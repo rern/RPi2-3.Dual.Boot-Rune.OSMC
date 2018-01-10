@@ -1,3 +1,0 @@
-mklink /D D:\RPi\Rune04b\custom D:\RPi\Git\RPi2-3.Dual.Boot-Rune.OSMC\NOOBS\os\RuneAudio\custom
-mklink /D D:\RPi\Rune04b\slide_vga D:\RPi\Git\RPi2-3.Dual.Boot-Rune.OSMC\NOOBS\os\RuneAudio\slides_vga
-mklink D:\RPi\Rune04b\partition_setup D:\RPi\Git\RPi2-3.Dual.Boot-Rune.OSMC\NOOBS\os\RuneAudio\partition_setup.sh
