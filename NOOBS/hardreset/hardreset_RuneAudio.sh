@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bsdtar -xvf /tmp/p1/os/$namereset/root.tar.xz -C $mntroot
+bsdtar -xpvf /tmp/p1/os/$namereset/root.tar.xz -C $mntroot
 
 # from partition_setup.sh
 echo -e "$bar Partition setup ..."
