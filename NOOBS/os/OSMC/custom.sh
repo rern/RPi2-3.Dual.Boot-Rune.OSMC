@@ -10,7 +10,7 @@
 # remove forcetrigger
 
 # no automount other partitions
-mntroot=/tmp/mount
+mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
 rootnum=${mmcroot/\/dev\/mmcblk0p}
 fstab=$mntroot/etc/fstab
 echo "/dev/mmcblk0p$(( rootnum + 1 ))  /boot  vfat  defaults,noatime
@@ -18,11 +18,12 @@ echo "/dev/mmcblk0p$(( rootnum + 1 ))  /boot  vfat  defaults,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 " >> $fstab
 
-mmc 5
+mntrecovery=/tmp/recovery
+mkdir -p $mntrecovery
+mount /dev/mmcblk0p5 $mntrecovery
 # omit current os from installed_os.json
-mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
-mmcline=$( sed -n "/$mmcroot/=" /tmp/p5/installed_os.json )
-sed "$(( mmcline - 3 )), $mmcline d" /tmp/p5/installed_os.json > /tmp/installed_os.json
+mmcline=$( sed -n "/$mmcroot/=" $mntrecovery/installed_os.json )
+sed "$(( mmcline - 3 )), $mmcline d" $mntrecovery/installed_os.json > /tmp/installed_os.json
 # filter names and boot partitions > array
 partlist=$( grep 'mmcblk' /tmp/installed_os.json | sed 's/"//g; s/,//; s/\/dev\/mmcblk0p//' )
 partarray=( $( echo $partlist ) )
@@ -42,8 +43,7 @@ sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
 ' -e '/^MACs/ s/^/#/
 ' $mntroot/etc/ssh/sshd_config
 
-[[ -e /mnt/os ]] && mntrecovery=/mnt || mntrecovery=/tmp/p1
-cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
+cp -r $mntboot/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
 chmod 644 $mntroot/etc/udev/rules.d/usbsound.rules
 chmod 755 $mntroot/home/osmc/*.py
 chmod 755 $mntroot/usr/local/bin/hardreset*
