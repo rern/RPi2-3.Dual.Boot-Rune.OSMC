@@ -19,6 +19,7 @@ sed -i -e "s|^.* /boot |$part1  /boot |
 ' -e 's/\s\+0\s\+0\s*$//
 ' $mnt/etc/fstab
 
+# customize
 . /mnt/os/RuneAudio/custom.sh
 
 umount $mnt
