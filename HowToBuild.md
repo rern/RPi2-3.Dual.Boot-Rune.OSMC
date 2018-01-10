@@ -17,41 +17,38 @@ Get custom compiled NOOBS
 Prepare os directory
 ---
 
-### `/os/<name>/`
->**/os/<name>/slides_vga/**  
->	os.json  
->	partition_setup.sh  
->	partition.json  
->	<name>.png  
->	<boot>.tar.xz  
->	<root>.tar.xz  
+- `/os/<name>/slides_vga/`
+	- os.json  
+	- partition_setup.sh  
+	- partition.json  
+	- <name>.png  
+	- <boot>.tar.xz  
+	- <root>.tar.xz  
 
 - `<name>`s must be consistent:
 	- folder: `/os/<name>`
-	- icon: `/os/<name>/<name>.png`
+	- icon 40x40px: `/os/<name>/<name>.png`
 	- name: `/os/<name>/os.json` > `"name": <name>,`
 - `<label>`s in `/os/partitions.json` must be consistent:
 	- `"label": "<boot>"` and `/os/<name>/<boot>.tar.xz`
 	- `"label": "<root>"` and `/os/<name>/<root>.tar.xz`
 
->**/os/<name>/slides_vga/**  
->	one or several 400x300 px images: A.png, B.png, C.png, ... for a slideshow during installation  
+- `/os/<name>/slides_vga/`
+	- one or several 400x300 px images: A.png, B.png, C.png, ... for a slideshow during installation  
 	
->**/os/<name>/os.json**  
+- `/os/<name>/os.json`
 >	edit `"name":`  
 >	(optional) edit `"version":`, `"release_date":`, `"kernel":`, `"username":` and `"password":`  
 
->**/os/<name>/partition.json**  
->	`"partition_size_nominal":` to be allocated porportionally to other OSes  
->	`"uncompressed_tarball_size":` must be checked and roundup to next MB  
->	`NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size  
+- `/os/<name>/partition.json`
+	- `"partition_size_nominal":` to be allocated porportionally to other OSes  
+	- `"uncompressed_tarball_size":` must be checked and roundup to next MB  
+	- `NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size  
 
->**/os/<name>/partition_setup.sh**  
->	add customizing commands to run after installation finished  
->	**EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)  
+- `/os/<name>/partition_setup.sh`
+	- add customizing commands to run after installation finished  
+	- **EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)  
 	
->**[icon].png**  
->	40 x 40 pixel  
 
 ### `<boot>.tar.xz` and `<root>.tar.xz`
 - OSes need to be prepared with this procedure, both `<boot>.tar.xz` and `<root>.tar.xz`. Othewise they might not be extracted properly.
