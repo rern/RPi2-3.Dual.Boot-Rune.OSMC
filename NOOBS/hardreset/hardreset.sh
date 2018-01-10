@@ -93,19 +93,13 @@ if [[ $? != 0 ]]; then
 fi
 [[ $namereset == Rune04b ]] && mv hardreset_{RuneAudio,Rune04b}.sh
 
-umount -l $devreset &> /dev/null
-if [[ $namereset == RuneAudio ]]; then
-	mkfsoption="-O ^huge_file"
-elif [[ $namereset == OSMC ]]; then
-	mkfsoption="-F -I 256 -E stride=2,stripe-width=1024,nodiscard -b 4096"
-else
-	mkfsoption=''
-fi
 echo -e "$bar Format partition ..."
+mmc 1
+mkfsoption=$( sed -n '/ext4/,/mkfs/ p' /tmp/p1/os/Rune04b/partitions.json | grep 'mkfs' | cut -d'"' -f4 )
+umount -l $devreset &> /dev/null
 echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 
 echo -e "$bar Extract files ..."
-mmc 1
 mmc $rootnum
 mntroot=/tmp/p$rootnum
 
