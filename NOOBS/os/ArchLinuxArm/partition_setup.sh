@@ -25,8 +25,7 @@ mv /tmp/2/boot/* /tmp/1/
 sed -ie "s|/dev/mmcblk0p2|${part2}|" /tmp/1/cmdline.txt
 sed -ie "s|/dev/mmcblk0p1|${part1}|" /tmp/2/etc/fstab
 
-# root ssh
-sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /tmp/2/etc/ssh/sshd_config
+. /mnt/os/ArchLinuxArm/custom/custom.sh
 
 # clean up
 umount /tmp/1
