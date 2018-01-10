@@ -92,8 +92,9 @@ if [[ $? != 0 ]]; then
 fi
 
 umount -l $devreset &> /dev/null
+[[ $namereset == RuneAudio ]] && mkfsoption='-O ^huge_file'
 echo -e "$bar Format partition ..."
-echo y | mkfs.ext4 $devreset &> /dev/null
+echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 
 echo -e "$bar Extract files ..."
 mmc 1
