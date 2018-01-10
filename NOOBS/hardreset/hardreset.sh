@@ -107,7 +107,7 @@ echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 echo -e "$bar Extract files ..."
 mount $devreset $mntroot
 rootfile=$( grep 'root' $partfile | cut -d'"' -f4 ).tar.xz
-bsdtar -xpvf /tmp/p1/os/$namereset/$rootfile -C $mntroot
+bsdtar -xpvf $mntrecovery/os/$namereset/$rootfile -C $mntroot
 
 # customize
 . hardreset_$namereset.sh
