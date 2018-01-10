@@ -13,8 +13,7 @@
 			"filesystem_type":              "ext4",
 			"partition_size_nominal":       3072,
 			"uncompressed_tarball_size":    708,
-			"want_maximised":               true,
-			"mkfs_options":                 "-c"
+			"want_maximised":               true
 		}
 	]
 }
