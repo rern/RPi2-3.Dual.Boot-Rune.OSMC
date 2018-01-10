@@ -1,13 +1,12 @@
 #!/bin/bash
 
-mntroot=/tmp/root
+mkdir /tmp/1
+mount $part1 /tmp/1
+sed -i "s|root=/dev/[^ ]*|root=$part2|" /tmp/1/cmdline.txt
+
+mntroot=/tmp/2
 mkdir -p $mntroot
 mount $part2 $mntroot
-
-sed -i "s|root=/dev/[^ ]*|root=$part2|" $mntrecovery/cmdline.txt
-
-# remove force reinstall if any
-sed -i "s| forcetrigger||" $mntrecovery/recovery.cmdline
 
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
@@ -17,5 +16,8 @@ sed -i -e "s|^.* /boot |$part1  /boot |
 # customize
 mntrecovery=/mnt
 . $mntrecovery/os/RuneAudio/custom.sh
+
+# remove force reinstall if any
+sed -i "s| forcetrigger||" $mntrecovery/recovery.cmdline
 
 umount $mntroot
