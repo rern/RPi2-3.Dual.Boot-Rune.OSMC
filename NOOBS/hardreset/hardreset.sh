@@ -109,8 +109,8 @@ mount $devreset $mntroot
 rootfile=$( grep 'root' $partfile | cut -d'"' -f4 ).tar.xz
 bsdtar -xpvf $mntrecovery/os/$namereset/$rootfile -C $mntroot
 
-# customize
-. hardreset_$namereset.sh
+echo -e "$bar Customize ..."
+. $mntrecovery/os/$namereset/custom.sh
 
 time1=$( date +%s )
 timediff=$(( $time1 - $time0 ))
