@@ -10,10 +10,8 @@
 # remove forcetrigger
 
 # no automount other partitions
-mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
-rootnum=${mmcroot/\/dev\/mmcblk0p}
 fstab=$mntroot/etc/fstab
-echo "/dev/mmcblk0p$(( rootnum + 1 ))  /boot  vfat  defaults,noatime
+echo "
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 " >> $fstab
