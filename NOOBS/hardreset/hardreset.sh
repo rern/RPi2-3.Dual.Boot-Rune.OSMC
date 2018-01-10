@@ -56,7 +56,9 @@ j=$(( ilength / 2 + 1 ))
 bootarray+=(0)
 echo -e "  \e[36m$j\e[m NOOBS"
 echo
-echo 'Which OS? '
+list=$( seq $(( ${#bootarray[*]} - 1 )) )
+list=$( echo $list )
+echo -e "\e[36m0\e[m / ${list// / \/ } ? "
 read -n 1 ans
 echo
 [[ -z $ans || $ans == 0 ]] && exit
