@@ -96,15 +96,21 @@ fi
 [[ $namereset == Rune04b ]] && mv hardreset_{RuneAudio,Rune04b}.sh
 
 echo -e "$bar Format partition ..."
-mmc 1
+mntrecovery=/tmp/recovery
+mkdir -p $mntrecovery
+mount /dev/mmcblk0p1 $mntrecovery
+
+mntroot=/tmp/root
+mkdir -p $mntroot
+
 umount -l $devreset &> /dev/null
-partfile=/tmp/p1/os/$namereset/partitions.json
+
+partfile=$mntrecovery/os/$namereset/partitions.json
 mkfsoption=$( sed -n '/ext4/,/mkfs/ p' $partfile | grep 'mkfs' | cut -d'"' -f4 )
 echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 
 echo -e "$bar Extract files ..."
-mmc $rootnum
-mntroot=/tmp/p$rootnum
+mount $devreset $mntroot
 rootfile=$( grep 'root' $partfile | cut -d'"' -f4 ).tar.xz
 bsdtar -xpvf /tmp/p1/os/$namereset/$rootfile -C $mntroot
 
