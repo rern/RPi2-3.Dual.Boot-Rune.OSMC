@@ -39,7 +39,7 @@ mount $part2 $mntroot
 mntrecovery=/mnt
 . $mntrecovery/os/OSMC/custom.sh
 
-umount /tmp/root
+umount /tmp/mount
 #################################
 
 # Wait
