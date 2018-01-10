@@ -83,7 +83,9 @@ echo $li
 echo -e "$bar $name hardreset ..."
 echo $li
 
-wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/hardreset_$namereset.sh
+file=hardreset_$namereset.sh
+[[ $namereset == Rune04b ]] && file=hardreset_RuneAudio.sh
+wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/$file
 if [[ $? != 0 ]]; then
 	echo -e '\e[38;5;7m\e[48;5;1m ! \e[0m custom files download failed.'
 	echo 'Please try again.'
