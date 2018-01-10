@@ -1,25 +1,25 @@
 #!/bin/bash
 
-mnt=/tmp/mount
+mntboot=/tmp/mount
 
-mkdir -p $mnt
+mkdir -p $mntboot
 
-mount $part1 $mnt
+mount $part1 $mntboot
 
-sed -i "s|root=/dev/[^ ]*|root=$part2|" $mnt/cmdline.txt
+sed -i "s|root=/dev/[^ ]*|root=$part2|" $mntboot/cmdline.txt
 
 # remove force reinstall if any
-sed -i "s| forcetrigger||" $mnt/recovery.cmdline
-umount $mnt
+sed -i "s| forcetrigger||" $mntboot/recovery.cmdline
 
-mount $part2 $mnt
+mount $part2 $mntroot
 
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s*$//
-' $mnt/etc/fstab
+' $mntroot/etc/fstab
 
 # customize
-. /mnt/os/RuneAudio/custom.sh
+. $mntboot/os/RuneAudio/custom.sh
 
-umount $mnt
+umount $mntboot
+umount $mntroot
