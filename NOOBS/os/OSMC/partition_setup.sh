@@ -33,9 +33,7 @@ echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount 
 umount /tmp/mount
 
 # customize #####################
-mntrecovery=/tmp/recovery
-mkdir -p $mntrecovery
-mount $part1 $mntrecovery
+mntrecovery=/mnt
 
 mntroot=/tmp/root
 mkdir -p $mntroot
