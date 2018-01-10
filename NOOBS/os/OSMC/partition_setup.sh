@@ -30,6 +30,16 @@ mount $part2 /tmp/mount
 echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0
 ">/tmp/mount/etc/fstab
 
+#customize
+mntboot=/tmp/boot
+mntroot=/tmp/root
+
+mkdir -p $mntboot
+mkdir -p $mntroot
+
+mount $part1 $mntboot
+mount $part2 $mntroot
+
 . /mnt/os/OSMC/custom.sh
 
 umount /tmp/mount
