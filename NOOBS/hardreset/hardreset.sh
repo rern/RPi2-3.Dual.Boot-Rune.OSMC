@@ -98,12 +98,15 @@ fi
 echo -e "$bar Format partition ..."
 mmc 1
 umount -l $devreset &> /dev/null
-mkfsoption=$( sed -n '/ext4/,/mkfs/ p' /tmp/p1/os/$namereset/partitions.json | grep 'mkfs' | cut -d'"' -f4 )
+partfile=/tmp/p1/os/$namereset/partitions.json
+mkfsoption=$( sed -n '/ext4/,/mkfs/ p' $partfile | grep 'mkfs' | cut -d'"' -f4 )
 echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 
 echo -e "$bar Extract files ..."
 mmc $rootnum
 mntroot=/tmp/p$rootnum
+rootfile=$( grep 'root' $partfile | cut -d'"' -f4 ).tar.xz
+bsdtar -xpvf /tmp/p1/os/$namereset/$rootfile -C $mntroot
 
 # customize
 . hardreset_$namereset.sh
