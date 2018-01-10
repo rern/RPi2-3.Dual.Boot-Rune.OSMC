@@ -92,7 +92,13 @@ if [[ $? != 0 ]]; then
 fi
 
 umount -l $devreset &> /dev/null
-[[ $namereset == RuneAudio ]] && mkfsoption='-O ^huge_file'
+if [[ $namereset == RuneAudio ]]; then
+	mkfsoption="-O ^huge_file"
+elif [[ $namereset == OSMC ]]; then
+	mkfsoption="-F -I 256 -E stride=2,stripe-width=1024,nodiscard -b 4096"
+else
+	mkfsoption=''
+fi
 echo -e "$bar Format partition ..."
 echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 
