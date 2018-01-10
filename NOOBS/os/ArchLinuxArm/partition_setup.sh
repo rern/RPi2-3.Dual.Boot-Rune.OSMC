@@ -25,7 +25,10 @@ mv /tmp/2/boot/* /tmp/1/
 sed -ie "s|/dev/mmcblk0p2|${part2}|" /tmp/1/cmdline.txt
 sed -ie "s|/dev/mmcblk0p1|${part1}|" /tmp/2/etc/fstab
 
-. /mnt/os/ArchLinuxArm/custom.sh
+# customize
+mntroot=/tmp/2
+mntrecovery=/mnt
+. $mntrecovery/os/ArchLinuxArm/custom.sh
 
 # clean up
 umount /tmp/1
