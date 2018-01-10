@@ -20,6 +20,6 @@ sed -i -e "s|^.* /boot |$part1  /boot |
 ' $mnt/etc/fstab
 
 # customize
-. /mnt/os/Rune04b/custom.sh
+. $mnt/os/Rune04b/custom.sh
 
 umount $mnt
