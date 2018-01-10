@@ -9,19 +9,22 @@
 # copt custom files
 # remove forcetrigger
 
-# no automount other partitions
+### no automount other partitions
+mntsetting=/tmp/setting
+mkdir -p $mntsetting
+mount /dev/mmcblk0p5 $mntsetting
+devboot=$( sed -n '/OSMC/,/mmcblk/ p' $mntsetting/installed_os.json | grep 'mmcblk' | sed 's/"//g; s/,//' )
+
 fstab=$mntroot/etc/fstab
-echo "
+echo "$devboot  /boot      vfat  defaults,noatime
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 " >> $fstab
 
-mntsetting=/tmp/setting
-mkdir -p $mntsetting
-mount /dev/mmcblk0p5 $mntsetting
 # omit current os from installed_os.json
-mmcline=$( sed -n "/$mmcroot/=" $mntsetting/installed_os.json )
-sed "$(( mmcline - 3 )), $mmcline d" $mntsetting/installed_os.json > /tmp/installed_os.json
+devbootline=$( sed -n "/$devboot/=" $mntsetting/installed_os.json )
+sed "$(( devbootline - 2 )), $(( devbootline + 1 )) d" $mntsetting/installed_os.json > /tmp/installed_os.json
+
 # filter names and boot partitions > array
 partlist=$( grep 'mmcblk' /tmp/installed_os.json | sed 's/"//g; s/,//; s/\/dev\/mmcblk0p//' )
 partarray=( $( echo $partlist ) )
