@@ -95,7 +95,7 @@ fi
 
 echo -e "$bar Format partition ..."
 mmc 1
-mkfsoption=$( sed -n '/ext4/,/mkfs/ p' /tmp/p1/os/Rune04b/partitions.json | grep 'mkfs' | cut -d'"' -f4 )
+mkfsoption=$( sed -n '/ext4/,/mkfs/ p' /tmp/p1/os/$namereset/partitions.json | grep 'mkfs' | cut -d'"' -f4 )
 umount -l $devreset &> /dev/null
 echo y | mkfs.ext4 $mkfsoption $devreset &> /dev/null
 
