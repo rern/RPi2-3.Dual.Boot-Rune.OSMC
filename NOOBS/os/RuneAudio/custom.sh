@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ -z $part1 ]]; then
+	sed -i -e "s|^.* /boot |/dev/mmcblk0p$bootnum  /boot |
+	" -e '/^#/ d
+	' -e 's/\s\+0\s\+0\s*$//
+	' $mntroot/etc/fstab
+fi
+
 # addons menu
 sed -i -e '/runeui.css/ a\
     <link rel="stylesheet" href="<?=$this->asset('"'"'/css/addonsinfo.css'"'"')?>">
