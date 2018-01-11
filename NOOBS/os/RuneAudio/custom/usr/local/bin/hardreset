@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/hardreset.sh
+wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/hardreset.sh
 if [[ $? != 0 ]]; then
 	echo -e '\e[38;5;7m\e[48;5;1m ! \e[0m Install file download failed.'
 	echo 'Please try again.'
