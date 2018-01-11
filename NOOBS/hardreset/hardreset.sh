@@ -71,6 +71,16 @@ yesno "Hardreset ${name}?"
 [[ $answer != 1 ]] && exit
 
 [[ $bootnum == 0 ]] && /usr/local/bin/hardreset_NOOBS.sh
+### reset all partitions to noobs virgin state
+yesno "Hardreset ${name} will \e[31mdelete ALL OSes and data\e[m in SD card. Continue?"
+[[ $answer != 1 ]] && exit
+	
+echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
+
+[[ -d /home/osmc ]] && reboot $bootnum
+
+/var/www/command/rune_shutdown
+reboot
 
 yesno "Reboot to $name after hardreset:" ansre
 
@@ -79,16 +89,6 @@ time0=$( date +%s )
 echo $li
 echo -e "$bar $name hardreset ..."
 echo $li
-
-file=hardreset_$namereset.sh
-[[ $namereset == Rune04b ]] && file=hardreset_RuneAudio.sh
-wget -qN --no-check-certificate --show-progress https://github.com/rern/RPi2-3.Dual.Boot-Rune.OSMC/raw/master/NOOBS/hardreset/$file
-if [[ $? != 0 ]]; then
-	echo -e '\e[38;5;7m\e[48;5;1m ! \e[0m custom files download failed.'
-	echo 'Please try again.'
-	exit
-fi
-[[ $namereset == Rune04b ]] && mv hardreset_{RuneAudio,Rune04b}.sh
 
 echo -e "$bar Format partition ..."
 mntrecovery=/tmp/recovery
