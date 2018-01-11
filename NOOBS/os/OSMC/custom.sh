@@ -18,6 +18,8 @@ devboot=$( sed -n '/OSMC/,/mmcblk/ p' $mntsetting/installed_os.json | grep 'mmcb
 fstab=$mntroot/etc/fstab
 [[ ! grep $devboot $fstab ]] && echo "$devboot  /boot      vfat  defaults,noatime,noauto,x-systemd.automount    0   0" > $fstab
 
+mmclist=$( fdisk -l /dev/mmcblk0 | grep mmcblk0p | awk -F' ' '{print $1}' )
+
 # omit current os from installed_os.json
 echo "
 /dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
