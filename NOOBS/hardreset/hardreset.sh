@@ -70,17 +70,18 @@ bar='\e[36m\e[46m . \e[0m'
 yesno "Hardreset ${name}?"
 [[ $answer != 1 ]] && exit
 
-[[ $bootnum == 0 ]] && /usr/local/bin/hardreset_NOOBS.sh
-### reset all partitions to noobs virgin state
-yesno "Hardreset ${name} will \e[31mdelete ALL OSes and data\e[m in SD card. Continue?"
-[[ $answer != 1 ]] && exit
-	
-echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
+if [[ $bootnum == 0 ]]; then
+	### reset all partitions to virgin installed noobs
+	yesno "Hardreset ${name} will \e[31mdelete ALL OSes and data\e[m in SD card. Continue?"
+	[[ $answer != 1 ]] && exit
 
-[[ -d /home/osmc ]] && reboot $bootnum
+	echo -n " forcetrigger" >> /tmp/p1/recovery.cmdline
 
-/var/www/command/rune_shutdown
-reboot
+	[[ -d /home/osmc ]] && reboot $bootnum
+
+	/var/www/command/rune_shutdown
+	reboot
+fi
 
 yesno "Reboot to $name after hardreset:" ansre
 
