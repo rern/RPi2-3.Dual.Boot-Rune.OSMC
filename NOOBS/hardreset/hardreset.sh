@@ -23,7 +23,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 
 mntsettings=/tmp/settings
 mkdir -p /tmp/settings
-mount /dev/mmcblk0p5 /tmp/settings
+mount /dev/mmcblk0p5 /tmp/settings 2> /dev/null
 # omit current os from installed_os.json
 mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
 mmcline=$( sed -n "/$mmcroot/=" $mntsettings/installed_os.json )
@@ -93,12 +93,12 @@ echo $li
 echo -e "$bar Format partition ..."
 mntrecovery=/tmp/recovery
 mkdir -p $mntrecovery
-mount /dev/mmcblk0p1 $mntrecovery
+mount /dev/mmcblk0p1 $mntrecovery 2> /dev/null
 
 mntroot=/tmp/root
 mkdir -p $mntroot
 
-umount -l $devreset &> /dev/null
+umount -l $devreset 2> /dev/null
 
 partfile=$mntrecovery/os/$namereset/partitions.json
 mkfsoption=$( sed -n '/ext4/,/mkfs/ p' $partfile | grep 'mkfs' | cut -d'"' -f4 )
