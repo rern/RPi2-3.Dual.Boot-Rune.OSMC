@@ -10,15 +10,13 @@
 # remove forcetrigger
 
 ### no automount other partitions
-mntsetting=/tmp/setting
-mkdir -p $mntsetting
-mount /dev/mmcblk0p5 $mntsetting
-devboot=$( sed -n '/OSMC/,/mmcblk/ p' $mntsetting/installed_os.json | grep 'mmcblk' | sed 's/"//g; s/,//' )
-
 fstab=$mntroot/etc/fstab
-[[ ! grep $devboot $fstab ]] && echo "$devboot  /boot      vfat  defaults,noatime,noauto,x-systemd.automount    0   0" > $fstab
 
-mmclist=$( fdisk -l /dev/mmcblk0 | grep mmcblk0p | awk -F' ' '{print $1}' )
+if [[ -z $part1 ]]; then
+	part1=/dev/mmcblk0p$bootnum
+	part2=/dev/mmcblk0p$rootnum
+	echo "$part1  /boot      vfat  defaults,noatime,noauto,x-systemd.automount    0   0" > $fstab
+fi
 
 # omit current os from installed_os.json
 echo "
@@ -26,14 +24,14 @@ echo "
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 " >> $fstab
 
-# filter names and boot partitions > array
-partlist=$( sed '/OSMC/,/\]/ d' $mntsetting/installed_os.json | grep 'mmcblk' | sed 's/"//g; s/,//; s/\/dev\/mmcblk0p//' )
+# filter boot and root partitions
+partlist=$( fdisk -l /dev/mmcblk0 | grep mmcblk0p | awk -F' ' '{print $1}' | sed "/p1$\|p2$\|p5$\|$part1\|$part2/ d; sed s/\/dev\/mmcblk0p//" )
 partarray=( $( echo $partlist ) )
 ilength=${#partarray[*]}
 for (( i=0; i < ilength; i++ )); do
 	(( $(( i % 2 )) == 0 )) && parttype=vfat || parttype=ext4
-	j=${partarray[i]}
-	echo "/dev/mmcblk0p$j  /media/p$j  $parttype  noauto,noatime" >> $fstab
+	p=${partarray[i]}
+	echo "/dev/mmcblk0p$p  /media/p$p  $parttype  noauto,noatime" >> $fstab
 done
 
 # customize files
