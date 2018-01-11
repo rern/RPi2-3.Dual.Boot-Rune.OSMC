@@ -1,0 +1,108 @@
+# /root/xbindkeysrc
+
+# caution: "command" and <key code> CANNOT have anything between the lines
+
+# for Xenta USB PC Remote (ID 1d57:ad02 Xenta SE340D PC Remote Control)
+#######################################################################
+# buttons from left to right
+
+# <email> reboot to OSMC
+"echo 6 > /sys/module/bcm2709/parameters/reboot_part; /var/www/command/rune_shutdown; reboot"
+	m:0x0 + c:163
+
+# <www>
+#"command"
+#	m:0x0 + c:180
+
+# <close>
+#"command"
+#	m:0x8 + c:64 + m:0x0 + c:70
+
+# <green> *** works once > locks all buttons | press <amber> to unlock
+#"command"
+#	m:0xc + c:38
+
+# <amber> reboot
+"echo 8 > /sys/module/bcm2709/parameters/reboot_part; /var/www/command/rune_shutdown; reboot"
+	m:0xc + c:56
+
+# <blue> *** works once > locks all buttons | press <amber> to unlock
+#"command"
+#	m:0xc + c:54
+
+# <yellow> *** works once > locks all buttons | press <amber> to unlock
+#"command"
+#	m:0xc + c:40
+
+#"command"
+# <rewind>
+#	m:0x0 + c:248
+
+# <forward>
+#"command"
+#	m:0x0 + c:248
+
+# <stop>
+#"command"
+#	m:0x0 + c:174
+
+# <fullscreen>
+#"command"
+#	m:0x4 + c:37 + m:0x0 + c:12
+
+# <tab>
+#"command"
+#	m:0x0 + c:23
+
+### Forward <up>
+"mpc seek +00:00:10"
+	m:0x0 + c:111
+
+### Stop <backspace>
+"mpc stop"
+	m:0x0 + c:22
+
+### Previous <left>
+"mpc prev"
+	m:0x0 + c:113
+
+### Play / Pause <enter>
+"mpc toggle"
+	m:0x0 + c:36
+
+### Next <right>
+"mpc next"
+	m:0x0 + c:114
+
+# <pageup>
+#"command"
+#	m:0x0 + c:112
+
+# <folder>
+#"command"
+#	m:0x4 + c:37 + m:0x0 + c:32
+
+### Rewind <down>
+"mpc seek -00:00:10"
+	m:0x0 + c:116
+
+# <esc>
+#"command"
+#	m:0x0 + c:9
+
+# <pagedown>
+#"command"
+#	m:0x0 + c:117
+
+# <numlock>
+# !!! avoid pressing / using !!!
+# toggles between <navigate> / <alpha-numeric> buttons (gray background)
+# (navigate -> alpha-numeric -> uppercase -> alpha-numeric -> navigate)
+
+# <mypc>
+#"command"
+#	m:0x40 + c:133 + m:0x0 + c:26
+
+# <desktop>
+#"command"
+#	m:0x40 + c:133 + m:0x0 + c:40
