@@ -1,6 +1,4 @@
 /NOOBS/*
 !/NOOBS/os/
-boot.tar.xz
-root.tar.xz
-boot-rbp2.tar.xz
-root-rbp2.tar.xz
+boot*.tar.xz
+root*.tar.xz
