@@ -29,7 +29,9 @@ mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
 mmcline=$( sed -n "/$mmcroot/=" $mntsettings/installed_os.json )
 sed "$(( mmcline - 3 )), $mmcline d" $mntsettings/installed_os.json > /tmp/installed_os.json
 # filter names and boot partitions > array
-oslist=$( sed -n '/name/,/mmcblk/ p' /tmp/installed_os.json | sed '/part/ d; s/\s//g; s/"//g; s/,//; s/name://; s/\/dev\/mmcblk0p//' )
+oslist=$( sed "$(( mmcline - 3 )), $mmcline d" $mntsettings/installed_os.json |
+	sed -n '/name/,/mmcblk/ p' |
+	sed '/part/ d; s/\s//g; s/"//g; s/,//; s/name://; s/\/dev\/mmcblk0p//' )
 osarray=( $( echo $oslist ) )
 
 echo -e "\n\e[30m\e[43m ? \e[0m Hardreset OS:"
