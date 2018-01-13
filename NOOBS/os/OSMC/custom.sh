@@ -12,7 +12,7 @@
 ### no automount other partitions
 fstab=$mntroot/etc/fstab
 
-if [[ -z $part1 ]]; then
+if [[ -d /tmp/recovery ]]; then
 	part1=/dev/mmcblk0p$bootnum
 	part2=/dev/mmcblk0p$rootnum
 	echo "$part1  /boot      vfat  defaults,noatime,noauto,x-systemd.automount    0   0" > $fstab
