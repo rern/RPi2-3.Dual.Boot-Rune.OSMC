@@ -21,41 +21,40 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	[[ $2 ]] && eval $2=$answer
 }
 
-mntsettings=/tmp/settings
-mkdir -p /tmp/settings
-mount /dev/mmcblk0p5 /tmp/settings 2> /dev/null
-# omit current os from installed_os.json
-mmcroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
-mmcline=$( sed -n "/$mmcroot/=" $mntsettings/installed_os.json )
-sed "$(( mmcline - 3 )), $mmcline d" $mntsettings/installed_os.json > /tmp/installed_os.json
-# filter names and boot partitions > array
-oslist=$( sed "$(( mmcline - 3 )), $mmcline d" $mntsettings/installed_os.json |
+mntsettings=/tmp/p5
+mkdir -p $mntsettings
+mount /dev/mmcblk0p5 $mntsettings 2> /dev/null
+installedlist=$( grep 'name\|mmc' $mntsettings/installed_os.json )
+# omit current os
+currentroot=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'/' -f3 )
+currentline=$( echo "$installedlist" | sed -n "/$currentroot/=" )
+osarray=( $( 
+	echo "$installedlist" |
+	sed "$(( currentline - 2 )), $currentline d" |
 	sed -n '/name/,/mmcblk/ p' |
-	sed '/part/ d; s/\s//g; s/"//g; s/,//; s/name://; s/\/dev\/mmcblk0p//' )
-osarray=( $( echo $oslist ) )
+	sed '/part/ d; s/\s//g; s/"//g; s/,//; s/name://; s/\/dev\/mmcblk0p//' 
+) )
+ilength=${#osarray[*]}
 
 echo -e "\n\e[30m\e[43m ? \e[0m Hardreset OS:"
 echo -e '  \e[36m0\e[m Cancel'
-ilength=${#osarray[*]}
 namearray=(0)
 bootarray=(0)
-for (( i=0; i < ilength; i++ )); do
-	j=$(( i / 2 + 1 ))
-	if (( $(( i % 2 )) == 0 )); then
-		echo -e "  \e[36m$j\e[m ${osarray[i]}"
-		namearray+=(${osarray[i]})
-	else
-		bootarray+=(${osarray[i]})
-	fi
+j=0
+for (( i=0; i < ilength; i+=2 )); do
+	iname=${osarray[i]}
+	j=$(( j + 1 ))
+	echo -e "  \e[36m$j\e[m $iname"
+	namearray+=($iname)
+	bootarray+=(${osarray[i + 1]})
 done
-namearray+=(NOOBS)
-j=$(( ilength / 2 + 1 ))
-bootarray+=(0)
+
+j=$(( j + 1 ))
 echo -e "  \e[36m$j\e[m NOOBS"
+namearray+=(NOOBS)
+bootarray+=(0)
 echo
-list=$( seq $(( ${#bootarray[*]} - 1 )) )
-list=$( echo $list )
-echo -e "\e[36m0\e[m / ${list// / \/ } ? "
+echo -e "\e[36m0\e[m / n ? "
 read -n 1 ans
 echo
 [[ -z $ans || $ans == 0 ]] && exit
