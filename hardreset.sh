@@ -43,13 +43,13 @@ bootarray=(0)
 j=0
 for (( i=0; i < ilength; i+=2 )); do
 	iname=${osarray[i]}
-	j=$(( j + 1 ))
+	(( j++ ))
 	echo -e "  \e[36m$j\e[m $iname"
 	namearray+=($iname)
 	bootarray+=(${osarray[i + 1]})
 done
 
-j=$(( j + 1 ))
+(( j++ ))
 echo -e "  \e[36m$j\e[m NOOBS"
 namearray+=(NOOBS)
 bootarray+=(0)
