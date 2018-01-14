@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm $0
+
 ### no automount other partitions
 mkdir /tmp/SETTINGS
 mount /dev/mmcblk0p5 /tmp/SETTINGS
