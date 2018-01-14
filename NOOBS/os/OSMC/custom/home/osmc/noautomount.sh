@@ -3,8 +3,8 @@
 rm $0
 
 ### no automount other partitions
-mkdir /tmp/SETTINGS
-mount /dev/mmcblk0p5 /tmp/SETTINGS
+rootnum=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'p' -f2  )
+bootnum=$(( rootnum - 1 ))
 
 fstab=/etc/fstab
 
