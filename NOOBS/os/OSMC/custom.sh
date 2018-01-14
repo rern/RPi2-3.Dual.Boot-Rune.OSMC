@@ -11,18 +11,17 @@
 
 ### no automount other partitions
 fstab=$mntroot/etc/fstab
-
-if [[ -d /tmp/recovery ]]; then
+echo "
+/dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
+/dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
+" >> $fstab
+	
+if [[ $bootnum ]]; then
 	part1=/dev/mmcblk0p$bootnum
 	part2=/dev/mmcblk0p$rootnum
 	echo "$part1  /boot      vfat  defaults,noatime,noauto,x-systemd.automount    0   0" > $fstab
 
 	# omit current os from installed_os.json
-	echo "
-	/dev/mmcblk0p1  /media/p1  vfat  noauto,noatime
-	/dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
-	" >> $fstab
-
 	# filter boot and root partitions
 	partlist=$( fdisk -l /dev/mmcblk0 | grep mmcblk0p | awk -F' ' '{print $1}' | sed "/p1$\|p2$\|p5$\|$part1\|$part2/ d; sed s/\/dev\/mmcblk0p//" )
 	partarray=( $( echo $partlist ) )
