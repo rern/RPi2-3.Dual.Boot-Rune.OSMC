@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rm $0
+systemctl disable noautomount
+rm /etc/systemd/system/noautomount.service
 
 ### no automount other partitions
 rootnum=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'p' -f2  )
