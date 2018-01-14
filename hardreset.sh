@@ -21,7 +21,7 @@ yesno() { # $1 = header string; $2 = input or <enter> = ''
 	[[ $2 ]] && eval $2=$answer
 }
 
-mntsettings=/tmp/p5
+mntsettings=/tmp/SETTINGS
 mkdir -p $mntsettings
 mount /dev/mmcblk0p5 $mntsettings 2> /dev/null
 installedlist=$( grep 'name\|mmc' $mntsettings/installed_os.json )
@@ -93,7 +93,7 @@ echo -e "$bar $name hardreset ..."
 echo $li
 
 echo -e "$bar Format partition ..."
-mntrecovery=/tmp/recovery
+mntrecovery=/tmp/RECOVERY
 mkdir -p $mntrecovery
 mount /dev/mmcblk0p1 $mntrecovery 2> /dev/null
 
