@@ -44,5 +44,5 @@ sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
 cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
 chmod 644 $mntroot/etc/udev/rules.d/usbsound.rules
 chmod 755 $mntroot/home/osmc/{*.py,*.sh}
-chmod 755 $mntroot/usr/local/bin/hardreset*
+chmod 755 $mntroot/usr/local/bin/hardreset
 chown -R 1000:1000 $mntroot/home/osmc # no user 'osmc' within noobs - use uid instead
