@@ -51,9 +51,8 @@ Prepare os directory
 	- **EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)  
 	
 
-### `<boot>.tar.xz` and `<root>.tar.xz`
-- OSes need to be prepared with this procedure, both `<boot>.tar.xz` and `<root>.tar.xz`. Othewise they might not be extracted properly.
- 
+### `<boot>.tar.xz` and `<root>.tar.xz`  
+
 - **Rune**:
 	- Download [RuneAudio image](http://www.runeaudio.com/download/)
 	- Decompress and move `<imagefile>.img` to current user **home** directory 
@@ -63,10 +62,20 @@ Prepare os directory
 	- [OSMC image](http://ftp.fau.de/osmc/osmc/download/installers/diskimages/)
 	- Install OSMC with SD card  
 	- **boot-rbp2.tar.xz** must be created from SD card `/boot`, all directories and files **except** `cmdline.txt` and `install.log`
-- **Create files**
+	
+**Recompressed files method:**
+```sh
+cd <bootdir>
+bsdtar --numeric-owner --format gnutar -cpvf <boot>.tar .
+xz -9ekv <boot>.tar
+
+cd <rootdir>
+bsdtar --numeric-owner --format gnutar --one-file-system -cpvf <root>.tar .
+xz -9ekv <root>.tar
 ```
-cd
-sudo su
+
+**Create from image files method:**
+```
 kpartx -av <imagefile>.img
 mount /dev/mapper/loop0p1 /mnt
 tar -cvpf boot.tar -C /mnt .
@@ -79,8 +88,6 @@ umount /mnt
 xz -9ekv root.tar
 kpartx -dv <imagefile>.img
 ```
-
-- **Done !**  
 
 ---
   
