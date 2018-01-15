@@ -9,15 +9,6 @@
 # copt custom files
 # remove forcetrigger
 
-label=$( e2label /dev/sda1 )
-mnt=$mntroot/mnt/$label
-mkdir -p $mnt
-
-mountlist="/dev/sda1       $mnt   ext4  defaults,noatime
-"
-umount -l /dev/sda1
-echo
-
 echo -e "$bar Disable SD card automount ..."
 #################################################################################
 if [[ $part2 ]]; then
