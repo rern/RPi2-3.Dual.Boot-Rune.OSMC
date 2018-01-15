@@ -46,8 +46,9 @@ Prepare os directory
 	- `NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size  
 
 - `/os/<name>/partition_setup.sh`
+	- NOOBS uses busybox `#!/bin/ash` shell - no arithmetic expansion, no array support
 	- `/mnt` = SD card root directory for customizing (eg. `/mnt/os/<name>/...` )
-	- add customizing commands to run after installation finished  
+	- add customizing commands to run after installation finished
 	- **EOL**: verify that every lines end with **LF** not **CRLF** (to be run in linux environment)  
 	
 
