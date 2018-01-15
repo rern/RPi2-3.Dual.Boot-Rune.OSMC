@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/ash
 
 # NOOBS partition setup script for Arch Linux ARM
 #  - part1 == boot partition (FAT), part2 == root partitions (ext4)
