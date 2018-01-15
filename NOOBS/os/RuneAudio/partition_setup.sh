@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 mkdir /tmp/1
 mount $part1 /tmp/1
