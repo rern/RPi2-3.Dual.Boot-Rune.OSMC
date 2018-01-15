@@ -16,14 +16,13 @@ mountlist+="/dev/mmcblk0p$bootnum  /boot      vfat  defaults,noatime,noauto,x-sy
 /dev/mmcblk0p5  /media/p5  ext4  noauto,noatime
 "
 
-partlist=$( 
+partarray=($( 
 	fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
 	awk -F' ' '{print $1}' | 
 	sed "/p1$\|p2$\|p5$\|p$bootnum$\|p$rootnum$/ d" | 
 	sed 's/\/dev\/mmcblk0p//' 
-)
-partarray=( $( echo $partlist ) )
+))
 ilength=${#partarray[*]}
 for (( i=0; i < ilength; i++ )); do
   (( $(( i % 2 )) == 0 )) && parttype=vfat || parttype=ext4
