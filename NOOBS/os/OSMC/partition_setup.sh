@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 # Let OSIRIS see what we are doing
 set -x
