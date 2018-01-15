@@ -33,8 +33,8 @@ echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount 
 umount /tmp/mount
 
 # customize #####################
+bootnum=${part1/\/dev\/mmcblk0p}
 rootnum=${part2/\/dev\/mmcblk0p}
-bootnum=$(( rootnum - 1 ))
 mntroot=/tmp/mount
 mount $part2 $mntroot
 
