@@ -1,9 +1,0 @@
-[Unit]
-Description=Disable automount other OS partitions
-ConditionFirstBoot=True
-
-[Service]
-ExecStart=/root/noautomount.sh
-
-[Install]
-WantedBy=multi-user.target
