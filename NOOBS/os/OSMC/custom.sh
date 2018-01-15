@@ -11,7 +11,7 @@
 
 echo -e "$bar Disable SD card automount ..."
 #################################################################################
-if [[ $part2 ]]; then
+if [[ -n $part2 ]]; then
 	rootnum=${part2/\/dev\/mmcblk0p}
 else
 	rootnum=$( mount | grep 'on / ' | cut -d' ' -f1 | cut -d'p' -f2  )
