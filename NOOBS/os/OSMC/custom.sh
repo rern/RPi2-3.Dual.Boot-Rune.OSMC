@@ -18,6 +18,7 @@ mountlist+="/dev/mmcblk0p$bootnum  /boot      vfat  defaults,noatime,noauto,x-sy
 
 partarray=($( 
 	fdisk -l /dev/mmcblk0 | 
+	grep mmcblk0
 	awk -F' ' '{print $1}' | 
 	sed "/p1$\|p2$\|p5$\|p$bootnum$\|p$rootnum$/ d" | 
 	sed 's/\/dev\/mmcblk0p//' 
