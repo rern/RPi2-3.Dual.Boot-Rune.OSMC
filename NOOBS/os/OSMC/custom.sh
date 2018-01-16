@@ -2,15 +2,14 @@
 
 ### customize osmc install
 
-# for source in: ./OSMC/partition_setup.sh, ./RuneAudio/custom/usr/local/bin/osmcreset
+# for source in: partition_setup.sh, /hardreset
 # fstab boot partition, omit others
-# config ssh login for root
+# permit ssh login for root
 # fix ssh algorithm negotiation failed
-# copt custom files
+# copy custom files
 # remove forcetrigger
 
-echo -e "$bar Disable SD card automount ..."
-#################################################################################
+# disable sd card automount ..."
 mountlist="/dev/mmcblk0p$bootnum  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0
 "
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
@@ -25,7 +24,7 @@ echo -e "$mountlist" > $mntroot/etc/fstab
 # customize files
 sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::|
 ' $mntroot/etc/shadow
-# permit root and fix old ssh client denied login 
+# permit ssh login for root and fix ssh algorithm negotiation failed
 sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
 ' -e '/^KexAlgorithms/ s/^/#/
 ' -e '/^Ciphers/ s/^/#/
