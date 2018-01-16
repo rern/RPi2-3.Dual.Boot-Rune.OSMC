@@ -14,10 +14,10 @@ echo -e "$bar Disable SD card automount ..."
 mountlist="/dev/mmcblk0p$bootnum  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0
 "
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
-grep mmcblk0p | 
-awk -F' ' '{print $1}' | 
-sed "/p2$\|p$bootnum$\|p$rootnum$/ d" | 
-sed 's|mmcblk0\(p.*\)|&   /tmp/mmc\1   auto   noauto,noatime|'
+	grep mmcblk0p | 
+	awk -F' ' '{print $1}' | 
+	sed "/p2$\|p$bootnum$\|p$rootnum$/ d" | 
+	sed 's|mmcblk0\(p.*\)|&   /tmp/mmc\1   auto   noauto,noatime|'
 )
 
 echo -e "$mountlist" > $mntroot/etc/fstab
