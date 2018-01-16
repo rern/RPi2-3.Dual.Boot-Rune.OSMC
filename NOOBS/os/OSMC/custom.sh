@@ -14,7 +14,7 @@ mountlist="/dev/mmcblk0p$bootnum  /boot        vfat   defaults,noatime,noauto,x-
 "
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
-	awk -F' ' '{print $1}' | 
+	cut -d' ' -f1 | 
 	sed "/p2$\|p$bootnum$\|p$rootnum$/ d" | 
 	sed 's|mmcblk0\(p.*\)|&   /tmp/mmc\1   auto   noauto,noatime|'
 )
