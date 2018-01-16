@@ -49,7 +49,7 @@ Prepare os directory
 	- run with **busybox** `#!/bin/ash` shell - no `${var/expan/sion}`, no `array=()` support
 	- `/mnt` = SD card root directory for customizing (eg. `/mnt/os/<name>/...` )
 	- add customizing commands to run after installation finished
-	- EOL: **LF** not **~~CRLF~~**
+	- EOL: `LF` not `CRLF`
 	
 
 ### `<boot>.tar.xz` and `<root>.tar.xz`  
