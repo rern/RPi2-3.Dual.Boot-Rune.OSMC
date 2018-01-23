@@ -115,9 +115,9 @@ echo -e "$bar Customize ..."
 . $mntrecovery/os/$namereset/custom.sh
 
 time1=$( date +%s )
-timediff=$(( $time1 - $time0 ))
-timemin=$(( $timediff / 60 ))
-timesec=$(( $timediff % 60 ))
+timediff=$(( time1 - time0 ))
+timemin=$(( timediff / 60 ))
+timesec=$(( timediff % 60 ))
 echo -e "\nDuration: $timemin min $timesec sec"
 echo $li
 echo -e "$bar $name hardreset successfully."
