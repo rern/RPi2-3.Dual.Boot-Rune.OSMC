@@ -1,12 +1,9 @@
 $( '#addons' ).click( function () {
-	// fix path if click in other menu pages
-	var path = /\/.*\//.test( location.pathname ) ? '../../' : '';
-	
 	$( '#loadercontent' ).html( '<i class="fa fa-gear fa-spin"></i>Installing...' );
 	$( '#loader' ).removeClass( 'hide' );
 	
 	$.get(
-		path +'addonsdl.php',
+		'/addonsdl.php',
 		function( exit ) {
 			if ( exit == 1 ) {
 				info( {
