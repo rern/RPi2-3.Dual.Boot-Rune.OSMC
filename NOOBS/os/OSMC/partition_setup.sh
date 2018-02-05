@@ -13,14 +13,10 @@ else
 fi
 # Temporary mounting directory
 mkdir -p /tmp/mount
-# To UUID or not to UUID
-vfat_part=$part1
-ext4_part=$part2
-if [ -n $id1 ]; then vfat_part=$id1; fi
-if [ -n $id2 ]; then ext4_part=$id2; fi
+
 # Fix the cmdline.txt
 mount $part1 /tmp/mount
-echo "root=$ext4_part osmcdev=$dev rootfstype=ext4 rootwait quiet" > /tmp/mount/cmdline.txt
+echo "root=$part2 osmcdev=$dev rootfstype=ext4 rootwait quiet" > /tmp/mount/cmdline.txt
 
 umount /tmp/mount
 # Wait
