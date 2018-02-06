@@ -21,12 +21,6 @@ echo "root=$part2 osmcdev=$dev rootfstype=ext4 rootwait quiet" > /tmp/mount/cmdl
 umount /tmp/mount
 # Wait
 sync
-# Fix the fstab
-mount $part2 /tmp/mount
-echo "$vfat_part  /boot    vfat     defaults,noatime,noauto,x-systemd.automount    0   0
-">/tmp/mount/etc/fstab
-
-umount /tmp/mount
 
 # customize #####################
 bootnum=${part1/\/dev\/mmcblk0p}
