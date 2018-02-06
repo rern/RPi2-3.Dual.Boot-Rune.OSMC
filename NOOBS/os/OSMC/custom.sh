@@ -10,7 +10,7 @@
 # remove forcetrigger
 
 # disable sd card automount ..."
-mountlist="/dev/mmcblk0p$bootnum  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0
+mountlist="$part1  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0
 "
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
