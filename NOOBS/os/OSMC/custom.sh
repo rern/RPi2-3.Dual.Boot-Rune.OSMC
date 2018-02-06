@@ -19,7 +19,7 @@ if [[ $( fdisk -l /dev/sda1 2> /dev/null ) ]]; then
 fi
 
 # disable sd card automount ..."
-mountlist+="$part1  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0\n"
+mountlist+="/dev/mmcblk0p$bootnum  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0\n"
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
 	cut -d' ' -f1 | 
