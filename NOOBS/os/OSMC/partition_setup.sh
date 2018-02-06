@@ -23,8 +23,8 @@ umount /tmp/mount
 sync
 
 # customize #####################
-bootnum=${part1/\/dev\/mmcblk0p}
-rootnum=${part2/\/dev\/mmcblk0p}
+bootnum=$( echo $part1 | cut -d'p' -f2 ) # no parameter expansion in busybox - ${part1/\/dev\/mmcblk0p/}
+bootnum=$( echo $part2 | cut -d'p' -f2 )
 mntroot=/tmp/mount
 mount $part2 $mntroot
 
