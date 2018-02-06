@@ -11,15 +11,16 @@
 
 mountlist=''
 # usb drive
-if [[ $( fdisk -l /dev/sda1 2> /dev/null ) ]]; then
-	usblabel=$( ls -l /dev/disk/by-label | grep sda1 | sed 's/.*\s\(.*\)\s->.*sda1/\1/' )
+if [[ $( fdisk -l /dev/sda1 | grep sda1 ) != '' ]]; then
+	usblabel=$( e2label /dev/sda1 )
 	[[ $usblabel == '' ]] && usblabel=usb
-	mkdir -p /mnt/$usb
-	mountlist="/dev/sda1  /mnt/$usblabel        ext4   defaults,noatime\n"
+	mkdir -p /mnt/$usblabel
+	mountlist+="/dev/sda1        /mnt/$usblabel     ext4   defaults,noatime\n"
 fi
 
 # disable sd card automount ..."
-mountlist+="/dev/mmcblk0p$bootnum  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0\n"
+mountlist+="/dev/mmcblk0p$bootnum   /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0\n"
+
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
 	cut -d' ' -f1 | 
