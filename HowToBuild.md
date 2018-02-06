@@ -46,7 +46,13 @@ Prepare os directory
 	- `NOOBS` + all `"uncompressed_tarball_size":` < must be less than SD card size  
 
 - `/os/<name>/partition_setup.sh`
-	- run with **busybox** `#!/bin/ash` shell - no `$(( var + n ))`, no `array=()` support
+	- run with **busybox** `#!/bin/ash` shell 
+		- no `$(( var + n ))`
+		- no `${var/a.../b...}`
+		- no `array=()`
+		- no `[[...]]`
+		- no `[ -z ... ]`
+		- no `[ -n ... ]`
 	- `/mnt` = SD card root directory for customizing (eg. `/mnt/os/<name>/...` )
 	- add customizing commands to run after installation finished
 	- EOL: `LF` not `CRLF`
