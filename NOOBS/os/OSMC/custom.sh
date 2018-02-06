@@ -9,26 +9,27 @@
 # copy custom files
 # remove forcetrigger
 
-mountlist=''
+echo '' > $mntroot/etc/fstab
 # usb drive
-if [[ $( fdisk -l /dev/sda1 | grep sda1 ) != '' ]]; then
+sda=$( fdisk -l /dev/sda1 | grep sda1 )
+if [ "$sda" != '' ]; then
 	usblabel=$( e2label /dev/sda1 )
-	[[ $usblabel == '' ]] && usblabel=usb
+	[ "$usblabel" == '' ] && usblabel=usb
 	mkdir -p /mnt/$usblabel
-	mountlist+="/dev/sda1        /mnt/$usblabel     ext4   defaults,noatime\n"
+	echo -e "/dev/sda1        /mnt/$usblabel     ext4   defaults,noatime" >> $mntroot/etc/fstab
 fi
 
-# disable sd card automount ..."
-mountlist+="/dev/mmcblk0p$bootnum   /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0\n"
+# boot
+echo -e "/dev/mmcblk0p$bootnum   /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0" >> $mntroot/etc/fstab
 
-mountlist+=$( fdisk -l /dev/mmcblk0 | 
+# disable sd card automount ..."
+mountlist=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
 	cut -d' ' -f1 | 
 	sed "/p2$\|p$bootnum$\|p$rootnum$/ d" | 
 	sed 's|mmcblk0\(p.*\)|&   /tmp/mmc\1   auto   noauto,noatime|'
 )
-
-echo -e "$mountlist" > $mntroot/etc/fstab
+echo -e "$mountlist" >> $mntroot/etc/fstab
 
 # customize files
 sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::|
