@@ -24,8 +24,10 @@ echo -e "$mountlist" > $mntroot/etc/fstab
 # customize files
 sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::|
 ' $mntroot/etc/shadow
-# permit ssh login for root and fix ssh algorithm negotiation failed
+# permit ssh login for root
 sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/' $mntroot/etc/ssh/sshd_config
+
+# fix ssh algorithm negotiation failed
 #' -e '/^KexAlgorithms/ s/^/#/
 #' -e '/^Ciphers/ s/^/#/
 #' -e '/^MACs/ s/^/#/
