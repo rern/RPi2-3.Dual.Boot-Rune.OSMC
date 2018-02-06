@@ -9,9 +9,17 @@
 # copy custom files
 # remove forcetrigger
 
+mountlist=''
+# usb drive
+if [[ $( fdisk -l /dev/sda1 2> /dev/null ) ]]; then
+	usblabel=$( ls -l /dev/disk/by-label | grep sda1 | sed 's/.*\s\(.*\)\s->.*sda1/\1/' )
+	[[ $usblabel == '' ]] && usblabel=usb
+	mkdir -p /mnt/$usb
+	mountlist="/dev/sda1  /mnt/$usblabel        ext4   defaults,noatime\n"
+fi
+
 # disable sd card automount ..."
-mountlist="$part1  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0
-"
+mountlist+="$part1  /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0\n"
 mountlist+=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
 	cut -d' ' -f1 | 
