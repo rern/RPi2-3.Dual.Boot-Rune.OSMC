@@ -24,7 +24,7 @@ sync
 
 # customize #####################
 bootnum=$( echo $part1 | cut -d'p' -f2 ) # no parameter expansion in busybox - ${part1/\/dev\/mmcblk0p/}
-bootnum=$( echo $part2 | cut -d'p' -f2 )
+rootnum=$( echo $part2 | cut -d'p' -f2 )
 mntroot=/tmp/mount
 mount $part2 $mntroot
 
