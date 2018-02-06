@@ -5,7 +5,8 @@
             "filesystem_type": "FAT",
             "partition_size_nominal": 80,
             "uncompressed_tarball_size": 23,
-            "want_maximised": false
+            "want_maximised": false,
+			"mkfs_options": "-F32"
         },
         {
             "label": "root-osmc",
