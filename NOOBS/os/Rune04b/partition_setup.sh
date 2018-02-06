@@ -1,25 +1,24 @@
 #!/bin/ash
 
-mnt=/tmp/mount
+mkdir /tmp/1
+mount $part1 /tmp/1
+sed -i "s|root=/dev/[^ ]*|root=$part2|" /tmp/1/cmdline.txt
 
-mkdir -p $mnt
-
-mount $part1 $mnt
-
-sed -i "s|root=/dev/[^ ]*|root=$part2|" $mnt/cmdline.txt
-
-# remove force reinstall if any
-sed -i "s| forcetrigger||" $mnt/recovery.cmdline
-umount $mnt
-
-mount $part2 $mnt
+mntroot=/tmp/2
+mkdir -p $mntroot
+mount $part2 $mntroot
 
 sed -i -e "s|^.* /boot |$part1  /boot |
 " -e '/^#/ d
 ' -e 's/\s\+0\s\+0\s*$//
-' $mnt/etc/fstab
+' $mntroot/etc/fstab
 
 # customize
-. $mnt/os/Rune04b/custom.sh
+mntrecovery=/mnt
+. $mntrecovery/os/Rune04b/custom.sh
 
-umount $mnt
+# remove force reinstall if any
+sed -i "s| forcetrigger||" $mntrecovery/recovery.cmdline
+
+umount /tmp/1
+umount /tmp/2
