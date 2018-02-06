@@ -9,7 +9,7 @@
 # copy custom files
 # remove forcetrigger
 
-echo '' > $mntroot/etc/fstab
+echo -n '' > $mntroot/etc/fstab
 # usb drive
 sda=$( fdisk -l /dev/sda1 | grep sda1 )
 if [ "$sda" != '' ]; then
