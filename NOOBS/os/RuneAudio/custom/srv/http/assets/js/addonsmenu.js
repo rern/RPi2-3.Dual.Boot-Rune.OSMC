@@ -3,7 +3,7 @@ $( '#addons' ).click( function () {
 	$( '#loader' ).removeClass( 'hide' );
 	
 	$.get( '/addonsdl.php', function( exit ) {
-		if ( exit == 1 ) {
+		if ( exit == 8 ) {
 			info( {
 				icon   : '<i class="fa fa-info-circle fa-2x">',
 				message: 'Download from Addons server failed.'
