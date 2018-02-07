@@ -47,15 +47,19 @@ Prepare os directory
 
 - `/os/<name>/partition_setup.sh`
 	- run with **busybox** `#!/bin/ash` shell 
+		- no `array=()`
 		- no `$(( var + n ))`
 		- no `${var/a.../b...}`
-		- no `array=()`
-		- no `[[...]]`
-		- no `[ -z ... ]`
 		- no `[ -n ... ]`
-	- `/mnt` = SD card root directory for customizing (eg. `/mnt/os/<name>/...` )
+		- no `[ -z ... ]`
+		- no `( ... == ... )`
+		- no `(( ... == ... ))`
+	- default parameters
+		- `/mnt` = SD card root directory for customizing (eg. `/mnt/os/<name>/...` )
+		- `$part1` = boot partition
+		- `$part2` = root partition
 	- add customizing commands to run after installation finished
-	- EOL: `LF` not `CRLF`
+	- end of line: `LF` (on Windows, make sure not `CRLF`)
 	
 
 ### `<boot>.tar.xz` and `<root>.tar.xz`  
