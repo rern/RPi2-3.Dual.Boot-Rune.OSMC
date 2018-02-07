@@ -37,7 +37,7 @@ sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQv
 # permit ssh login for root
 sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/' $mntroot/etc/ssh/sshd_config
 
-# fix ssh algorithm negotiation failed
+# fix ssh algorithm negotiation failed (in some 2017 versions)
 #' -e '/^KexAlgorithms/ s/^/#/
 #' -e '/^Ciphers/ s/^/#/
 #' -e '/^MACs/ s/^/#/
