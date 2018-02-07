@@ -22,7 +22,7 @@ fi
 # boot
 echo -e "/dev/mmcblk0p$bootnum   /boot        vfat   defaults,noatime,noauto,x-systemd.automount    0   0" >> $mntroot/etc/fstab
 
-# disable sd card automount ..."
+# disable sd card automount (for >2 OSes as well)
 mountlist=$( fdisk -l /dev/mmcblk0 | 
 	grep mmcblk0p | 
 	cut -d' ' -f1 | 
