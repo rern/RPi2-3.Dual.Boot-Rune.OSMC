@@ -34,13 +34,12 @@ echo -e "$mountlist" >> $mntroot/etc/fstab
 # customize files
 sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQvflqhA5K1dgcyU8nzX/.tAImkMbRMR0ex51LjPsIk8gm0:17000:0:99999:7:::|
 ' $mntroot/etc/shadow
-# permit ssh login for root
-sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/' $mntroot/etc/ssh/sshd_config
-
-# fix ssh algorithm negotiation failed (in some 2017 versions)
-#' -e '/^KexAlgorithms/ s/^/#/
-#' -e '/^Ciphers/ s/^/#/
-#' -e '/^MACs/ s/^/#/
+# permit ssh login for root and fix ssh algorithm negotiation failed (in some 2017 versions)
+sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
+' -e '/^KexAlgorithms/ s/^/#/
+' -e '/^Ciphers/ s/^/#/
+' -e '/^MACs/ s/^/#/
+' $mntroot/etc/ssh/sshd_config
 
 cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
 #chmod 644 $mntroot/etc/udev/rules.d/999-usbsound.rules
