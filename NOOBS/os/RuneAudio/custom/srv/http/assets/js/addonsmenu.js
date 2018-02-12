@@ -13,7 +13,7 @@ $( '#addons' ).click( function () {
 				}
 			} );
 		} else {
-			location.href = path +'addons.php';
+			location.href = '/addons.php';
 		}
 	} );
 } );
