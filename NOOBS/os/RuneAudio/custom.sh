@@ -22,6 +22,6 @@ sed -i '$ a\
 echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
 chmod 4755 $mntroot/usr/bin/sudo
 
-cp -r $mntrecovery/os/RuneAudio/custom/. $mntroot # customize files
+cp -r $mntrecovery/os/RuneAudio/custom/* $mntroot # customize files
 chmod 755 $mntroot/usr/local/bin/hardreset $mntroot/srv/http/addons*
 chown 33:33 $mntroot/srv/http/addons* $mntroot/srv/http/assets/js/addons*
