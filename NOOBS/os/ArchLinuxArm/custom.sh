@@ -8,7 +8,7 @@ sed -i 's|root:.*|root:\$6\$X6cgc9tb\$wTTiWttk/tRwPrM8pLZCZpYpHE8zEar2mkSSQ7brQv
 sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' $mntroot/etc/ssh/sshd_config
 
 # custom files
-cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
+cp -r $mntrecovery/os/OSMC/custom/* $mntroot # copy recursive include hidden ('.' not '*')
 chmod 755 $mntroot/usr/local/bin/hardreset
 
 wget -qN --show-progress https://github.com/rern/RuneAudio/raw/master/_settings/cmd.sh -P $mntroot/etc/profile.d
