@@ -41,7 +41,7 @@ sed -i -e 's/PermitRootLogin .*/PermitRootLogin yes/
 ' -e '/^MACs/ s/^/#/
 ' $mntroot/etc/ssh/sshd_config
 
-cp -r $mntrecovery/os/OSMC/custom/. $mntroot # copy recursive include hidden ('.' not '*')
+cp -r $mntrecovery/os/OSMC/custom/* $mntroot # copy recursive include hidden ('.' not '*')
 #chmod 644 $mntroot/etc/udev/rules.d/999-usbsound.rules
 chmod 755 $mntroot/home/osmc/{*.py,*.sh}
 chmod 755 $mntroot/usr/local/bin/hardreset
