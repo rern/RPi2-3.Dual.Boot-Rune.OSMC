@@ -1,7 +1,7 @@
 Dual Boot: Rune | OSMC (Pi2, Pi3)
 ---
 
-`Rune 0.3beta 20160321` + `OSMC 2017.10-1` in `NOOBS lite 2.4` (with 'silentinstall' tweaks)  
+`Rune 0.4beta 20170229` + `OSMC 2018.04-1` in `NOOBS lite 2.8` (with 'silentinstall' tweaks)  
 _Initially started after [this post](http://www.runeaudio.com/forum/post20211.html?hilit=dual%20boot#p15341)._
 
 [>> **Download**](https://drive.google.com/open?id=0B9KEjMAuGbejUnZaa2lOakFYYnM)  
