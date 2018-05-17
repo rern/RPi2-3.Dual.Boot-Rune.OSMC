@@ -14,7 +14,7 @@ cd
 git clone https://github.com/raspberrypi/noobs.git
 cd noobs
 ```  
-**Edit recovery/mainwindow.cpp**  
+**Edit `./noobs/recovery/mainwindow.cpp`**  
 * remove os count  
 * add checked to 2nd os list  
 * change installed os numbers  
@@ -37,12 +37,12 @@ sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "$FINAL_OUTPUT_DIR/recovery.cmdl
 ' BUILDME.sh
 ```
 **Compile**  
+- If available, restore previously downloaded packages to `./noobs/buildroot/dl/*` to avoid slow download
 ```sh
-# If available, reuse previously downloaded packages by backup-restore noobs/buildroot/dl/* to avoid slow download
-
 ./BUILDME.sh
 ```
-- Get compiled **NOOBS** in **output/** directory  
+- Get compiled **NOOBS** in `./noobs/output/` directory
+- Backup `./noobs/buildroot/dl/*` for reuse in fresh setup to avoid slow download of packages
 
 **Clean cache for fresh compile**  
 ```
