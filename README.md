@@ -14,6 +14,7 @@ _Initially started after [this post](http://www.runeaudio.com/forum/post20211.ht
 - Install easier than normal NOOBS itself with 1 complete package (GitHub `Download Zip` not support large files, the download hosted on  Google Drive)
 - Unattended offline installation
 - No need for interaction, display, mouse, internet during installation  
+- For normal interactive installation: Just copy the content of os folder to NOOBS Lite os folder
 
 >[Features](#features)  
 >[Remote Control](#remote-control)  
