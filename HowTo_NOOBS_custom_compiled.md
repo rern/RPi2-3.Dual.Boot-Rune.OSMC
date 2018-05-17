@@ -1,18 +1,12 @@
 NOOBS custom compile
 ---
-successfully compiled NOOBS 2.4 on `ubuntu-17.04-desktop-amd64` (`gcc-6`, `g++-6` downgrade to `gcc-5`, `g++-5` needed)  
- 
+- For unattended `silentinstall` to SD card only
+- For normal interactive installation, just copy the content in os folder to NOOBS os folder
+- The following procedure has successfully compiled `NOOBS 2.8` on `ubuntu-18.04-desktop-amd64`  
 
 **Install build environment:**  
 ```sh
 sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git
-
-# !important: NOOBS needs gcc-5 and g++-5
-sudo apt install gcc-5 g++-5
-sudo rm /usr/bin/gcc
-sudo rm /usr/bin/g++
-sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
-sudo ln -s /usr/bin/g++-5 /usr/bin/g++
 ```
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```
@@ -39,7 +33,7 @@ sed -i -e 's/if (_allowSilent && .*)/if (_allowSilent)/
 * add ' silentinstall'
 ```
 sed -i -e '/cp "$IMAGES_DIR\/cmdline.txt" "$FINAL_OUTPUT_DIR\/recovery.cmdline"/ a\
-sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmdline"
+sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "$FINAL_OUTPUT_DIR/recovery.cmdline"
 ' BUILDME.sh
 ```
 **Compile**  
@@ -48,7 +42,7 @@ sed -i "s/\\r//; s/\\n//; s/\$/ silentinstall/" "\$FINAL_OUTPUT_DIR/recovery.cmd
 
 ./BUILDME.sh
 ```
-- Get **NOOBS** in **output/** directory  
+- Get compiled **NOOBS** in **output/** directory  
 
 **Clean cache for fresh compile**  
 ```
