@@ -6,7 +6,7 @@ NOOBS custom compile
 
 **Install build environment:**  
 ```sh
-sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git
+sudo apt install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools git python
 ```
 **Clone** [**NOOBS source**](https://github.com/raspberrypi/noobs)
 ```
