@@ -22,10 +22,14 @@ cd noobs
 * remove OK prompt on finished 
 ```
 sed -i -e 's/if (_allowSilent && .*)/if (_allowSilent)/
-' -e '/ui->list->item(0)->setCheckState(Qt::Checked);/ a\
-            ui->list->item(1)->setCheckState(Qt::Checked);
-' -e 's/_numInstalledOS = 1/_numInstalledOS = 2/
-' -e 's/"default_partition_to_boot", "800"/"default_partition_to_boot", "8"/
+' -e '/if (_allowSilent)/ a\
+            count = ui->list->count();\
+            for (i = 0; i < count; ++i)\
+            {\
+            	ui->list->item(i)->setCheckState(Qt::Checked);\
+            }
+' -e 's/_numInstalledOS = 1/_numInstalledOS = count/
+' -e 's/"default_partition_to_boot", "800"/"default_partition_to_boot", "6"/
 ' -e 's/("OS(es) Installed Successfully"), QMessageBox::Ok)/("OS(es) Installed Successfully"))/
 ' recovery/mainwindow.cpp 
 ```
