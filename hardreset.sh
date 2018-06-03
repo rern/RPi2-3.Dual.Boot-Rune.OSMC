@@ -57,7 +57,7 @@ echo
 echo -e "\e[36m0\e[m / n ? "
 read -n 1 ans
 echo
-[[ -z $ans || $ans == 0 ]] && exit
+[[ -z $ans || $ans == 0 || $ans -gt $(( ilength / 2 )) || $ans != [0-9] ]] && return
 
 bootnum=${bootarray[$ans]}
 rootnum=$(( bootnum + 1 ))
