@@ -40,16 +40,13 @@ echo -e "\n\e[30m\e[43m ? \e[0m Hardreset OS:"
 echo -e '  \e[36m0\e[m Cancel'
 namearray=(0)
 bootarray=(0)
-j=0
 for (( i=0; i < ilength; i+=2 )); do
 	iname=${osarray[i]}
-	(( j++ ))
 	echo -e "  \e[36m$j\e[m $iname"
 	namearray+=($iname)
 	bootarray+=(${osarray[i + 1]})
 done
 
-(( j++ ))
 echo -e "  \e[36m$j\e[m NOOBS"
 namearray+=(NOOBS)
 bootarray+=(0)
@@ -57,7 +54,7 @@ echo
 echo -e "\e[36m0\e[m / n ? "
 read -n 1 ans
 echo
-[[ -z $ans || $ans == 0 || $ans -gt $(( ilength / 2 )) || $ans != [0-9] ]] && return
+[[ -z $ans || $ans != [0-9] || $ans == 0 || $ans -gt $(( ilength / 2 )) ]] && return
 
 bootnum=${bootarray[$ans]}
 rootnum=$(( bootnum + 1 ))
