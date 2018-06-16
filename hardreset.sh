@@ -40,7 +40,9 @@ echo -e "\n\e[30m\e[43m ? \e[0m Hardreset OS:"
 echo -e '  \e[36m0\e[m Cancel'
 namearray=(0)
 bootarray=(0)
+j=0
 for (( i=0; i < ilength; i+=2 )); do
+	(( j++ ))
 	iname=${osarray[i]}
 	echo -e "  \e[36m$j\e[m $iname"
 	namearray+=($iname)
