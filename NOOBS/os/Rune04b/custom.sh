@@ -9,9 +9,13 @@ fi
 
 # addons menu
 sed -i -e '/runeui.css/ a\
+<?php //0addo0 ?>
     <link rel="stylesheet" href="<?=$this->asset('"'"'/css/addonsinfo.css'"'"')?>">
+<?php //1addo1 ?>
 ' -e '/poweroff-modal/ i\
+<?php //0addo0 ?>
             <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
+<?php //1addo1 ?>
 ' $mntroot/srv/http/app/templates/header.php
 
 sed -i '$ a\
