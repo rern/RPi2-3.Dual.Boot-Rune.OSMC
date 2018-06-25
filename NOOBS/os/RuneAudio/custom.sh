@@ -8,15 +8,16 @@ if [[ -z $part1 ]]; then
 fi
 
 # addons menu
-sed -i -e '/runeui.css/ a\
-    <link rel="stylesheet" href="<?=$this->asset('"'"'/css/addonsinfo.css'"'"')?>">
-' -e '/poweroff-modal/ i\
-            <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
+sed -i -e '/poweroff-modal/ a\
+<?php //0addo0 ?>\
+            <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>\
+<?php //1addo1 ?>
 ' $mntroot/srv/http/app/templates/header.php
 
 sed -i '$ a\
-<script src="<?=$this->asset('"'"'/js/addonsinfo.js'"'"')?>"></script>\
-<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
+<?php //0addo0 ?>\
+<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>\
+<?php //1addo1 ?>
 ' $mntroot/srv/http/app/templates/footer.php
 
 echo 'http ALL=NOPASSWD: ALL' > $mntroot/etc/sudoers.d/http
