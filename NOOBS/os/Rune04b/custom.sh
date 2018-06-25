@@ -9,14 +9,14 @@ fi
 
 # addons menu
 sed -i -e '/poweroff-modal/ a\
-<?php //0addo0 ?>
-            <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>
+<?php //0addo0 ?>\
+            <li style="cursor: pointer;"><a id="addons"><i class="fa fa-cubes"></i> Addons</a></li>\
 <?php //1addo1 ?>
 ' $mntroot/srv/http/app/templates/header.php
 
 sed -i '$ a\
-<?php //0addo0 ?>
-<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>
+<?php //0addo0 ?>\
+<script src="<?=$this->asset('"'"'/js/addonsmenu.js'"'"')?>"></script>\
 <?php //1addo1 ?>
 ' $mntroot/srv/http/app/templates/footer.php
 
